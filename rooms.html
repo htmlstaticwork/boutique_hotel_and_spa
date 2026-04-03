@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Serenara — Private Villas & Suites</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    .villa-card {
+      border: var(--border-gold);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    .villa-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-soft); }
+    .villa-img-wrap { width: 100%; height: 280px; overflow: hidden; position: relative; }
+    .villa-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .villa-card:hover .villa-img { transform: scale(1.05); }
+    .villa-img-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--secondary); color: var(--text-dark);
+      font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 10px; font-family: var(--font-body); z-index: 2;
+    }
+    .villa-body {
+      padding: 28px 24px 32px;
+      display: flex; flex-direction: column; align-items: center; width: 100%;
+    }
+    .villa-type {
+      font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--secondary); font-family: var(--font-body); margin-bottom: 8px;
+    }
+    .villa-body h3 { font-size: 1.35rem; margin-bottom: 12px; }
+    .villa-body p { font-size: 0.88rem; margin-bottom: 18px; }
+    .villa-amenities {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin-bottom: 20px;
+    }
+    .amenity-tag {
+      padding: 3px 10px; border: 1px solid var(--secondary-30);
+      font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--text-dim); font-family: var(--font-body);
+    }
+    .villa-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; padding-top: 18px; border-top: 1px solid var(--secondary-15);
+    }
+    .villa-price { font-family: var(--font-display); font-size: 1.6rem; font-weight: 300; color: var(--secondary); }
+    .villa-price small { font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-body); }
+
+    .amenities-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      border: var(--border-gold); margin: 0 0 60px;
+    }
+    @media (max-width: 767px) { .amenities-bar { grid-template-columns: repeat(2, 1fr); } }
+    .amenity-item {
+      padding: 28px 20px; text-align: center;
+      border-right: 1px solid var(--secondary-15);
+      transition: var(--transition);
+    }
+    .amenity-item:last-child { border-right: none; }
+    .amenity-item:hover { background: var(--secondary-08); }
+    .amenity-icon { color: var(--secondary); margin-bottom: 10px; }
+    .amenity-item h4 { font-size: 0.85rem; margin-bottom: 4px; }
+    .amenity-item p { font-size: 0.78rem; }
+  </style>
+</head>
+<body>
+  <div id="header-inject"></div>
+
+  <!-- HERO -->
+  <section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1920&q=80');">
+    <div class="container">
+      <div class="page-hero-content" style="animation:fadeInUp 0.8s ease;">
+        <div class="ornament" style="justify-content:flex-start;margin-bottom:16px;"><div class="ornament-line" style="width:32px;"></div><div class="ornament-diamond"></div></div>
+        <span class="section-label">Private Villas & Suites</span>
+        <h1>Your <span class="gradient-text">Sanctuary</span> Awaits</h1>
+        <p>Fifteen exquisite villas, each a private world of its own. From intimate garden retreats to clifftop suites with infinity-edge plunge pools.</p>
+        <a href="dashboard.html" class="btn btn-primary" style="margin-top:28px;">Check Availability</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENITIES BAR -->
+  <section style="padding:0;" class="reveal">
+    <div class="container">
+      <div class="amenities-bar">
+        <div class="amenity-item">
+          <div class="amenity-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 12s3-5 10-5 10 5 10 5-3 5-10 5-10-5-10-5z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h4>Private Pool</h4><p>Every villa</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/></svg></div>
+          <h4>Open-Air Bath</h4><p>Rain shower & tub</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg></div>
+          <h4>Breakfast Included</h4><p>Daily farm-to-table</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <h4>Private Butler</h4><p>24/7 service</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VILLA CARDS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
+        <span class="section-label">Our Collection</span>
+        <h2>15 Villas, <span class="gradient-text">One Spirit</span></h2>
+        <p>Each villa is handcrafted from traditional materials — volcanic stone, reclaimed teak, alang-alang thatch. No two are identical.</p>
+      </div>
+
+      <div class="card-grid card-grid-2">
+        <div class="villa-card reveal reveal-delay-1">
+          <div class="villa-img-wrap">
+            <img class="villa-img" src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=700&q=80" alt="Garden Villa" loading="lazy"/>
+            <span class="villa-img-badge">Available</span>
+          </div>
+          <div class="villa-body">
+            <div class="villa-type">Garden Collection · 1 Bedroom</div>
+            <h3>The Garden Villa</h3>
+            <p>A lush 150 sqm sanctuary amid frangipani and heliconia. Private plunge pool, outdoor rain shower, handwoven bamboo daybed overlooking the koi garden.</p>
+            <div class="villa-amenities">
+              <span class="amenity-tag">Private Pool</span>
+              <span class="amenity-tag">150 sqm</span>
+              <span class="amenity-tag">King Bed</span>
+              <span class="amenity-tag">Outdoor Bath</span>
+              <span class="amenity-tag">Garden View</span>
+            </div>
+            <div class="villa-footer">
+              <div class="villa-price">$280 <small>/ night</small></div>
+              <a href="dashboard.html" class="btn btn-outline" style="font-size:0.7rem;padding:10px 20px;">Book →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="villa-card reveal reveal-delay-2">
+          <div class="villa-img-wrap">
+            <img class="villa-img" src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=700&q=80" alt="Pool Villa" loading="lazy"/>
+            <span class="villa-img-badge">Popular</span>
+          </div>
+          <div class="villa-body">
+            <div class="villa-type">Terrace Collection · 2 Bedroom</div>
+            <h3>The Rice Terrace Villa</h3>
+            <p>Perched directly above the UNESCO rice terraces. 220 sqm with an infinity plunge pool that appears to merge with the green terraces below at sunrise.</p>
+            <div class="villa-amenities">
+              <span class="amenity-tag">Infinity Pool</span>
+              <span class="amenity-tag">220 sqm</span>
+              <span class="amenity-tag">2 Bedrooms</span>
+              <span class="amenity-tag">Terrace View</span>
+              <span class="amenity-tag">Butler</span>
+            </div>
+            <div class="villa-footer">
+              <div class="villa-price">$480 <small>/ night</small></div>
+              <a href="dashboard.html" class="btn btn-outline" style="font-size:0.7rem;padding:10px 20px;">Book →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="villa-card reveal reveal-delay-1">
+          <div class="villa-img-wrap">
+            <img class="villa-img" src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=700&q=80" alt="Clifftop Suite" loading="lazy"/>
+            <span class="villa-img-badge" style="background:var(--accent);color:#fff;">Exclusive</span>
+          </div>
+          <div class="villa-body">
+            <div class="villa-type">Signature Collection · Suite</div>
+            <h3>The Clifftop Suite</h3>
+            <p>Our most dramatic accommodation — 300 sqm on the private estate cliff. Two pavilions connected by a lily-pad bridge over a natural stream. Truly once-in-a-lifetime.</p>
+            <div class="villa-amenities">
+              <span class="amenity-tag">Cliff Views</span>
+              <span class="amenity-tag">300 sqm</span>
+              <span class="amenity-tag">Private Stream</span>
+              <span class="amenity-tag">Outdoor Yoga</span>
+              <span class="amenity-tag">Chef Included</span>
+            </div>
+            <div class="villa-footer">
+              <div class="villa-price">$780 <small>/ night</small></div>
+              <a href="dashboard.html" class="btn btn-primary" style="font-size:0.7rem;padding:10px 20px;">Book →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="villa-card reveal reveal-delay-2">
+          <div class="villa-img-wrap">
+            <img class="villa-img" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=700&q=80" alt="Forest Bungalow" loading="lazy"/>
+          </div>
+          <div class="villa-body">
+            <div class="villa-type">Forest Collection · Bungalow</div>
+            <h3>The Jungle Bungalow</h3>
+            <p>A romantic cocoon deep within the private jungle garden. Open-plan living, 4-poster bed beneath a stargazing skylight roof, and a natural stone soaking tub under canopy.</p>
+            <div class="villa-amenities">
+              <span class="amenity-tag">Jungle Canopy</span>
+              <span class="amenity-tag">140 sqm</span>
+              <span class="amenity-tag">Skylight Roof</span>
+              <span class="amenity-tag">Stone Soaking Tub</span>
+            </div>
+            <div class="villa-footer">
+              <div class="villa-price">$320 <small>/ night</small></div>
+              <a href="dashboard.html" class="btn btn-outline" style="font-size:0.7rem;padding:10px 20px;">Book →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INCLUDED SECTION -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Every Stay Includes</span>
+        <h2>The <span class="gradient-text">Serenara Ritual</span></h2>
+      </div>
+      <div class="card-grid card-grid-4">
+        <div class="card reveal reveal-delay-1">
+          <div class="card-body">
+            <div class="service-icon" style="margin-bottom:16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
+            <h3>Welcome Ceremony</h3>
+            <p>Upon arrival, a traditional Balinese blessing ceremony with offerings, holy water, and frangipani garlands.</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <div class="card-body">
+            <div class="service-icon" style="margin-bottom:16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg></div>
+            <h3>Daily Breakfast</h3>
+            <p>Served in your villa or at the treetop restaurant — organic, seasonal, and wholly Balinese in character.</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-3">
+          <div class="card-body">
+            <div class="service-icon" style="margin-bottom:16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+            <h3>Airport Transfer</h3>
+            <p>Complimentary private car transfer from Ngurah Rai Airport in an air-conditioned vehicle with refreshments.</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-4">
+          <div class="card-body">
+            <div class="service-icon" style="margin-bottom:16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+            <h3>Turndown Ritual</h3>
+            <p>Each evening: freshly drawn bath with Balinese salts and petals, handwritten note, and a traditional Jamu tonic.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-inject"></div>
+  <script src="js/components.js"></script>
+  <script src="js/global.js"></script>
+</body>
+</html>

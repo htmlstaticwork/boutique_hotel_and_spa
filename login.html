@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Serenara — Guest Login</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg,
+        rgba(26,18,8,0.97) 0%,
+        rgba(26,18,8,0.82) 55%,
+        rgba(92,122,90,0.25) 100%
+      );
+    }
+
+    /* Floating petal BG effect */
+    .petal-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .petal {
+      position: absolute;
+      width: 10px; height: 10px;
+      background: rgba(200,169,110,0.12);
+      border-radius: 50% 0 50% 0;
+      animation: petalFall linear infinite;
+    }
+
+    /* Corner ornaments */
+    .corner {
+      position: fixed;
+      width: 70px; height: 70px;
+      pointer-events: none; z-index: 1;
+    }
+    .corner.tl { top: 24px; left: 24px; border-top: 1px solid rgba(200,169,110,0.25); border-left: 1px solid rgba(200,169,110,0.25); }
+    .corner.tr { top: 24px; right: 24px; border-top: 1px solid rgba(200,169,110,0.25); border-right: 1px solid rgba(200,169,110,0.25); }
+    .corner.bl { bottom: 24px; left: 24px; border-bottom: 1px solid rgba(200,169,110,0.25); border-left: 1px solid rgba(200,169,110,0.25); }
+    .corner.br { bottom: 24px; right: 24px; border-bottom: 1px solid rgba(200,169,110,0.25); border-right: 1px solid rgba(200,169,110,0.25); }
+
+    .login-outer {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 440px;
+      animation: fadeInUp 0.9s ease;
+    }
+
+    .login-card {
+      background: rgba(26,18,8,0.88);
+      border: 1px solid rgba(200,169,110,0.22);
+      padding: 52px 44px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 24px 80px rgba(26,18,8,0.6), 0 0 40px rgba(200,169,110,0.08);
+    }
+    @media (max-width: 480px) { .login-card { padding: 36px 24px; } }
+
+    .login-brand {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .login-brand-logo {
+      width: 52px; height: 52px;
+      border: 1px solid rgba(200,169,110,0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #c8a96e;
+      margin: 0 auto 14px;
+      animation: floatY 4s ease-in-out infinite;
+    }
+    .login-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      color: #f5efe6;
+    }
+    .login-brand-name span { color: #c8a96e; }
+    .login-brand-sub {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(200,169,110,0.6);
+      margin-top: 6px;
+    }
+
+    .login-divider {
+      display: flex; align-items: center; gap: 14px; margin: 20px 0;
+    }
+    .login-divider::before, .login-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,169,110,0.2));
+    }
+    .login-divider::after { background: linear-gradient(90deg, rgba(200,169,110,0.2), transparent); }
+    .login-divider span {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(245,239,230,0.3);
+    }
+
+    .sso-btn {
+      width: 100%;
+      background: rgba(200,169,110,0.06);
+      border: 1px solid rgba(200,169,110,0.2);
+      color: #f5efe6;
+      padding: 12px 16px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      cursor: pointer; transition: all 0.3s ease; border-radius: 0;
+      margin-bottom: 10px;
+    }
+    .sso-btn:hover {
+      background: rgba(200,169,110,0.12);
+      border-color: rgba(200,169,110,0.5);
+    }
+    .sso-icon { font-size: 1.1rem; }
+
+    .pw-wrap { position: relative; }
+    .pw-wrap .form-control { padding-right: 44px; }
+    .pw-eye {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%); background: none; border: none;
+      color: rgba(245,239,230,0.3); cursor: pointer; transition: color 0.3s;
+    }
+    .pw-eye:hover { color: #c8a96e; }
+
+    .remember-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 22px; gap: 10px;
+    }
+    .remember-label {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Jost', sans-serif; font-size: 0.8rem;
+      color: rgba(245,239,230,0.5); cursor: pointer;
+    }
+    .remember-label input { accent-color: #c8a96e; }
+    .forgot-link {
+      font-family: 'Jost', sans-serif; font-size: 0.78rem;
+      color: rgba(200,169,110,0.7); transition: color 0.3s;
+    }
+    .forgot-link:hover { color: #c8a96e; }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 24px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      color: rgba(245,239,230,0.35);
+    }
+    .login-footer a { color: #c8a96e; }
+    .login-footer a:hover { color: #f5efe6; }
+
+    .security-line {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 20px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(245,239,230,0.2);
+    }
+    .security-dot {
+      width: 5px; height: 5px; background: #5c7a5a; border-radius: 50%;
+      box-shadow: 0 0 6px rgba(92,122,90,0.8);
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .back-link a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(200,169,110,0.4); transition: color 0.3s;
+    }
+    .back-link a:hover { color: #c8a96e; }
+  </style>
+</head>
+<body>
+  <!-- NO HEADER / NO FOOTER -->
+
+  <!-- Petal rain -->
+  <div class="petal-bg" id="petalBg"></div>
+
+  <!-- Corner ornaments -->
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="login-outer">
+    <div class="login-card">
+
+      <!-- Brand -->
+      <div class="login-brand">
+        <div class="login-brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:26px;height:26px;">
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+            <path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/>
+            <path d="M6 12h12"/>
+          </svg>
+        </div>
+        <div class="login-brand-name">SERA<span>NARA</span></div>
+        <div class="login-brand-sub">Ubud · Bali · Guest Portal</div>
+      </div>
+
+      <!-- SSO -->
+      <button class="sso-btn">
+        <span class="sso-icon">🌐</span>
+        Continue with Google
+      </button>
+      <button class="sso-btn">
+        <span class="sso-icon">🏢</span>
+        Continue with Corporate SSO
+      </button>
+
+      <div class="login-divider"><span>or sign in with email</span></div>
+
+      <!-- FORM -->
+      <form id="loginForm">
+        <div class="form-group" style="margin-bottom:16px;">
+          <label style="font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:2.5px;text-transform:uppercase;color:#c8a96e;display:block;margin-bottom:7px;">Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="you@email.com"
+            required
+            style="background:rgba(200,169,110,0.06);border:1px solid rgba(200,169,110,0.22);color:#f5efe6;"
+          />
+        </div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label style="font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:2.5px;text-transform:uppercase;color:#c8a96e;display:block;margin-bottom:7px;">Password</label>
+          <div class="pw-wrap">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Enter your password"
+              required
+              id="pwInput"
+              style="background:rgba(200,169,110,0.06);border:1px solid rgba(200,169,110,0.22);color:#f5efe6;"
+            />
+            <button type="button" class="pw-eye" id="pwEye">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="remember-row">
+          <label class="remember-label">
+            <input type="checkbox"/>
+            Keep me signed in
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="width:100%;justify-content:center;padding:14px;font-size:0.78rem;letter-spacing:2.5px;"
+        >
+          Enter Sanctuary
+        </button>
+      </form>
+
+      <div class="login-footer">
+        New to Serenara? <a href="register.html">Create an account →</a>
+      </div>
+
+      <div class="security-line">
+        <span class="security-dot"></span>
+        256-bit SSL · Private & Secure
+        <span class="security-dot"></span>
+      </div>
+    </div>
+
+    <div class="back-link">
+      <a href="index.html">← Return to Serenara.com</a>
+    </div>
+  </div>
+
+  <script>
+    // Password toggle
+    document.getElementById('pwEye')?.addEventListener('click', () => {
+      const pw = document.getElementById('pwInput');
+      pw.type = pw.type === 'password' ? 'text' : 'password';
+    });
+
+    // Login submit
+    document.getElementById('loginForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('[type=submit]');
+      btn.textContent = 'Entering…';
+      btn.disabled = true;
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 1400);
+    });
+
+    // Petal rain
+    (function() {
+      const container = document.getElementById('petalBg');
+      for (let i = 0; i < 14; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        const size = 7 + Math.random() * 12;
+        p.style.cssText = `
+          width:${size}px; height:${size}px;
+          left:${Math.random()*100}%;
+          top:-20px;
+          animation: petalFall ${7+Math.random()*8}s linear infinite;
+          animation-delay:${Math.random()*7}s;
+          opacity:${0.1+Math.random()*0.15};
+          transform:rotate(${Math.random()*360}deg);
+        `;
+        container.appendChild(p);
+      }
+    })();
+  </script>
+</body>
+</html>

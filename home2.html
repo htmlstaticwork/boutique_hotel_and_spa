@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Serenara Bali — Experiences & Excursions</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    /* ====== HOME 2: EXPERIENCES ====== */
+
+    /* SECTION 1: HERO */
+    .hero2-section {
+      min-height: 100vh;
+      background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero2-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(26,18,8,0.95) 0%, rgba(26,18,8,0.3) 60%, transparent 100%);
+    }
+    .hero2-content {
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+    }
+    .hero2-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: flex-end;
+    }
+    @media (max-width: 1023px) { .hero2-grid { grid-template-columns: 1fr; } }
+    .hero2-left { animation: fadeInUp 0.9s ease 0.2s both; }
+    .hero2-right { animation: fadeInUp 0.9s ease 0.5s both; }
+
+    .exp-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      font-family: var(--font-body);
+    }
+    .exp-tag-dot {
+      width: 6px; height: 6px;
+      background: var(--secondary);
+      border-radius: 50%;
+    }
+
+    .hero2-title {
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      font-weight: 300;
+      line-height: 1.08;
+      margin-bottom: 24px;
+    }
+    .hero2-title span { color: var(--secondary); font-style: italic; }
+
+    .hero2-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .hero2-minicard {
+      background: var(--primary-80);
+      border: var(--border-gold);
+      padding: 18px;
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+      text-align: center;
+    }
+    .hero2-minicard:hover {
+      background: var(--secondary-15);
+      border-color: var(--secondary);
+    }
+    .hero2-minicard .num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--secondary);
+      line-height: 1;
+    }
+    .hero2-minicard .lbl {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 4px;
+      font-family: var(--font-body);
+    }
+
+    /* SECTION 2: SIGNATURE EXPERIENCES with big image cards */
+    .exp-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: var(--primary);
+      border: var(--border-gold);
+      transition: var(--transition);
+    }
+    .exp-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-soft); }
+    .exp-img-wrap {
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      position: relative;
+    }
+    .exp-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .exp-card:hover .exp-img-wrap img { transform: scale(1.07); }
+    .exp-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(26,18,8,0.65) 0%, transparent 60%);
+    }
+    .exp-img-tag {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--secondary);
+      color: var(--text-dark);
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      font-family: var(--font-body);
+      z-index: 2;
+    }
+    .exp-body {
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+    .exp-duration {
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      font-family: var(--font-body);
+      margin-bottom: 8px;
+    }
+    .exp-body h3 { font-size: 1.25rem; margin-bottom: 10px; }
+    .exp-body p { font-size: 0.88rem; margin-bottom: 18px; flex: 1; }
+    .exp-price {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--secondary);
+      margin-bottom: 16px;
+    }
+    .exp-price span {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-family: var(--font-body);
+      letter-spacing: 1px;
+    }
+
+    /* SECTION 3: BALI SEASONS */
+    .seasons-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 1023px) { .seasons-layout { grid-template-columns: 1fr; } }
+    .season-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--secondary-15);
+    }
+    .season-item:last-child { border-bottom: none; }
+    .season-month {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--secondary);
+      width: 80px;
+      flex-shrink: 0;
+    }
+    .seasons-img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      border: var(--border-gold);
+    }
+
+    /* SECTION 4: PACKAGES with image cards */
+    .package-card {
+      border: var(--border-gold);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: var(--transition);
+      background: var(--primary);
+    }
+    .package-card.featured {
+      border-color: var(--secondary);
+      box-shadow: var(--glow-gold);
+    }
+    .package-card:hover { transform: translateY(-6px); }
+    .package-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .package-card:hover .package-img { transform: scale(1.05); }
+    .package-img-wrap { width: 100%; overflow: hidden; }
+    .package-header {
+      padding: 24px;
+      width: 100%;
+      border-bottom: 1px solid var(--secondary-15);
+    }
+    .package-name {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 8px;
+    }
+    .package-header h3 { font-size: 1.3rem; margin-bottom: 6px; }
+    .pkg-price {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--text-light);
+    }
+    .pkg-price small {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-family: var(--font-body);
+      letter-spacing: 1px;
+    }
+    .package-features {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      align-items: center;
+    }
+    .package-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      justify-content: center;
+    }
+    .package-feature-item::before { content: '✦'; color: var(--secondary); font-size: 0.6rem; }
+    .pkg-cta { padding: 0 24px 24px; width: 100%; display: flex; justify-content: center; }
+
+    /* SECTION 5: GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 8px;
+    }
+    @media (min-width: 768px) and (max-width: 1023px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 767px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+    }
+    .gallery-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .gallery-item:first-child img { min-height: 420px; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--secondary-15);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+
+    /* SECTION 6: CTA 2 */
+    .cta2-section {
+      background-image: url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+    .cta2-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26,18,8,0.92) 0%, rgba(26,18,8,0.7) 100%);
+    }
+    .cta2-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 1023px) { .cta2-inner { grid-template-columns: 1fr; } }
+    .quick-book-form {
+      background: var(--primary-90);
+      border: var(--border-gold);
+      padding: 40px;
+      backdrop-filter: blur(10px);
+    }
+    .quick-book-form h3 { text-align: center; margin-bottom: 24px; font-size: 1.4rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div id="header-inject"></div>
+
+  <!-- ==================================================
+       SECTION 1: HERO
+       ================================================== -->
+  <section class="hero2-section petal-container" id="hero">
+    <div class="container" style="width:100%;">
+      <div class="hero2-content">
+        <div class="hero2-grid">
+          <div class="hero2-left">
+            <div class="exp-tag">
+              <span class="exp-tag-dot"></span>
+              Signature Experiences
+              <span class="exp-tag-dot"></span>
+            </div>
+            <h1 class="hero2-title">
+              Immerse in the<br/>
+              <span>Living</span> Spirit<br/>
+              of Bali
+            </h1>
+            <p style="font-size:1.05rem;max-width:480px;margin-bottom:32px;">From sacred temple ceremonies at dawn to candlelit jungle dinners — every experience at Serenara is a portal into the real, undiluted magic of the island.</p>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;">
+              <a href="dashboard.html" class="btn btn-primary">Book Experience</a>
+              <a href="#experiences" class="btn btn-ghost">Explore All</a>
+            </div>
+          </div>
+          <div class="hero2-right">
+            <div class="hero2-cards">
+              <div class="hero2-minicard">
+                <div class="num" data-count="25" data-suffix="+">0</div>
+                <div class="lbl">Experiences</div>
+              </div>
+              <div class="hero2-minicard">
+                <div class="num" data-count="4.9" data-suffix="★" data-decimals="1">0</div>
+                <div class="lbl">Guest Rating</div>
+              </div>
+              <div class="hero2-minicard">
+                <div class="num" data-count="8" data-suffix="">0</div>
+                <div class="lbl">Expert Guides</div>
+              </div>
+              <div class="hero2-minicard">
+                <div class="num" data-count="100" data-suffix="%">0</div>
+                <div class="lbl">Personalised</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 2: SIGNATURE EXPERIENCES (Image Cards)
+       ================================================== -->
+  <section class="section" id="experiences">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
+        <span class="section-label">Curated Journeys</span>
+        <h2>Signature <span class="gradient-text">Experiences</span></h2>
+        <p>Each experience is led by local experts and deeply connected to Balinese tradition. No two are ever the same.</p>
+      </div>
+
+      <div class="card-grid card-grid-3">
+        <div class="exp-card reveal reveal-delay-1">
+          <div class="exp-img-wrap">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Temple Sunrise" loading="lazy"/>
+            <span class="exp-img-tag">Most Popular</span>
+          </div>
+          <div class="exp-body">
+            <div class="exp-duration">4 Hours · Sunrise · Small Group</div>
+            <h3>Sacred Temple Sunrise</h3>
+            <p>Journey before dawn to Pura Tirta Empul for the sacred spring purification, guided by a Hindu priest. Witness offerings, prayers, and the most sacred ritual in Bali.</p>
+            <div class="exp-price">$65 <span>/ person</span></div>
+            <a href="dashboard.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Experience</a>
+          </div>
+        </div>
+
+        <div class="exp-card reveal reveal-delay-2">
+          <div class="exp-img-wrap">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Cooking Class" loading="lazy"/>
+            <span class="exp-img-tag">Chef's Choice</span>
+          </div>
+          <div class="exp-body">
+            <div class="exp-duration">3 Hours · Morning · Max 8 Guests</div>
+            <h3>Balinese Cooking Ceremony</h3>
+            <p>Visit the morning market with our chef, then return to craft traditional dishes in our open-air kitchen. Take home a handwritten recipe book of Bali's most sacred flavours.</p>
+            <div class="exp-price">$85 <span>/ person</span></div>
+            <a href="dashboard.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Experience</a>
+          </div>
+        </div>
+
+        <div class="exp-card reveal reveal-delay-3">
+          <div class="exp-img-wrap">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Rice Terrace Trek" loading="lazy"/>
+          </div>
+          <div class="exp-body">
+            <div class="exp-duration">2.5 Hours · Dawn · All Levels</div>
+            <h3>Tegalalang Rice Terrace Walk</h3>
+            <p>A guided meander through UNESCO-listed rice terraces as morning mist lifts. Learn about the ancient <em>Subak</em> irrigation system from our resident farmer guide.</p>
+            <div class="exp-price">$45 <span>/ person</span></div>
+            <a href="dashboard.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Experience</a>
+          </div>
+        </div>
+
+        <div class="exp-card reveal reveal-delay-1">
+          <div class="exp-img-wrap">
+            <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&q=80" alt="Jungle Yoga" loading="lazy"/>
+          </div>
+          <div class="exp-body">
+            <div class="exp-duration">90 Min · Daily · All Levels</div>
+            <h3>Jungle Pavilion Yoga</h3>
+            <p>Flow practice on our elevated bamboo pavilion surrounded by jungle. Classes in Hatha, Yin, and Pranayama led by our visiting teachers from Mysore and Rishikesh.</p>
+            <div class="exp-price">$30 <span>/ session</span></div>
+            <a href="dashboard.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Experience</a>
+          </div>
+        </div>
+
+        <div class="exp-card reveal reveal-delay-2">
+          <div class="exp-img-wrap">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Cave Dining" loading="lazy"/>
+            <span class="exp-img-tag">Exclusive</span>
+          </div>
+          <div class="exp-body">
+            <div class="exp-duration">3 Hours · Evening · Private</div>
+            <h3>Cave Candlelight Dinner</h3>
+            <p>An intimate 7-course tasting menu served in our private lava cave by the light of 200 candles with live gamelan. The most romantic evening in all of Bali.</p>
+            <div class="exp-price">$180 <span>/ couple</span></div>
+            <a href="dashboard.html" class="btn btn-primary" style="width:100%;justify-content:center;">Reserve Table</a>
+          </div>
+        </div>
+
+        <div class="exp-card reveal reveal-delay-3">
+          <div class="exp-img-wrap">
+            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" alt="Jamu Workshop" loading="lazy"/>
+          </div>
+          <div class="exp-body">
+            <div class="exp-duration">2 Hours · Morning · Max 6</div>
+            <h3>Jamu Healing Workshop</h3>
+            <p>Learn to craft traditional Balinese herbal tonics with our Jamu healer. Discover turmeric, galangal, and tamarind remedies passed down through twelve generations.</p>
+            <div class="exp-price">$55 <span>/ person</span></div>
+            <a href="dashboard.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Experience</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 3: BALI SEASONS
+       ================================================== -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="seasons-layout">
+        <div class="reveal">
+          <span class="section-label">When to Visit</span>
+          <h2>The <span class="gradient-text">Rhythms</span> of Bali</h2>
+          <p style="margin-bottom:32px;">Each season in Bali has its own magic. Our experiences are thoughtfully adapted to the island's natural rhythms throughout the year.</p>
+          <div class="season-item">
+            <div class="season-month">Apr–Oct</div>
+            <div>
+              <h4 style="margin-bottom:4px;">Dry Season — The Golden Time</h4>
+              <p style="font-size:0.88rem;">Crystal skies, vibrant green terraces. Peak season for treks, temple visits, and outdoor ceremonies. Book 3+ months ahead.</p>
+            </div>
+          </div>
+          <div class="season-item">
+            <div class="season-month">Nov–Mar</div>
+            <div>
+              <h4 style="margin-bottom:4px;">Wet Season — The Lush Monsoon</h4>
+              <p style="font-size:0.88rem;">Daily tropical showers turn the island impossibly green. Best spa retreats, cooking classes, and intimate experiences. Fewer crowds.</p>
+            </div>
+          </div>
+          <div class="season-item">
+            <div class="season-month">Mar · Oct</div>
+            <div>
+              <h4 style="margin-bottom:4px;">Nyepi & Galungan — Sacred Festivals</h4>
+              <p style="font-size:0.88rem;">Witness the island's most sacred ceremonies. Nyepi (Day of Silence) is an utterly unique experience nowhere else on earth.</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <img class="seasons-img" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700&q=80" alt="Bali rice terraces" loading="lazy"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 4: PACKAGES (Image Cards)
+       ================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
+        <span class="section-label">Stay Packages</span>
+        <h2>Curated <span class="gradient-text">Retreat Packages</span></h2>
+        <p>Combine accommodation, spa, and experiences into one seamless journey. All packages include daily breakfast and airport transfers.</p>
+      </div>
+
+      <div class="card-grid card-grid-3">
+        <div class="package-card reveal reveal-delay-1">
+          <div class="package-img-wrap">
+            <img class="package-img" src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="Garden Villa" loading="lazy"/>
+          </div>
+          <div class="package-header">
+            <div class="package-name">Garden Escape</div>
+            <h3>3 Nights</h3>
+            <div class="pkg-price">$680 <small>/ couple</small></div>
+          </div>
+          <div class="package-features">
+            <div class="package-feature-item">Garden Villa accommodation</div>
+            <div class="package-feature-item">Daily Balinese breakfast</div>
+            <div class="package-feature-item">1 x 90-min couples massage</div>
+            <div class="package-feature-item">Sunset yoga session</div>
+            <div class="package-feature-item">Airport transfer both ways</div>
+          </div>
+          <div class="pkg-cta"><a href="dashboard.html" class="btn btn-outline" style="width:100%;justify-content:center;">Book Package</a></div>
+        </div>
+
+        <div class="package-card featured reveal reveal-delay-2">
+          <div class="package-img-wrap">
+            <img class="package-img" src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Pool Villa" loading="lazy"/>
+          </div>
+          <div class="package-header">
+            <div class="package-name" style="color:var(--secondary);">✦ Most Loved</div>
+            <h3>Serenara Immersion</h3>
+            <div class="pkg-price">$1,450 <small>/ couple</small></div>
+          </div>
+          <div class="package-features">
+            <div class="package-feature-item">Private Pool Villa · 5 nights</div>
+            <div class="package-feature-item">Daily breakfast & dinner</div>
+            <div class="package-feature-item">Full spa journey (3 treatments)</div>
+            <div class="package-feature-item">Temple sunrise experience</div>
+            <div class="package-feature-item">Private cooking class</div>
+            <div class="package-feature-item">Cave candlelight dinner</div>
+          </div>
+          <div class="pkg-cta"><a href="dashboard.html" class="btn btn-primary" style="width:100%;justify-content:center;">Reserve Now</a></div>
+        </div>
+
+        <div class="package-card reveal reveal-delay-3">
+          <div class="package-img-wrap">
+            <img class="package-img" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Wellness Retreat" loading="lazy"/>
+          </div>
+          <div class="package-header">
+            <div class="package-name">Wellness Journey</div>
+            <h3>7 Nights</h3>
+            <div class="pkg-price">$2,100 <small>/ person</small></div>
+          </div>
+          <div class="package-features">
+            <div class="package-feature-item">Clifftop Suite · 7 nights</div>
+            <div class="package-feature-item">Full board — farm-to-table</div>
+            <div class="package-feature-item">Daily yoga & meditation</div>
+            <div class="package-feature-item">5 spa treatments included</div>
+            <div class="package-feature-item">Jamu wellness consultation</div>
+            <div class="package-feature-item">Private excursion of choice</div>
+          </div>
+          <div class="pkg-cta"><a href="dashboard.html" class="btn btn-outline" style="width:100%;justify-content:center;">Book Retreat</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 5: PHOTO GALLERY
+       ================================================== -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
+        <span class="section-label">Life at Serenara</span>
+        <h2>A Glimpse of <span class="gradient-text">Paradise</span></h2>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80" alt="Bali terraces" data-lightbox loading="lazy"/>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=500&q=80" alt="Villa pool" data-lightbox loading="lazy"/>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500&q=80" alt="Spa" data-lightbox loading="lazy"/>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500&q=80" alt="Balinese food" data-lightbox loading="lazy"/>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80" alt="Mountain" data-lightbox loading="lazy"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 6: CTA WITH QUICK BOOKING
+       ================================================== -->
+  <section class="section cta2-section">
+    <div class="container">
+      <div class="cta2-inner">
+        <div class="reveal">
+          <span class="script-text" style="margin-bottom:12px;">Your Bali Story Begins</span>
+          <h2>Book Your <span class="gradient-text">Serenara</span> Experience</h2>
+          <p style="margin-bottom:32px;">Every experience can be tailored to your preferences, dates, and group size. Our Guest Relations team is on hand 24 hours to craft your perfect itinerary.</p>
+          <div style="display:flex;flex-direction:column;gap:14px;max-width:360px;">
+            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--secondary);font-size:1.1rem;">✦</span><span>Fully personalised to your interests</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--secondary);font-size:1.1rem;">✦</span><span>Led by local Balinese guides</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--secondary);font-size:1.1rem;">✦</span><span>Free cancellation up to 48 hours</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--secondary);font-size:1.1rem;">✦</span><span>24/7 guest concierge support</span></div>
+          </div>
+        </div>
+
+        <div class="quick-book-form reveal reveal-delay-2">
+          <h3>Quick <span class="gradient-text">Enquiry</span></h3>
+          <form class="spa-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Check-In</label>
+                <input type="date" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label>Check-Out</label>
+                <input type="date" class="form-control"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Experience</label>
+              <select class="form-control">
+                <option>Sacred Temple Sunrise</option>
+                <option>Balinese Cooking Class</option>
+                <option>Rice Terrace Trek</option>
+                <option>Cave Candlelight Dinner</option>
+                <option>Jungle Yoga</option>
+                <option>Jamu Workshop</option>
+                <option>Full Package</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Your Email</label>
+              <input type="email" class="form-control" placeholder="you@email.com"/>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;">
+              Request Booking →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-inject"></div>
+  <script src="js/components.js"></script>
+  <script src="js/global.js"></script>
+</body>
+</html>

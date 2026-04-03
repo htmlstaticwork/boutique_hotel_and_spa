@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Serenara — Spa & Wellness</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    .treatment-card {
+      border: var(--border-gold); overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      background: var(--primary); transition: var(--transition);
+    }
+    .treatment-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-soft); }
+    .treatment-img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.7s ease; }
+    .treatment-card:hover .treatment-img { transform: scale(1.05); }
+    .treatment-img-wrap { width: 100%; overflow: hidden; }
+    .treatment-body {
+      padding: 24px 20px 28px;
+      display: flex; flex-direction: column; align-items: center; width: 100%;
+    }
+    .treatment-duration {
+      font-size: 0.65rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--secondary); font-family: var(--font-body); margin-bottom: 8px;
+    }
+    .treatment-body h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .treatment-body p { font-size: 0.85rem; margin-bottom: 16px; flex: 1; }
+    .treatment-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; padding-top: 14px; border-top: 1px solid var(--secondary-15);
+    }
+    .treatment-price { font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); font-weight: 300; }
+
+    .spa-philosophy {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    @media (max-width: 1023px) { .spa-philosophy { grid-template-columns: 1fr; } }
+    .spa-img-stack { position: relative; height: 480px; }
+    .spa-img-main {
+      position: absolute; top: 0; right: 0; width: 80%; height: 85%;
+      object-fit: cover; border: var(--border-gold);
+    }
+    .spa-img-accent {
+      position: absolute; bottom: 0; left: 0; width: 55%; height: 55%;
+      object-fit: cover; border: 4px solid var(--primary);
+    }
+    @media (max-width: 767px) { .spa-img-stack { height: 320px; } }
+
+    .wellness-steps {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .wellness-step {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px 0; border-bottom: 1px solid var(--secondary-08);
+    }
+    .wellness-step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: var(--font-display); font-size: 2rem; font-weight: 200;
+      color: var(--secondary-30); line-height: 1; width: 48px; flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="header-inject"></div>
+
+  <!-- HERO -->
+  <section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&q=80');">
+    <div class="container">
+      <div class="page-hero-content" style="animation:fadeInUp 0.8s ease;">
+        <div class="ornament" style="justify-content:flex-start;margin-bottom:16px;"><div class="ornament-line" style="width:32px;"></div><div class="ornament-diamond"></div></div>
+        <span class="section-label">Spa & Wellness</span>
+        <h1>Ancient <span class="gradient-text">Healing Arts</span></h1>
+        <p>Rooted in centuries of Balinese tradition, our spa offers a profound journey inward. Each treatment is a ceremony, each therapist a healer.</p>
+        <a href="dashboard.html" class="btn btn-primary" style="margin-top:28px;">Book a Treatment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="section">
+    <div class="container">
+      <div class="spa-philosophy">
+        <div class="spa-img-stack reveal">
+          <img class="spa-img-main" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=700&q=80" alt="Spa treatment" loading="lazy"/>
+          <img class="spa-img-accent" src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=400&q=80" alt="Flowers" loading="lazy"/>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <span class="section-label">Our Approach</span>
+          <h2>Healing as a <span class="gradient-text">Sacred Art</span></h2>
+          <p style="margin-bottom:24px;">Our therapists are trained by master healers from the Balinese village of Sebatu, where healing traditions have been passed down through families for over 600 years.</p>
+          <p style="margin-bottom:32px;">Every treatment begins with a <em>chakra reading</em> and is individually tailored to your body's needs. We use only organic plant-based oils, herbs grown in our garden, and volcanic mineral salts.</p>
+          <div class="wellness-steps">
+            <div class="wellness-step">
+              <div class="step-num">01</div>
+              <div><h4 style="margin-bottom:4px;">Consultation</h4><p style="font-size:0.88rem;">A private Jamu health consultation to understand your body's current needs.</p></div>
+            </div>
+            <div class="wellness-step">
+              <div class="step-num">02</div>
+              <div><h4 style="margin-bottom:4px;">Purification</h4><p style="font-size:0.88rem;">Ritual foot washing and floral steam to prepare the body and mind.</p></div>
+            </div>
+            <div class="wellness-step">
+              <div class="step-num">03</div>
+              <div><h4 style="margin-bottom:4px;">Treatment</h4><p style="font-size:0.88rem;">Your tailored treatment delivered with presence and intention.</p></div>
+            </div>
+            <div class="wellness-step">
+              <div class="step-num">04</div>
+              <div><h4 style="margin-bottom:4px;">Integration</h4><p style="font-size:0.88rem;">Resting tea ceremony in our garden pavilion. Fresh fruit. Stillness.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TREATMENTS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
+        <span class="section-label">Signature Treatments</span>
+        <h2>The Serenara <span class="gradient-text">Spa Menu</span></h2>
+        <p>Each treatment is a ceremony. Our most beloved rituals — refined over eight years and thousands of transformed guests.</p>
+      </div>
+
+      <div class="card-grid card-grid-3">
+        <div class="treatment-card reveal reveal-delay-1">
+          <div class="treatment-img-wrap">
+            <img class="treatment-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Boreh Ritual" loading="lazy"/>
+          </div>
+          <div class="treatment-body">
+            <div class="treatment-duration">120 Minutes</div>
+            <h3>The Boreh Ritual</h3>
+            <p>A warming spice paste of ginger, clove, and galangal applied to the full body, drawing toxins while activating circulation. Followed by a deep tissue massage and floral steam.</p>
+            <div class="treatment-footer">
+              <div class="treatment-price">$145</div>
+              <a href="dashboard.html" class="btn btn-outline" style="font-size:0.68rem;padding:8px 18px;">Book →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="treatment-card reveal reveal-delay-2">
+          <div class="treatment-img-wrap">
+            <img class="treatment-img" src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" alt="Lulur Ceremony" loading="lazy"/>
+          </div>
+          <div class="treatment-body">
+            <div class="treatment-duration">90 Minutes</div>
+            <h3>The Royal Lulur</h3>
+            <p>The bathing ritual of Javanese princesses: turmeric and jasmine body scrub followed by a yoghurt mask, warm oil massage, and a flower-strewn bath with essential oils.</p>
+            <div class="treatment-footer">
+              <div class="treatment-price">$120</div>
+              <a href="dashboard.html" class="btn btn-outline" style="font-size:0.68rem;padding:8px 18px;">Book →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="treatment-card reveal reveal-delay-3">
+          <div class="treatment-img-wrap">
+            <img class="treatment-img" src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=600&q=80" alt="Couples Retreat" loading="lazy"/>
+          </div>
+          <div class="treatment-body">
+            <div class="treatment-duration">180 Minutes · Couples</div>
+            <h3>The Sacred Union</h3>
+            <p>A couples' journey beginning with synchronized massages, moving into a shared flower bath, and concluding with a candlelit Jamu ceremony for two in our private garden pavilion.</p>
+            <div class="treatment-footer">
+              <div class="treatment-price">$280 <small style="font-size:0.7rem;">/couple</small></div>
+              <a href="dashboard.html" class="btn btn-outline" style="font-size:0.68rem;padding:8px 18px;">Book →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="treatment-card reveal reveal-delay-1">
+          <div class="treatment-img-wrap">
+            <img class="treatment-img" src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Hot Stone" loading="lazy"/>
+          </div>
+          <div class="treatment-body">
+            <div class="treatment-duration">90 Minutes</div>
+            <h3>Volcanic Stone Healing</h3>
+            <p>Warmed volcanic stones from Mount Agung placed along the chakra points, melting tension and restoring energy flow. Combined with warm coconut oil massage.</p>
+            <div class="treatment-footer">
+              <div class="treatment-price">$110</div>
+              <a href="dashboard.html" class="btn btn-outline" style="font-size:0.68rem;padding:8px 18px;">Book →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="treatment-card reveal reveal-delay-2">
+          <div class="treatment-img-wrap">
+            <img class="treatment-img" src="https://images.unsplash.com/photo-1571003123771-66d1aa9aac7a?w=600&q=80" alt="Jamu Wellness" loading="lazy"/>
+          </div>
+          <div class="treatment-body">
+            <div class="treatment-duration">60 Minutes</div>
+            <h3>Jamu Wellness Journey</h3>
+            <p>A private herbal tonic consultation with our Jamu healer. Tailored tonic blended fresh, combined with a reflexology treatment and Marma point activation.</p>
+            <div class="treatment-footer">
+              <div class="treatment-price">$85</div>
+              <a href="dashboard.html" class="btn btn-outline" style="font-size:0.68rem;padding:8px 18px;">Book →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="treatment-card reveal reveal-delay-3">
+          <div class="treatment-img-wrap">
+            <img class="treatment-img" src="https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=80" alt="Full Day Retreat" loading="lazy"/>
+          </div>
+          <div class="treatment-body">
+            <div class="treatment-duration">Full Day · 8 Hours</div>
+            <h3>The Serenara Retreat Day</h3>
+            <p>A complete immersion: sunrise yoga, Boreh wrap, Lulur scrub, flower bath, Jamu lunch, afternoon massage, sunset meditation. The ultimate transformation in one day.</p>
+            <div class="treatment-footer">
+              <div class="treatment-price">$380</div>
+              <a href="dashboard.html" class="btn btn-primary" style="font-size:0.68rem;padding:8px 18px;">Book →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPA FACILITIES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">The Space</span>
+        <h2>Our Spa <span class="gradient-text">Sanctuary</span></h2>
+      </div>
+      <div class="card-grid card-grid-4">
+        <div class="card reveal reveal-delay-1">
+          <div class="card-body">
+            <div class="service-icon" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 12s3-5 10-5 10 5 10 5-3 5-10 5-10-5-10-5z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <h3>Hydrotherapy Pool</h3>
+            <p>Mineral-rich volcanic pool with underwater jets and a floating meditation platform.</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <div class="card-body">
+            <div class="service-icon" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg></div>
+            <h3>Yoga Pavilion</h3>
+            <p>Open-air bamboo pavilion floating above the jungle canopy. Daily sunrise and moon classes.</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-3">
+          <div class="card-body">
+            <div class="service-icon" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Treatment Suites</h3>
+            <p>Six private suites, each themed after a Balinese healing tradition. Open-air options available.</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-4">
+          <div class="card-body">
+            <div class="service-icon" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="10"/><path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/></svg></div>
+            <h3>Herb Garden</h3>
+            <p>A 200 sqm living garden of Jamu herbs and healing plants. The source of every treatment ingredient.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-inject"></div>
+  <script src="js/components.js"></script>
+  <script src="js/global.js"></script>
+</body>
+</html>

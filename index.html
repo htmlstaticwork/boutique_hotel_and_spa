@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Serenara Bali — Boutique Hotel & Spa</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    /* ====== HOME PAGE ====== */
+
+    /* SECTION 1: HERO */
+    .hero-section {
+      min-height: 100vh;
+      background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content:'';
+      position:absolute;inset:0;
+      background: linear-gradient(135deg, rgba(26,18,8,0.88) 0%, rgba(26,18,8,0.55) 50%, rgba(92,122,90,0.18) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+    .hero-pretitle {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-pretitle::before,
+    .hero-pretitle::after {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--secondary-50);
+    }
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--secondary);
+    }
+    .hero-subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--secondary-15);
+      flex-wrap: wrap;
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--secondary);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 5px;
+      font-family: var(--font-body);
+    }
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 2;
+      animation: fadeIn 2s ease 2s both;
+    }
+    .scroll-indicator span {
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--secondary-50);
+      font-family: var(--font-body);
+    }
+    .scroll-mouse {
+      width: 22px;
+      height: 34px;
+      border: 1px solid var(--secondary-30);
+      border-radius: 11px;
+      display: flex;
+      justify-content: center;
+      padding-top: 7px;
+    }
+    .scroll-dot {
+      width: 3px;
+      height: 8px;
+      background: var(--secondary);
+      border-radius: 2px;
+      animation: scrollBounce 2s ease infinite;
+    }
+    @keyframes scrollBounce {
+      0%,100% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(6px); opacity: 0.3; }
+    }
+
+    /* SECTION 2: SERVICES — CARDS WITH IMAGES */
+    .service-card {
+      background: var(--primary-05);
+      border: var(--border-gold);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+    .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-soft); }
+    .service-card:hover .card-img { transform: scale(1.06); }
+    .service-card-img-wrap {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .service-card-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(26,18,8,0.5) 0%, transparent 60%);
+    }
+    .service-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .service-card-body {
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      border: 1px solid var(--secondary-30);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      margin-bottom: 16px;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-icon { background: var(--secondary-15); box-shadow: var(--glow-gold); }
+    .service-card-body h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    .service-card-body p { font-size: 0.88rem; margin-bottom: 18px; }
+
+    /* SECTION 3: ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 1023px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .about-img-mosaic { position: relative; height: 540px; }
+    .about-img-1 {
+      position: absolute;
+      top: 0; left: 0;
+      width: 70%;
+      height: 80%;
+      object-fit: cover;
+      border: 4px solid var(--primary);
+    }
+    .about-img-2 {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 55%;
+      height: 60%;
+      object-fit: cover;
+      border: 4px solid var(--primary);
+    }
+    .about-img-badge {
+      position: absolute;
+      bottom: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary-90);
+      border: var(--border-gold);
+      padding: 16px 24px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      z-index: 2;
+      white-space: nowrap;
+    }
+    .about-text { display: flex; flex-direction: column; gap: 24px; }
+    .about-feature {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 18px;
+      border: var(--border-gold);
+      border-radius: 0;
+      transition: var(--transition);
+    }
+    .about-feature:hover { background: var(--secondary-08); border-color: var(--secondary-50); }
+    .about-feature-icon {
+      width: 36px; height: 36px;
+      background: var(--secondary-15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--secondary);
+      flex-shrink: 0;
+    }
+    @media (max-width: 767px) { .about-img-mosaic { height: 340px; } }
+
+    /* SECTION 4: FEATURES */
+    .feature-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    @media (min-width: 768px) and (max-width: 1023px) { .feature-strip { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 767px) { .feature-strip { grid-template-columns: 1fr; } }
+    .feature-item {
+      padding: 48px 36px;
+      border: 1px solid var(--secondary-08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      transition: var(--transition);
+      overflow: hidden;
+    }
+    .feature-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--secondary-50), transparent);
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+    }
+    .feature-item:hover { background: var(--secondary-08); }
+    .feature-item:hover::before { transform: scaleX(1); }
+    .feature-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 200;
+      color: var(--secondary-30);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .feature-item h3 { font-size: 1.15rem; margin-bottom: 12px; }
+    .feature-item p { font-size: 0.88rem; }
+
+    /* SECTION 5: TESTIMONIALS */
+    .testimonial-card {
+      background: var(--secondary-08);
+      border: var(--border-gold);
+      padding: 40px 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: var(--secondary-20);
+      position: absolute;
+      top: 8px;
+      left: 24px;
+      line-height: 1;
+    }
+    .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
+    .testimonial-text {
+      font-family: var(--font-display);
+      font-size: 1.08rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 12px; justify-content: center;
+    }
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2px solid var(--secondary-30);
+      background: var(--secondary-15);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--secondary);
+    }
+    .testimonial-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+    .testimonial-origin {
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-family: var(--font-body);
+    }
+
+    /* SECTION 6: CTA */
+    .cta-section {
+      background-image: url('https://images.unsplash.com/photo-1582610116397-edb72795cbb0?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+    .cta-section::before {
+      content:'';
+      position:absolute;inset:0;
+      background: linear-gradient(135deg, rgba(26,18,8,0.88), rgba(92,122,90,0.4), rgba(26,18,8,0.88));
+    }
+    .cta-inner {
+      position: relative; z-index: 1;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-inner h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); margin-bottom: 18px; }
+    .cta-inner p { font-size: 1.05rem; margin-bottom: 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div id="header-inject"></div>
+
+  <!-- ==================================================
+       SECTION 1: HERO
+       ================================================== -->
+  <section class="hero-section petal-container" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-pretitle">Ubud · Bali · Indonesia</div>
+
+        <h1 class="hero-title">
+          Your <em>Sanctuary</em><br/>
+          in the Heart<br/>
+          of Bali
+        </h1>
+
+        <p class="hero-subtitle">
+          An intimate retreat nestled among ancient rice terraces, where traditional Balinese healing arts meet contemporary luxury. Surrender to serenity.
+        </p>
+
+        <div class="hero-cta">
+          <a href="dashboard.html" class="btn btn-primary">
+            Reserve Your Villa
+          </a>
+          <a href="home2.html" class="btn btn-ghost">
+            Explore Experiences
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num" data-count="15" data-suffix="">0</div>
+            <div class="hero-stat-label">Private Villas</div>
+          </div>
+          <div>
+            <div class="hero-stat-num" data-count="12" data-suffix="">0</div>
+            <div class="hero-stat-label">Spa Treatments</div>
+          </div>
+          <div>
+            <div class="hero-stat-num" data-count="4.9" data-suffix="★" data-decimals="1">0</div>
+            <div class="hero-stat-label">Guest Rating</div>
+          </div>
+          <div>
+            <div class="hero-stat-num" data-count="8" data-suffix="">0</div>
+            <div class="hero-stat-label">Years of Bliss</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 2: SERVICES (with card images)
+       ================================================== -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line r"></div>
+        </div>
+        <span class="section-label">Our Offerings</span>
+        <h2>Curated <span class="gradient-text">Experiences</span></h2>
+        <p>From healing spa rituals to sunrise treks through sacred terraces — every moment at Serenara is designed to restore your soul.</p>
+      </div>
+
+      <div class="card-grid card-grid-3">
+        <!-- Card 1 -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Spa & Wellness" loading="lazy"/>
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2a10 10 0 010 20"/><path d="M12 6c2 2 4 4 4 6s-2 4-4 6"/><path d="M12 6c-2 2-4 4-4 6s2 4 4 6"/></svg>
+            </div>
+            <h3>Spa & Wellness</h3>
+            <p>Ancient Balinese healing therapies, hot stone massages, and flower bath rituals performed by master therapists.</p>
+            <a href="spa.html" class="btn btn-outline" style="font-size:0.7rem;padding:10px 24px;">Discover →</a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=600&q=80" alt="Private Villas" loading="lazy"/>
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3>Private Villas</h3>
+            <p>Fifteen exquisite villas, each with a private plunge pool, outdoor rain shower, and uninterrupted jungle views.</p>
+            <a href="rooms.html" class="btn btn-outline" style="font-size:0.7rem;padding:10px 24px;">Explore →</a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Cultural Excursions" loading="lazy"/>
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </div>
+            <h3>Cultural Excursions</h3>
+            <p>Guided sunrise treks, sacred temple visits, traditional offering ceremonies and village cooking experiences.</p>
+            <a href="home2.html" class="btn btn-outline" style="font-size:0.7rem;padding:10px 24px;">Explore →</a>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80" alt="Yoga & Meditation" loading="lazy"/>
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <h3>Yoga & Meditation</h3>
+            <p>Daily sunrise yoga in open-air pavilions overlooking rice paddies, followed by guided meditation sessions.</p>
+            <a href="home2.html" class="btn btn-outline" style="font-size:0.7rem;padding:10px 24px;">Join →</a>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Balinese Cuisine" loading="lazy"/>
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <h3>Balinese Cuisine</h3>
+            <p>Farm-to-table dining with organic produce grown on-site. Cooking classes with our resident Balinese chef.</p>
+            <a href="home2.html" class="btn btn-outline" style="font-size:0.7rem;padding:10px 24px;">Taste →</a>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Infinity Pool" loading="lazy"/>
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 12s3-5 10-5 10 5 10 5-3 5-10 5-10-5-10-5z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3>Infinity Pool</h3>
+            <p>Vanishing-edge infinity pool seamlessly merging with the jungle canopy. Open dawn to dusk with poolside service.</p>
+            <a href="rooms.html" class="btn btn-outline" style="font-size:0.7rem;padding:10px 24px;">View →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 3: ABOUT
+       ================================================== -->
+  <section class="section section-alt" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-mosaic reveal">
+          <img class="about-img-1" src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600&q=80" alt="Serenara Resort" loading="lazy"/>
+          <img class="about-img-2" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="Villa garden" loading="lazy"/>
+          <div class="about-img-badge">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--secondary);">2016</div>
+            <div style="font-family:var(--font-body);font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);">Est. in Ubud</div>
+          </div>
+        </div>
+
+        <div class="about-text reveal reveal-delay-2">
+          <span class="section-label">Our Philosophy</span>
+          <h2>Where Bali's <span class="gradient-text">Ancient Soul</span> Lives</h2>
+          <p>Born from a deep reverence for Balinese culture and the philosophy of <em>Tri Hita Karana</em> — harmony between people, nature, and the divine — Serenara was built not as a hotel, but as a living offering to the island.</p>
+
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            </div>
+            <div>
+              <h4 style="margin-bottom:4px;font-size:1rem;">Eco-Luxury Philosophy</h4>
+              <p style="font-size:0.88rem;">90% of ingredients sourced within 10km. Recycled rainwater. Solar-powered. Carbon-neutral by 2026.</p>
+            </div>
+          </div>
+
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <h4 style="margin-bottom:4px;font-size:1rem;">Community Rooted</h4>
+              <p style="font-size:0.88rem;">85% of our staff are from the surrounding Ubud villages. Every purchase supports local artisans.</p>
+            </div>
+          </div>
+
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4 style="margin-bottom:4px;font-size:1rem;">Heritage Preservation</h4>
+              <p style="font-size:0.88rem;">Architecture guided by traditional <em>Undagi</em> Balinese master builders. No concrete. Only volcanic stone and reclaimed teak.</p>
+            </div>
+          </div>
+
+          <a href="about.html" class="btn btn-primary" style="margin-top:8px;width:fit-content;">Our Story →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 4: FEATURES / HIGHLIGHTS
+       ================================================== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
+        <span class="section-label">Why Serenara</span>
+        <h2>An <span class="gradient-text">Unforgettable</span> Retreat</h2>
+        <p>Every detail at Serenara has been thoughtfully crafted to offer an experience that is wholly Balinese and utterly transformative.</p>
+      </div>
+
+      <div class="feature-strip reveal">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div class="service-icon" style="margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="5"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3>Sunrise Rituals</h3>
+          <p>Begin each morning with a guided Balinese purification ceremony as the sun rises over the terraces.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div class="service-icon" style="margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h3>Private Sanctuaries</h3>
+          <p>Each villa is its own world — private pool, outdoor bathroom beneath open sky, no two alike.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div class="service-icon" style="margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <h3>Healing Traditions</h3>
+          <p>Treatments rooted in centuries of Balinese healing wisdom — Boreh wraps, Lulur scrubs, Jamu tonics.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div class="service-icon" style="margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/></svg>
+          </div>
+          <h3>Living Jungle</h3>
+          <p>4 hectares of lush organic gardens, koi ponds, and frangipani pathways weaving through the estate.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">05</div>
+          <div class="service-icon" style="margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg>
+          </div>
+          <h3>Sacred Dining</h3>
+          <p>Three dining venues: elevated treetop restaurant, poolside cabana, and intimate candlelit cave dining.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">06</div>
+          <div class="service-icon" style="margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          </div>
+          <h3>Award-Winning</h3>
+          <p>Condé Nast Traveller Hot List 2024 · Travel + Leisure Top 100 · World Spa Awards finalist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 5: TESTIMONIALS
+       ================================================== -->
+  <section class="section section-alt" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
+        <span class="section-label">Guest Stories</span>
+        <h2>Words from Our <span class="gradient-text">Beloved Guests</span></h2>
+        <p>Thousands of souls have found their sanctuary here. We humbly share a few of their stories.</p>
+      </div>
+
+      <div class="card-grid card-grid-3">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Serenara didn't just give us a holiday — it gave us a transformation. The Boreh wrap at sunrise, the sound of gamelan drifting through the mist… I still dream of it."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SL</div>
+            <div>
+              <div class="testimonial-name">Sophie Laurent</div>
+              <div class="testimonial-origin">Paris, France</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The villa exceeded everything we imagined. Waking to jungle sounds, plunging into our private pool, then having a chef prepare Balinese breakfast on the terrace. Pure paradise."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JC</div>
+            <div>
+              <div class="testimonial-name">James & Clara</div>
+              <div class="testimonial-origin">Sydney, Australia</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"As a wellness professional, I rarely find spas that truly understand healing. Serenara's therapists carry generations of knowledge. The Jamu consultation changed how I think about my body."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AK</div>
+            <div>
+              <div class="testimonial-name">Dr. Amara Khan</div>
+              <div class="testimonial-origin">New York, USA</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"We've stayed at many five-star resorts, but Serenara has a soul that's simply impossible to find elsewhere. The staff remember your name, your tea preference, your birthday. Magical."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">HM</div>
+            <div>
+              <div class="testimonial-name">Henrik & Maja</div>
+              <div class="testimonial-origin">Stockholm, Sweden</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The temple sunrise ceremony was unlike anything I've ever witnessed. Our guide Wayan made us feel like we were witnessing something sacred and private. I cried. Beautifully."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">TR</div>
+            <div>
+              <div class="testimonial-name">Tomoko Rao</div>
+              <div class="testimonial-origin">Tokyo, Japan</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Every meal was an event. The cave dinner with our own candles, the live gamelan music, the locally foraged dishes — this is the true taste of Bali. We're returning in three months."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RB</div>
+            <div>
+              <div class="testimonial-name">Rafael Branco</div>
+              <div class="testimonial-origin">Lisbon, Portugal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 6: CTA BANNER
+       ================================================== -->
+  <section class="section cta-section" id="cta">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
+        <span class="script-text" style="margin-bottom:16px;">Begin Your Journey</span>
+        <h2>Reserve Your Private <span class="gradient-text">Sanctuary</span></h2>
+        <p>Limited villas available. Experience the Bali that exists beyond the guidebooks — where time dissolves and the island speaks directly to your soul.</p>
+        <div class="cta-buttons">
+          <a href="dashboard.html" class="btn btn-primary" style="padding:16px 40px;">Book Your Stay</a>
+          <a href="contact.html" class="btn btn-ghost" style="padding:16px 40px;">Enquire Now</a>
+        </div>
+        <p style="margin-top:24px;font-size:0.78rem;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;">
+          Complimentary airport transfer · Daily breakfast · Welcome ceremony
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-inject"></div>
+  <script src="js/components.js"></script>
+  <script src="js/global.js"></script>
+</body>
+</html>

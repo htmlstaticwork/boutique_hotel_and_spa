@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Serenara — Create Guest Account</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      background: #1a1208;
+      display: flex;
+      align-items: stretch;
+      overflow-x: hidden;
+      padding: 0;
+    }
+
+    /* SPLIT LAYOUT */
+    .register-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      min-height: 100vh;
+      width: 100%;
+    }
+    @media (max-width: 900px) { .register-wrap { grid-template-columns: 1fr; } }
+
+    /* LEFT VISUAL PANEL */
+    .reg-visual {
+      background-image: url('https://images.unsplash.com/photo-1582610116397-edb72795cbb0?w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px 44px;
+      min-height: 300px;
+    }
+    .reg-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(26,18,8,0.96) 0%, rgba(26,18,8,0.4) 55%, transparent 100%);
+    }
+    @media (max-width: 900px) { .reg-visual { display: none; } }
+
+    .reg-visual-content { position: relative; z-index: 1; }
+    .reg-visual-logo {
+      position: absolute; top: 36px; left: 44px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .reg-logo-circle {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(200,169,110,0.5);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: #c8a96e;
+    }
+    .reg-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 400; letter-spacing: 3px; color: #f5efe6;
+    }
+    .reg-brand-name span { color: #c8a96e; }
+
+    .reg-visual h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300; color: #f5efe6; margin-bottom: 16px; line-height: 1.2;
+    }
+    .reg-visual h2 em { font-style: italic; color: #c8a96e; }
+
+    .reg-perks { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+    .reg-perk {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Jost', sans-serif; font-size: 0.85rem;
+      color: rgba(245,239,230,0.7);
+    }
+    .reg-perk-dot {
+      width: 6px; height: 6px; background: #c8a96e;
+      border-radius: 50%; flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(200,169,110,0.6);
+    }
+
+    .reg-quote {
+      margin-top: 32px;
+      padding: 18px 20px;
+      background: rgba(26,18,8,0.7);
+      border-left: 2px solid rgba(200,169,110,0.4);
+      backdrop-filter: blur(8px);
+    }
+    .reg-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1rem;
+      color: rgba(245,239,230,0.75); margin-bottom: 8px;
+    }
+    .reg-quote-author {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(200,169,110,0.6);
+    }
+
+    /* RIGHT FORM PANEL */
+    .reg-form-panel {
+      background: #1a1208;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 48px;
+      overflow-y: auto;
+    }
+    @media (max-width: 640px) { .reg-form-panel { padding: 28px 20px; } }
+
+    .reg-form-inner { width: 100%; max-width: 420px; animation: fadeInUp 0.8s ease; }
+
+    .reg-mobile-brand {
+      display: none; text-align: center; margin-bottom: 28px;
+    }
+    @media (max-width: 900px) { .reg-mobile-brand { display: block; } }
+    .reg-mobile-brand .reg-brand-name { font-size: 1.6rem; letter-spacing: 4px; }
+
+    .reg-form-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400; margin-bottom: 6px; color: #f5efe6;
+    }
+    .reg-form-inner > p {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem; color: rgba(245,239,230,0.45); margin-bottom: 28px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Step indicator */
+    .step-bar {
+      display: flex; gap: 6px; margin-bottom: 28px;
+    }
+    .step-seg {
+      flex: 1; height: 3px; background: rgba(200,169,110,0.15);
+      transition: background 0.5s ease;
+    }
+    .step-seg.active { background: #c8a96e; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+    /* Custom styled form controls */
+    .reg-input {
+      background: rgba(200,169,110,0.05);
+      border: 1px solid rgba(200,169,110,0.18);
+      color: #f5efe6;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.92rem; font-weight: 300;
+      padding: 12px 15px; outline: none; width: 100%;
+      transition: all 0.3s ease;
+    }
+    .reg-input::placeholder { color: rgba(245,239,230,0.2); }
+    .reg-input:focus {
+      border-color: rgba(200,169,110,0.6);
+      background: rgba(200,169,110,0.08);
+      box-shadow: 0 0 0 3px rgba(200,169,110,0.06);
+    }
+    .reg-label {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.62rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: #c8a96e; margin-bottom: 7px;
+    }
+    .reg-group { margin-bottom: 18px; }
+
+    /* Password strength */
+    .pw-strength-row { display: flex; gap: 4px; margin-top: 7px; }
+    .pw-seg { flex: 1; height: 2px; background: rgba(200,169,110,0.12); transition: background 0.3s; }
+    .pw-lbl { font-family: 'Jost', sans-serif; font-size: 0.62rem; color: rgba(245,239,230,0.3); margin-top: 4px; }
+
+    .terms-row {
+      display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px;
+    }
+    .terms-row input { accent-color: #c8a96e; margin-top: 3px; flex-shrink: 0; }
+    .terms-row span {
+      font-family: 'Jost', sans-serif; font-size: 0.8rem;
+      color: rgba(245,239,230,0.4); line-height: 1.6;
+    }
+    .terms-row a { color: #c8a96e; }
+
+    .reg-submit {
+      background: #c8a96e; color: #1a1208;
+      width: 100%; padding: 14px; border: none; cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+      transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .reg-submit:hover { box-shadow: 0 0 28px rgba(200,169,110,0.45); transform: translateY(-2px); }
+
+    .reg-login-link {
+      text-align: center; margin-top: 20px;
+      font-family: 'Jost', sans-serif; font-size: 0.82rem;
+      color: rgba(245,239,230,0.3);
+    }
+    .reg-login-link a { color: #c8a96e; }
+
+    .reg-secure {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 18px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(245,239,230,0.18);
+    }
+    .secure-dot { width: 5px; height: 5px; background: #5c7a5a; border-radius: 50%; box-shadow: 0 0 5px rgba(92,122,90,0.8); }
+  </style>
+</head>
+<body>
+  <!-- NO HEADER / NO FOOTER -->
+
+  <div class="register-wrap">
+
+    <!-- ======= LEFT VISUAL PANEL ======= -->
+    <div class="reg-visual">
+      <div class="reg-visual-logo">
+        <div class="reg-logo-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:20px;height:20px;">
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+            <path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/>
+            <path d="M6 12h12"/>
+          </svg>
+        </div>
+        <span class="reg-brand-name">SERA<span>NARA</span></span>
+      </div>
+
+      <div class="reg-visual-content">
+        <h2>
+          Begin Your<br/>
+          <em>Bali Journey</em>
+        </h2>
+        <p style="font-family:'Jost',sans-serif;font-size:0.9rem;color:rgba(245,239,230,0.55);margin-bottom:0;line-height:1.7;">
+          Join our guest community and unlock a world of curated experiences, priority booking, and exclusive benefits.
+        </p>
+
+        <div class="reg-perks">
+          <div class="reg-perk"><span class="reg-perk-dot"></span>Priority access to villa availability</div>
+          <div class="reg-perk"><span class="reg-perk-dot"></span>Early booking discounts up to 20%</div>
+          <div class="reg-perk"><span class="reg-perk-dot"></span>Personalized itinerary management</div>
+          <div class="reg-perk"><span class="reg-perk-dot"></span>Exclusive events & ceremonies</div>
+          <div class="reg-perk"><span class="reg-perk-dot"></span>24/7 dedicated concierge access</div>
+        </div>
+
+        <div class="reg-quote">
+          <p>"Serenara is not a hotel. It is a feeling. And once you've felt it, you'll spend your life returning."</p>
+          <div class="reg-quote-author">— Condé Nast Traveller, 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= RIGHT FORM PANEL ======= -->
+    <div class="reg-form-panel">
+      <div class="reg-form-inner">
+
+        <!-- Mobile brand -->
+        <div class="reg-mobile-brand">
+          <div class="reg-brand-name">SERA<span style="color:#c8a96e;">NARA</span></div>
+          <div style="font-family:'Jost',sans-serif;font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(200,169,110,0.5);margin-top:4px;">Bali · Guest Portal</div>
+        </div>
+
+        <h2>Create Your <span style="color:#c8a96e;">Account</span></h2>
+        <p>Become a Serenara guest. No payment required today.</p>
+
+        <!-- Step bar -->
+        <div class="step-bar" id="stepBar">
+          <div class="step-seg active"></div>
+          <div class="step-seg"></div>
+          <div class="step-seg"></div>
+        </div>
+
+        <form id="registerForm">
+          <div class="form-row">
+            <div class="reg-group">
+              <label class="reg-label">First Name</label>
+              <input type="text" class="reg-input" placeholder="Maria" required/>
+            </div>
+            <div class="reg-group">
+              <label class="reg-label">Last Name</label>
+              <input type="text" class="reg-input" placeholder="Ferreira" required/>
+            </div>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label">Email Address</label>
+            <input type="email" class="reg-input" placeholder="you@email.com" required/>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label">Phone Number</label>
+            <input type="tel" class="reg-input" placeholder="+1 555 000 0000"/>
+          </div>
+
+          <div class="form-row">
+            <div class="reg-group">
+              <label class="reg-label">Nationality</label>
+              <select class="reg-input">
+                <option value="">Select…</option>
+                <option>Australian</option>
+                <option>British</option>
+                <option>Canadian</option>
+                <option>French</option>
+                <option>German</option>
+                <option>Japanese</option>
+                <option>Portuguese</option>
+                <option>American</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="reg-group">
+              <label class="reg-label">How did you hear of us?</label>
+              <select class="reg-input">
+                <option>Instagram</option>
+                <option>Condé Nast</option>
+                <option>Travel + Leisure</option>
+                <option>Word of mouth</option>
+                <option>Google Search</option>
+                <option>Travel Agent</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label">Password</label>
+            <div style="position:relative;">
+              <input type="password" class="reg-input" placeholder="Min. 10 characters" required id="regPw" style="padding-right:44px;"/>
+              <button type="button" id="regPwEye" style="position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(245,239,230,0.3);cursor:pointer;transition:color 0.3s;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="pw-strength-row" id="pwSegs">
+              <div class="pw-seg"></div>
+              <div class="pw-seg"></div>
+              <div class="pw-seg"></div>
+              <div class="pw-seg"></div>
+            </div>
+            <div class="pw-lbl" id="pwLbl">Enter a password</div>
+          </div>
+
+          <div class="reg-group">
+            <label class="reg-label">Interests (optional)</label>
+            <select class="reg-input">
+              <option>Spa & Wellness</option>
+              <option>Cultural Experiences</option>
+              <option>Yoga & Meditation</option>
+              <option>Gastronomy & Cooking</option>
+              <option>Adventure & Trekking</option>
+              <option>Romantic Escapes</option>
+            </select>
+          </div>
+
+          <div class="terms-row">
+            <input type="checkbox" required/>
+            <span>
+              I agree to Serenara's <a href="#">Terms of Stay</a> and <a href="#">Privacy Policy</a>.
+              I consent to receiving curated travel inspiration and exclusive offers.
+            </span>
+          </div>
+
+          <button type="submit" class="reg-submit">
+            Create My Sanctuary Account
+          </button>
+        </form>
+
+        <div class="reg-login-link">
+          Already a guest? <a href="login.html">Sign in →</a>
+        </div>
+
+        <div class="reg-secure">
+          <span class="secure-dot"></span>
+          End-to-End Encrypted · GDPR Compliant
+          <span class="secure-dot"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Password eye toggle
+    document.getElementById('regPwEye')?.addEventListener('click', () => {
+      const pw = document.getElementById('regPw');
+      pw.type = pw.type === 'password' ? 'text' : 'password';
+    });
+
+    // Password strength
+    const regPw = document.getElementById('regPw');
+    const segs = document.querySelectorAll('#pwSegs .pw-seg');
+    const pwLbl = document.getElementById('pwLbl');
+    const colors = { 1:'#ff6b6b', 2:'#ffa500', 3:'#c8a96e', 4:'#6fbd6f' };
+    const labels = { 0:'Enter a password', 1:'Weak', 2:'Fair', 3:'Good', 4:'Strong' };
+
+    regPw?.addEventListener('input', () => {
+      const v = regPw.value;
+      let score = 0;
+      if (v.length >= 6) score++;
+      if (v.length >= 10) score++;
+      if (/[A-Z]/.test(v) && /[0-9]/.test(v)) score++;
+      if (/[^A-Za-z0-9]/.test(v)) score++;
+      const col = colors[score] || 'rgba(200,169,110,0.12)';
+      segs.forEach((s, i) => { s.style.background = i < score ? col : 'rgba(200,169,110,0.12)'; });
+      if (pwLbl) { pwLbl.textContent = labels[score]; pwLbl.style.color = score > 0 ? col : 'rgba(245,239,230,0.3)'; }
+    });
+
+    // Animate step bar on submit
+    document.getElementById('registerForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const segs = document.querySelectorAll('#stepBar .step-seg');
+      let i = 0;
+      segs.forEach(s => s.classList.remove('active'));
+      segs[0].classList.add('active');
+      const btn = e.target.querySelector('[type=submit]');
+      btn.textContent = 'Creating account…';
+      btn.disabled = true;
+      const iv = setInterval(() => {
+        if (i < segs.length) { segs[i].classList.add('active'); i++; }
+        else { clearInterval(iv); setTimeout(() => { window.location.href = 'dashboard.html'; }, 400); }
+      }, 450);
+    });
+  </script>
+</body>
+</html>

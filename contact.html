@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Serenara — Contact & Find Us</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    /* Contact page — NO card centering rule exception */
+    .contact-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+    }
+    @media (max-width: 1023px) { .contact-layout { grid-template-columns: 1fr; } }
+
+    .contact-form-wrap {
+      background: var(--secondary-08); border: var(--border-gold); padding: 44px;
+    }
+    @media (max-width: 640px) { .contact-form-wrap { padding: 28px 20px; } }
+
+    .info-card {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--secondary-08); border: var(--border-gold);
+      padding: 22px; transition: var(--transition);
+    }
+    .info-card:hover { border-color: var(--secondary-50); background: var(--secondary-15); }
+    .info-icon {
+      width: 44px; height: 44px; background: var(--secondary-15);
+      border: 1px solid var(--secondary-30); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--secondary); flex-shrink: 0;
+    }
+    .info-card-text h4 {
+      font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--secondary); margin-bottom: 5px;
+    }
+    .info-card-text p { font-size: 0.92rem; color: var(--text-primary); margin-bottom: 2px; }
+    .info-card-text span { font-size: 0.78rem; color: var(--text-dim); }
+
+    .map-container {
+      width: 100%; height: 280px; border: var(--border-gold); overflow: hidden; position: relative;
+    }
+    .map-container iframe {
+      width: 100%; height: 100%; border: none;
+      filter: sepia(0.4) hue-rotate(5deg) saturate(0.7) brightness(0.75);
+    }
+    [data-theme="light"] .map-container iframe {
+      filter: sepia(0.2) saturate(0.8) brightness(0.9);
+    }
+    .map-pin-overlay {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--primary-90); border: var(--border-gold);
+      padding: 10px 16px; backdrop-filter: blur(10px); z-index: 10;
+    }
+    .map-pin-overlay p {
+      font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--secondary); margin: 0;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+
+    .contact-social-bar {
+      display: flex; gap: 14px; margin-top: 20px; flex-wrap: wrap;
+    }
+    @media (max-width: 360px) {
+      .info-card { flex-direction: column; }
+      .contact-social-bar { justify-content: center; }
+    }
+
+    .faq-item { border-bottom: 1px solid var(--secondary-15); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--text-light);
+      padding: 18px 0; text-align: left; font-family: var(--font-body); font-size: 0.95rem;
+      display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+      transition: color 0.3s;
+    }
+    .faq-q:hover { color: var(--secondary); }
+    .faq-q.open { color: var(--secondary); }
+    .faq-icon { transition: transform 0.3s; font-size: 1rem; }
+    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; padding: 0; }
+    .faq-a.open { max-height: 200px; padding-bottom: 16px; }
+    .faq-a p { font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div id="header-inject"></div>
+
+  <!-- HERO -->
+  <section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1582610116397-edb72795cbb0?w=1920&q=80');">
+    <div class="container">
+      <div class="page-hero-content" style="animation:fadeInUp 0.8s ease;">
+        <div class="ornament" style="justify-content:flex-start;margin-bottom:16px;"><div class="ornament-line" style="width:32px;"></div><div class="ornament-diamond"></div></div>
+        <span class="section-label">Contact & Find Us</span>
+        <h1>We'd Love to <span class="gradient-text">Hear from You</span></h1>
+        <p>Whether you're planning your first visit or returning for the tenth time — our Guest Relations team is here, always.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTACT -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- FORM -->
+        <div class="contact-form-wrap reveal">
+          <span class="section-label" style="margin-bottom:8px;display:block;">Send a Message</span>
+          <h2 style="font-size:2rem;margin-bottom:8px;">Write to <span class="gradient-text">Serenara</span></h2>
+          <p style="margin-bottom:28px;">We respond to every enquiry within 4 hours. For urgent matters, please call us directly.</p>
+          <form class="spa-form">
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" class="form-control" placeholder="Maria" required/></div>
+              <div class="form-group"><label>Last Name</label><input type="text" class="form-control" placeholder="Ferreira" required/></div>
+            </div>
+            <div class="form-group"><label>Email Address</label><input type="email" class="form-control" placeholder="you@email.com" required/></div>
+            <div class="form-group"><label>Phone</label><input type="tel" class="form-control" placeholder="+1 555 000 0000"/></div>
+            <div class="form-row">
+              <div class="form-group"><label>Arrival Date</label><input type="date" class="form-control"/></div>
+              <div class="form-group"><label>Departure Date</label><input type="date" class="form-control"/></div>
+            </div>
+            <div class="form-group">
+              <label>Enquiry Type</label>
+              <select class="form-control">
+                <option>Villa Reservation</option>
+                <option>Spa Booking</option>
+                <option>Experience / Excursion</option>
+                <option>Wedding / Special Event</option>
+                <option>Group Booking</option>
+                <option>Press & Media</option>
+                <option>General Enquiry</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Your Message</label><textarea class="form-control" rows="4" placeholder="Tell us how we can make your stay perfect…"></textarea></div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;">
+              Send Message ✦
+            </button>
+          </form>
+        </div>
+
+        <!-- INFO + MAP -->
+        <div class="reveal reveal-delay-2" style="display:flex;flex-direction:column;gap:16px;">
+          <div class="info-card">
+            <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="info-card-text">
+              <h4>Address</h4>
+              <p>Jl. Raya Ubud No. 88, Ubud</p>
+              <span>Gianyar, Bali 80571 · Indonesia</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.06 6.06z"/></svg></div>
+            <div class="info-card-text">
+              <h4>Phone</h4>
+              <p>+62 (361) 888 7654</p>
+              <span>Guest Relations · 24 hours</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="info-card-text">
+              <h4>Email</h4>
+              <p>hello@serenara.com</p>
+              <span>Replies within 4 hours</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="info-card-text">
+              <h4>Check-In / Check-Out</h4>
+              <p>Check-in from 3:00 PM</p>
+              <span>Check-out by 12:00 PM · Late checkout on request</span>
+            </div>
+          </div>
+
+          <!-- SOCIAL ICONS -->
+          <div>
+            <h4 style="font-family:var(--font-body);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--secondary);margin-bottom:12px;">Follow Our Journey</h4>
+            <div class="contact-social-bar">
+              <a href="#" class="social-icon facebook" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+              <a href="#" class="social-icon instagram" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+              <a href="#" class="social-icon twitter" aria-label="X / Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+              <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+            </div>
+          </div>
+
+          <!-- THEMED COLOR MAP -->
+          <div>
+            <h4 style="font-family:var(--font-body);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--secondary);margin-bottom:12px;">Find Us in Ubud</h4>
+            <div class="map-container">
+              <div class="map-pin-overlay"><p>📍 Serenara · Ubud, Bali</p></div>
+              <iframe
+                src="https://www.openstreetmap.org/export/embed.html?bbox=115.2%2C-8.55%2C115.3%2C-8.47&layer=mapnik&marker=-8.506%2C115.262"
+                loading="lazy"
+                title="Serenara Bali Location"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GETTING HERE -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Getting Here</span>
+        <h2>Your Journey <span class="gradient-text">to Serenara</span></h2>
+      </div>
+      <div class="card-grid card-grid-3">
+        <div class="card reveal reveal-delay-1">
+          <div class="card-body">
+            <div style="font-size:2rem;margin-bottom:14px;">✈️</div>
+            <h3>By Air</h3>
+            <p>Ngurah Rai International Airport (DPS) is 45km away — approximately 75 minutes. Complimentary private transfer included with every booking.</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <div class="card-body">
+            <div style="font-size:2rem;margin-bottom:14px;">🚗</div>
+            <h3>By Road</h3>
+            <p>From Ubud town centre: 12 minutes by car. GPS coordinates: 8.506°S, 115.262°E. Our driver can arrange pickup from anywhere in Bali.</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-3">
+          <div class="card-body">
+            <div style="font-size:2rem;margin-bottom:14px;">🛶</div>
+            <h3>From Nusa Dua</h3>
+            <p>Private boat from Sanur to Padangbai (45 min), then driver to Ubud (30 min). A scenic coastal journey we're happy to arrange.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Questions</span>
+        <h2>Frequently <span class="gradient-text">Asked</span></h2>
+      </div>
+      <div style="max-width:720px;margin:0 auto;" class="reveal">
+        <div class="faq-item"><button class="faq-q">What is the minimum stay? <span class="faq-icon">+</span></button><div class="faq-a"><p>We have a 2-night minimum stay year-round. For Nyepi (Day of Silence) and peak festive periods, a 4-night minimum applies.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Do you cater to dietary requirements? <span class="faq-icon">+</span></button><div class="faq-a"><p>Absolutely. Our kitchen accommodates all dietary needs — vegan, raw food, gluten-free, Jain, and medically prescribed diets. Please let us know in advance.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Is Serenara child-friendly? <span class="faq-icon">+</span></button><div class="faq-a"><p>Serenara is primarily designed as a couples and adults retreat. We welcome children aged 12 and above to ensure the tranquility of the experience for all guests.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Can we host weddings or events? <span class="faq-icon">+</span></button><div class="faq-a"><p>Yes — intimate gatherings of up to 30 guests are perfect at Serenara. We offer private buyout of the full estate. Contact our events team for a bespoke proposal.</p></div></div>
+        <div class="faq-item"><button class="faq-q">What's the cancellation policy? <span class="faq-icon">+</span></button><div class="faq-a"><p>Full refund for cancellations 14+ days before arrival. 50% refund for 7–13 days. No refund within 7 days unless rebooked for a future date.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-inject"></div>
+  <script src="js/components.js"></script>
+  <script src="js/global.js"></script>
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ans = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+        document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+        if (!isOpen) { btn.classList.add('open'); ans.classList.add('open'); }
+      });
+    });
+  </script>
+</body>
+</html>

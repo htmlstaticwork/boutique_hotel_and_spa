@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Serenara — Guest Portal</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    body { background: var(--primary); }
+
+    .dashboard-wrap {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: calc(100vh - 72px);
+    }
+    @media (max-width: 1023px) { .dashboard-wrap { grid-template-columns: 1fr; } }
+
+    /* SIDEBAR */
+    .dash-sidebar {
+      background: var(--secondary-08);
+      border-right: 1px solid var(--secondary-15);
+      padding: 28px 0;
+      position: sticky;
+      top: 72px;
+      height: calc(100vh - 72px);
+      overflow-y: auto;
+    }
+    @media (max-width: 1023px) { .dash-sidebar { display: none; } }
+
+    .sidebar-lbl {
+      font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-dim); padding: 8px 20px 4px; display: block;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 10px; padding: 11px 20px;
+      color: var(--text-muted); font-size: 0.85rem; font-family: var(--font-body);
+      transition: var(--transition); cursor: pointer; text-decoration: none;
+    }
+    .sidebar-link:hover, .sidebar-link.active {
+      background: var(--secondary-15); color: var(--secondary);
+      border-right: 2px solid var(--secondary);
+    }
+    .sidebar-link svg { width: 15px; height: 15px; }
+
+    .dash-main { padding: 36px; overflow-x: hidden; }
+    @media (max-width: 767px) { .dash-main { padding: 20px 16px; } }
+
+    /* TOPBAR */
+    .dash-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+    }
+    .dash-welcome h1 { font-size: 1.8rem; margin-bottom: 3px; }
+    .dash-welcome p { font-size: 0.78rem; color: var(--text-dim); font-family: var(--font-body); letter-spacing: 1px; }
+
+    /* STAT CARDS */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px;
+    }
+    @media (min-width: 768px) and (max-width: 1023px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 767px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+
+    .stat-tile {
+      background: var(--secondary-08); border: var(--border-gold);
+      padding: 20px 18px; position: relative; overflow: hidden; transition: var(--transition);
+    }
+    .stat-tile:hover { border-color: var(--secondary-50); }
+    .stat-tile::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: linear-gradient(90deg, var(--secondary), transparent);
+    }
+    .stat-tile-lbl { font-family: var(--font-body); font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+    .stat-tile-num { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--text-light); line-height: 1; }
+    .stat-tile-sub { font-size: 0.72rem; color: var(--secondary); margin-top: 5px; }
+    .stat-tile-icon { position: absolute; top: 16px; right: 16px; color: var(--secondary-20); }
+
+    /* PANELS */
+    .dash-panel {
+      background: var(--secondary-08); border: var(--border-gold); overflow: hidden; margin-bottom: 24px;
+    }
+    .panel-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 22px; border-bottom: 1px solid var(--secondary-15);
+    }
+    .panel-hdr h3 { font-size: 0.9rem; letter-spacing: 0.5px; }
+    .panel-body { padding: 22px; }
+
+    /* BOOKING FORM */
+    .book-tabs {
+      display: flex; gap: 0; border-bottom: 1px solid var(--secondary-15); margin-bottom: 24px;
+    }
+    .book-tab {
+      padding: 12px 20px; background: none; border: none; color: var(--text-muted);
+      font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 1.5px;
+      text-transform: uppercase; cursor: pointer; border-bottom: 2px solid transparent;
+      transition: var(--transition); margin-bottom: -1px;
+    }
+    .book-tab.active, .book-tab:hover { color: var(--secondary); border-bottom-color: var(--secondary); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .form-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    @media (max-width: 767px) { .form-grid-3 { grid-template-columns: 1fr; } }
+
+    /* ITINERARY */
+    .itinerary-day {
+      border-left: 2px solid var(--secondary-30); padding-left: 20px; margin-bottom: 28px;
+    }
+    .itinerary-date {
+      font-family: var(--font-display); font-size: 0.85rem; color: var(--secondary);
+      margin-bottom: 10px; letter-spacing: 1px;
+    }
+    .itinerary-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--secondary-08); border: var(--border-gold);
+      padding: 12px 16px; margin-bottom: 8px; transition: var(--transition);
+    }
+    .itinerary-item:hover { border-color: var(--secondary-50); }
+    .item-time { font-family: var(--font-mono,monospace); font-size: 0.72rem; color: var(--secondary); flex-shrink: 0; width: 50px; }
+    .item-info { flex: 1; }
+    .item-title { font-size: 0.88rem; color: var(--text-light); margin-bottom: 2px; }
+    .item-sub { font-size: 0.75rem; color: var(--text-dim); }
+    .item-status {
+      font-size: 0.62rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px;
+      border: 1px solid; border-radius: 0;
+    }
+    .status-confirmed { color: #6fbd6f; border-color: rgba(111,189,111,0.4); background: rgba(111,189,111,0.08); }
+    .status-pending { color: var(--secondary); border-color: var(--secondary-30); background: var(--secondary-08); }
+
+    /* VILLA SELECTOR */
+    .villa-option {
+      display: flex; gap: 14px; padding: 14px; border: 1px solid var(--secondary-15);
+      margin-bottom: 10px; cursor: pointer; transition: var(--transition);
+      align-items: center;
+    }
+    .villa-option:hover, .villa-option.selected { border-color: var(--secondary); background: var(--secondary-08); }
+    .villa-option input[type=radio] { accent-color: var(--secondary); }
+    .villa-option-img {
+      width: 70px; height: 52px; object-fit: cover; border: 1px solid var(--secondary-20); flex-shrink: 0;
+    }
+    .villa-option-info h4 { font-size: 0.9rem; margin-bottom: 3px; }
+    .villa-option-info p { font-size: 0.78rem; }
+    .villa-option-price { margin-left: auto; font-family: var(--font-display); font-size: 1.2rem; color: var(--secondary); white-space: nowrap; }
+
+    /* TREATMENT SELECTOR */
+    .treatment-option {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px; border: 1px solid var(--secondary-15); margin-bottom: 8px;
+      cursor: pointer; transition: var(--transition);
+    }
+    .treatment-option:hover, .treatment-option.selected { border-color: var(--secondary); background: var(--secondary-08); }
+    .treatment-option input[type=checkbox] { accent-color: var(--secondary); }
+    .treatment-option-info h4 { font-size: 0.9rem; }
+    .treatment-option-info p { font-size: 0.75rem; color: var(--text-dim); }
+    .treatment-price { font-family: var(--font-display); font-size: 1.1rem; color: var(--secondary); }
+  </style>
+</head>
+<body>
+  <div id="header-inject"></div>
+
+  <div class="dashboard-wrap">
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar">
+      <span class="sidebar-lbl">Guest Portal</span>
+      <a class="sidebar-link active" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> Dashboard</a>
+      <a class="sidebar-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg> My Booking</a>
+
+      <span class="sidebar-lbl">Reserve</span>
+      <a class="sidebar-link" href="#" onclick="switchTab('villas');return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Book a Villa</a>
+      <a class="sidebar-link" href="#" onclick="switchTab('spa');return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 010 20"/><path d="M12 6c2 2 4 4 4 6s-2 4-4 6"/></svg> Spa Appointment</a>
+      <a class="sidebar-link" href="#" onclick="switchTab('excursions');return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20"/></svg> Excursions</a>
+
+      <span class="sidebar-lbl">My Account</span>
+      <a class="sidebar-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Profile</a>
+      <a class="sidebar-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg> Past Stays</a>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="dash-main">
+      <!-- TOPBAR -->
+      <div class="dash-topbar">
+        <div class="dash-welcome">
+          <h1>Welcome back, <span class="gradient-text">Maria</span></h1>
+          <p>// VILLA 04 · RICE TERRACE COLLECTION · CHECK-IN JULY 18</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-ghost" style="font-size:0.72rem;padding:10px 18px;">📞 Concierge</button>
+          <button class="btn btn-primary" style="font-size:0.72rem;padding:10px 22px;" onclick="document.getElementById('bookingModal').classList.add('open')">+ New Booking</button>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat-tile">
+          <div class="stat-tile-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+          <div class="stat-tile-lbl">Nights Remaining</div>
+          <div class="stat-tile-num">5</div>
+          <div class="stat-tile-sub">Check-out Jul 23</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/></svg></div>
+          <div class="stat-tile-lbl">Spa Treatments</div>
+          <div class="stat-tile-num">2</div>
+          <div class="stat-tile-sub">Booked this stay</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
+          <div class="stat-tile-lbl">Excursions</div>
+          <div class="stat-tile-num">3</div>
+          <div class="stat-tile-sub">Confirmed</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
+          <div class="stat-tile-lbl">Total Stays</div>
+          <div class="stat-tile-num">4</div>
+          <div class="stat-tile-sub">Gold Guest Status</div>
+        </div>
+      </div>
+
+      <!-- BOOKING FORM PANEL -->
+      <div class="dash-panel">
+        <div class="panel-hdr">
+          <h3>Reserve &amp; Book</h3>
+          <span class="badge">Guest Portal</span>
+        </div>
+        <div class="panel-body">
+          <div class="book-tabs">
+            <button class="book-tab active" onclick="switchTab('villas')">🏡 Villas</button>
+            <button class="book-tab" onclick="switchTab('spa')">🌺 Spa</button>
+            <button class="book-tab" onclick="switchTab('excursions')">🌅 Excursions</button>
+          </div>
+
+          <!-- VILLAS TAB -->
+          <div class="tab-panel active" id="tab-villas">
+            <div class="form-grid-3" style="margin-bottom:20px;">
+              <div class="form-group"><label>Check-In</label><input type="date" class="form-control"/></div>
+              <div class="form-group"><label>Check-Out</label><input type="date" class="form-control"/></div>
+              <div class="form-group"><label>Guests</label><select class="form-control"><option>1 Guest</option><option selected>2 Guests</option><option>3 Guests</option><option>4 Guests</option></select></div>
+            </div>
+            <label class="form-group" style="margin-bottom:16px;"><span style="font-family:var(--font-body);font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--secondary);display:block;margin-bottom:10px;">Select Your Villa</span></label>
+            <div class="villa-option selected">
+              <input type="radio" name="villa" checked/>
+              <img class="villa-option-img" src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=200&q=80" alt=""/>
+              <div class="villa-option-info"><h4>Rice Terrace Villa</h4><p>2 bedrooms · Infinity pool · Terrace view</p></div>
+              <div class="villa-option-price">$480<small style="font-size:0.7rem;color:var(--text-dim);">/night</small></div>
+            </div>
+            <div class="villa-option">
+              <input type="radio" name="villa"/>
+              <img class="villa-option-img" src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?w=200&q=80" alt=""/>
+              <div class="villa-option-info"><h4>Garden Villa</h4><p>1 bedroom · Private pool · Garden view</p></div>
+              <div class="villa-option-price">$280<small style="font-size:0.7rem;color:var(--text-dim);">/night</small></div>
+            </div>
+            <div class="villa-option">
+              <input type="radio" name="villa"/>
+              <img class="villa-option-img" src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=200&q=80" alt=""/>
+              <div class="villa-option-info"><h4>Clifftop Suite</h4><p>Suite · Private stream · Chef included</p></div>
+              <div class="villa-option-price">$780<small style="font-size:0.7rem;color:var(--text-dim);">/night</small></div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:20px;padding:13px 32px;" onclick="window.showToast?.('Villa reservation request submitted. Our team will confirm within 2 hours.')">Reserve Villa ✦</button>
+          </div>
+
+          <!-- SPA TAB -->
+          <div class="tab-panel" id="tab-spa">
+            <div class="form-grid-3" style="margin-bottom:20px;">
+              <div class="form-group"><label>Date</label><input type="date" class="form-control"/></div>
+              <div class="form-group"><label>Preferred Time</label><select class="form-control"><option>9:00 AM</option><option>11:00 AM</option><option>2:00 PM</option><option>4:00 PM</option></select></div>
+              <div class="form-group"><label>Therapist</label><select class="form-control"><option>No Preference</option><option>Ni Made (Female)</option><option>Ketut (Male)</option></select></div>
+            </div>
+            <label style="font-family:var(--font-body);font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--secondary);display:block;margin-bottom:10px;">Select Treatment(s)</label>
+            <div class="treatment-option selected"><input type="checkbox" checked/><div class="treatment-option-info"><h4>The Boreh Ritual</h4><p>120 min · Full body spice wrap & massage</p></div><div class="treatment-price">$145</div></div>
+            <div class="treatment-option"><input type="checkbox"/><div class="treatment-option-info"><h4>The Royal Lulur</h4><p>90 min · Turmeric scrub & flower bath</p></div><div class="treatment-price">$120</div></div>
+            <div class="treatment-option"><input type="checkbox"/><div class="treatment-option-info"><h4>Volcanic Stone Healing</h4><p>90 min · Chakra stones & coconut oil</p></div><div class="treatment-price">$110</div></div>
+            <div class="treatment-option"><input type="checkbox"/><div class="treatment-option-info"><h4>Jamu Wellness Journey</h4><p>60 min · Herbal tonic & reflexology</p></div><div class="treatment-price">$85</div></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px;">
+              <div><span style="color:var(--text-dim);font-size:0.8rem;">Selected total: </span><span style="font-family:var(--font-display);font-size:1.4rem;color:var(--secondary);">$145</span></div>
+              <button class="btn btn-primary" style="padding:13px 32px;" onclick="window.showToast?.('Spa appointment confirmed! See you at 11:00 AM.')">Book Appointment ✦</button>
+            </div>
+          </div>
+
+          <!-- EXCURSIONS TAB -->
+          <div class="tab-panel" id="tab-excursions">
+            <div class="form-grid-3" style="margin-bottom:20px;">
+              <div class="form-group"><label>Preferred Date</label><input type="date" class="form-control"/></div>
+              <div class="form-group"><label>Guests</label><select class="form-control"><option>1 Person</option><option selected>2 People</option><option>3–4 People</option><option>Private Group</option></select></div>
+              <div class="form-group"><label>Experience</label><select class="form-control"><option>Sacred Temple Sunrise</option><option>Cooking Ceremony</option><option>Rice Terrace Trek</option><option>Cave Candlelight Dinner</option><option>Jungle Yoga</option><option>Jamu Workshop</option></select></div>
+            </div>
+            <div class="form-group"><label>Special Requests</label><textarea class="form-control" rows="3" placeholder="Any dietary needs, mobility considerations, or special arrangements…"></textarea></div>
+            <div style="background:var(--secondary-08);border:var(--border-gold);padding:16px;margin:16px 0;">
+              <div style="font-family:var(--font-body);font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--secondary);margin-bottom:8px;">Selected: Sacred Temple Sunrise</div>
+              <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+                <span style="font-size:0.88rem;">2 people · 4 Hours · From $65/person</span>
+                <span style="font-family:var(--font-display);font-size:1.2rem;color:var(--secondary);">$130 total</span>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="padding:13px 32px;" onclick="window.showToast?.('Excursion booked! Departure at 5:00 AM. Sleep well!')">Pre-Book Experience ✦</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITINERARY -->
+      <div class="dash-panel">
+        <div class="panel-hdr">
+          <h3>Your Serenara Itinerary</h3>
+          <span class="badge badge-filled">July 18–23</span>
+        </div>
+        <div class="panel-body">
+          <div class="itinerary-day">
+            <div class="itinerary-date">Thursday, July 18 — Arrival Day</div>
+            <div class="itinerary-item"><div class="item-time">15:00</div><div class="item-info"><div class="item-title">Check-in · Rice Terrace Villa</div><div class="item-sub">Welcome ceremony with Wayan & private butler</div></div><span class="item-status status-confirmed">Confirmed</span></div>
+            <div class="itinerary-item"><div class="item-time">17:30</div><div class="item-info"><div class="item-title">Sunset Yoga Pavilion</div><div class="item-sub">Open-air Hatha · Jungle canopy</div></div><span class="item-status status-confirmed">Confirmed</span></div>
+            <div class="itinerary-item"><div class="item-time">19:30</div><div class="item-info"><div class="item-title">Welcome Dinner · Treetop Restaurant</div><div class="item-sub">Balinese tasting menu with Jamu tonic pairing</div></div><span class="item-status status-confirmed">Confirmed</span></div>
+          </div>
+          <div class="itinerary-day">
+            <div class="itinerary-date">Friday, July 19</div>
+            <div class="itinerary-item"><div class="item-time">05:00</div><div class="item-info"><div class="item-title">Sacred Temple Sunrise</div><div class="item-sub">Pura Tirta Empul · Guide: Ketut · Private car</div></div><span class="item-status status-confirmed">Confirmed</span></div>
+            <div class="itinerary-item"><div class="item-time">11:00</div><div class="item-info"><div class="item-title">Spa · The Boreh Ritual</div><div class="item-sub">Therapist: Ni Made · 120 min</div></div><span class="item-status status-confirmed">Confirmed</span></div>
+            <div class="itinerary-item"><div class="item-time">19:00</div><div class="item-info"><div class="item-title">Balinese Cooking Ceremony</div><div class="item-sub">Morning market tour + 3-hour class with Chef Rai</div></div><span class="item-status status-pending">Pending</span></div>
+          </div>
+          <div class="itinerary-day">
+            <div class="itinerary-date">Saturday, July 20</div>
+            <div class="itinerary-item"><div class="item-time">07:00</div><div class="item-info"><div class="item-title">Rice Terrace Morning Walk</div><div class="item-sub">Tegalalang · With farmer guide Wayan Suryadi</div></div><span class="item-status status-confirmed">Confirmed</span></div>
+            <div class="itinerary-item"><div class="item-time">20:00</div><div class="item-info"><div class="item-title">Cave Candlelight Dinner</div><div class="item-sub">7-course tasting · Live gamelan music</div></div><span class="item-status status-confirmed">Confirmed</span></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- QUICK BOOKING MODAL -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('bookingModal').classList.remove('open')">✕</button>
+      <h3 style="margin-bottom:8px;">Quick <span class="gradient-text">Reservation</span></h3>
+      <p style="margin-bottom:24px;font-size:0.88rem;">Add to your itinerary. Our concierge team will confirm within 2 hours.</p>
+      <form class="spa-form">
+        <div class="form-group"><label>Type</label><select class="form-control"><option>Villa Extension</option><option>Spa Treatment</option><option>Excursion / Experience</option><option>Dining Reservation</option></select></div>
+        <div class="form-group"><label>Date</label><input type="date" class="form-control"/></div>
+        <div class="form-group"><label>Time Preference</label><input type="time" class="form-control"/></div>
+        <div class="form-group"><label>Notes</label><textarea class="form-control" rows="3" placeholder="Any special requests…"></textarea></div>
+        <div style="display:flex;gap:12px;margin-top:8px;">
+          <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center;">Submit Request</button>
+          <button type="button" class="btn btn-ghost" onclick="document.getElementById('bookingModal').classList.remove('open')" style="flex:1;justify-content:center;">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/components.js"></script>
+  <script src="js/global.js"></script>
+  <script>
+    function switchTab(name) {
+      document.querySelectorAll('.book-tab').forEach((t,i) => {
+        const tabs = ['villas','spa','excursions'];
+        t.classList.toggle('active', tabs[i] === name);
+      });
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + name)?.classList.add('active');
+    }
+
+    // Villa option selection
+    document.querySelectorAll('.villa-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.villa-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        opt.querySelector('input')?.click();
+      });
+    });
+
+    // Treatment option toggle
+    document.querySelectorAll('.treatment-option').forEach(opt => {
+      opt.addEventListener('click', () => opt.classList.toggle('selected'));
+    });
+  </script>
+</body>
+</html>

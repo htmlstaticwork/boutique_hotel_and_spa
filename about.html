@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Serenara — Our Story</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <style>
+    .team-card {
+      border: var(--border-gold); overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      background: var(--primary); transition: var(--transition);
+    }
+    .team-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
+    .team-img { width: 100%; height: 240px; object-fit: cover; object-position: top; transition: transform 0.6s; }
+    .team-card:hover .team-img { transform: scale(1.04); }
+    .team-img-wrap { width: 100%; overflow: hidden; }
+    .team-body { padding: 24px 20px 28px; display: flex; flex-direction: column; align-items: center; }
+    .team-role { font-size: 0.65rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--secondary); font-family: var(--font-body); margin-bottom: 8px; }
+    .team-body h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .team-body p { font-size: 0.85rem; }
+
+    .timeline { max-width: 700px; margin: 0 auto; position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(var(--secondary-15), var(--secondary-50), var(--secondary-15));
+    }
+    .timeline-item { padding: 0 0 40px 40px; position: relative; }
+    .timeline-dot {
+      position: absolute; left: -5px; top: 4px;
+      width: 11px; height: 11px; background: var(--secondary); border-radius: 50%;
+      box-shadow: 0 0 12px var(--secondary-50);
+    }
+    .timeline-year { font-family: var(--font-display); font-size: 0.85rem; color: var(--secondary); letter-spacing: 1px; margin-bottom: 6px; }
+    .timeline-item h3 { font-size: 1.1rem; margin-bottom: 6px; }
+    .timeline-item p { font-size: 0.88rem; }
+
+    .value-card {
+      border: var(--border-gold); padding: 36px 28px;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      background: var(--secondary-08); transition: var(--transition);
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); border-color: var(--secondary-50); }
+    .value-num {
+      font-family: var(--font-display); font-size: 3.5rem; font-weight: 200;
+      color: var(--secondary-30); line-height: 1; margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="header-inject"></div>
+
+  <!-- HERO -->
+  <section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920&q=80');">
+    <div class="container">
+      <div class="page-hero-content" style="animation:fadeInUp 0.8s ease;">
+        <div class="ornament" style="justify-content:flex-start;margin-bottom:16px;"><div class="ornament-line" style="width:32px;"></div><div class="ornament-diamond"></div></div>
+        <span class="section-label">Our Story</span>
+        <h1>Born from <span class="gradient-text">Love</span> for Bali</h1>
+        <p>A story of two people who came to Bali for a holiday and never went home. Serenara is their love letter to the island.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDING STORY -->
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" class="reveal">
+        <div>
+          <span class="section-label">The Beginning</span>
+          <h2 style="margin-bottom:20px;">A <span class="gradient-text">Holiday</span> That Became Home</h2>
+          <p style="margin-bottom:20px;">In 2014, Maria and Wayan met on the Tegalalang rice terraces — she, an architect from Porto, wandering alone; he, a Balinese healer who had left his village to guide visitors through the sacred landscape of his ancestors.</p>
+          <p style="margin-bottom:20px;">Two years later, they began building Serenara on land that had belonged to Wayan's family for four generations. Every stone was laid with intention. Every space designed to honour the spirit of place the Balinese call <em>taksu</em>.</p>
+          <p>In 2016, with seven villas and a small spa, Serenara opened its doors. Today, with fifteen villas, three dining spaces, and a full wellness centre, the original spirit remains unchanged: this is not a hotel. It is a home. And you are family.</p>
+        </div>
+        <div style="position:relative;">
+          <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=700&q=80" alt="Serenara founders" style="width:100%;border:var(--border-gold);" loading="lazy"/>
+          <div style="position:absolute;bottom:24px;left:24px;background:var(--primary-90);border:var(--border-gold);padding:16px 20px;backdrop-filter:blur(10px);">
+            <div style="font-family:var(--font-script);font-size:1.4rem;color:var(--secondary);">Serenara</div>
+            <div style="font-family:var(--font-body);font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-top:2px;">Founded 2016 · Ubud, Bali</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
+        <span class="section-label">What We Stand For</span>
+        <h2>Our <span class="gradient-text">Sacred Values</span></h2>
+      </div>
+      <div class="card-grid card-grid-4">
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-num">01</div>
+          <h3>Tri Hita Karana</h3>
+          <p>The Balinese concept of threefold harmony: harmony with God, with fellow humans, and with nature. The foundation of everything we do.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-num">02</div>
+          <h3>Community First</h3>
+          <p>85% of our team are from surrounding Ubud villages. Every artisan, every farmer, every healer is local. Our success is theirs.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <div class="value-num">03</div>
+          <h3>Radical Sustainability</h3>
+          <p>Rainwater harvesting, solar power, organic gardens. We aim to return more to the earth than we take. Carbon neutral by 2026.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-4">
+          <div class="value-num">04</div>
+          <h3>Genuine Luxury</h3>
+          <p>Not the luxury of excess, but of presence. The luxury of silence, of extraordinary care, of being truly, deeply seen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Our Journey</span>
+        <h2>Eight Years of <span class="gradient-text">Growing</span></h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">2014</div><h3>First Meeting</h3><p>Maria and Wayan meet on the Tegalalang rice terraces. An architect and a healer. The dream begins.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">2015</div><h3>Breaking Ground</h3><p>Construction begins. Guided by traditional Undagi master builders. No concrete. Only volcanic stone and reclaimed teak.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">2016</div><h3>First Guests Arrive</h3><p>Serenara opens with 7 villas and a 3-room spa. Wayan's grandmother performs the first blessing ceremony.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">2019</div><h3>Awards & Recognition</h3><p>Condé Nast Traveller Hot List. Travel + Leisure Top 100. Eight new villas and our treetop restaurant open.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">2021</div><h3>Wellness Centre Opens</h3><p>The full spa sanctuary, hydrotherapy pool, and yoga pavilion complete the estate. Now 15 villas, 3 dining venues.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">Today</div><h3>Continuing the Journey</h3><p>Still family-run. Still rooted. Still growing. Working towards full carbon neutrality and expanding our community programmes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">The Hearts Behind Serenara</span>
+        <h2>Our <span class="gradient-text">Family</span></h2>
+        <p>We are a team of 48, from 12 villages. Bound not by contracts but by a shared love for this island.</p>
+      </div>
+      <div class="card-grid card-grid-4">
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-img-wrap">
+            <img class="team-img" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Maria" loading="lazy"/>
+          </div>
+          <div class="team-body">
+            <div class="team-role">Co-Founder & Creative Director</div>
+            <h3>Maria Ferreira</h3>
+            <p>Architect turned hotelier. Designed every inch of Serenara with a belief that space can heal.</p>
+          </div>
+        </div>
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-img-wrap">
+            <img class="team-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Wayan" loading="lazy"/>
+          </div>
+          <div class="team-body">
+            <div class="team-role">Co-Founder & Head Healer</div>
+            <h3>Wayan Sudana</h3>
+            <p>8th-generation Balinese healer. The spiritual heart of Serenara. Leads all ceremonies and spa philosophy.</p>
+          </div>
+        </div>
+        <div class="team-card reveal reveal-delay-3">
+          <div class="team-img-wrap">
+            <img class="team-img" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Chef Rai" loading="lazy"/>
+          </div>
+          <div class="team-body">
+            <div class="team-role">Executive Chef</div>
+            <h3>Ni Made Rai</h3>
+            <p>Trained in Ubud and Seminyak. Returns to her roots with farm-to-table Balinese cuisine rooted in her grandmother's recipes.</p>
+          </div>
+        </div>
+        <div class="team-card reveal reveal-delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="Ketut" loading="lazy"/>
+          </div>
+          <div class="team-body">
+            <div class="team-role">Head of Experiences</div>
+            <h3>I Ketut Sujana</h3>
+            <p>Born in Ubud. Expert in Balinese culture, ceremony, and crafts. Every excursion reflects his lifetime of knowledge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Recognition</span>
+        <h2>Humbled by <span class="gradient-text">Recognition</span></h2>
+      </div>
+      <div class="card-grid card-grid-4">
+        <div class="card reveal reveal-delay-1"><div class="card-body"><div style="font-size:2.5rem;margin-bottom:12px;">🏆</div><h3>Condé Nast</h3><p>Hot List 2023 & 2024 — Top New Hotels in Asia Pacific</p></div></div>
+        <div class="card reveal reveal-delay-2"><div class="card-body"><div style="font-size:2.5rem;margin-bottom:12px;">⭐</div><h3>Travel + Leisure</h3><p>World's Top 100 Hotels — 2022, 2023, 2024</p></div></div>
+        <div class="card reveal reveal-delay-3"><div class="card-body"><div style="font-size:2.5rem;margin-bottom:12px;">🌿</div><h3>Green Globe</h3><p>Certified Sustainable Tourism — Platinum Level</p></div></div>
+        <div class="card reveal reveal-delay-4"><div class="card-body"><div style="font-size:2.5rem;margin-bottom:12px;">💆</div><h3>World Spa Awards</h3><p>Finalist — Best Spa in Asia 2023 & 2024</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-inject"></div>
+  <script src="js/components.js"></script>
+  <script src="js/global.js"></script>
+</body>
+</html>
