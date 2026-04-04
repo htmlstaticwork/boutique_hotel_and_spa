@@ -34,17 +34,17 @@
   --accent-20: rgba(92,122,90,0.20);
   --accent-10: rgba(92,122,90,0.10);
 
-  /* Text */
-  --text-light: #f5efe6;
-  --text-muted: rgba(245,239,230,0.65);
-  --text-dim: rgba(245,239,230,0.35);
-  --text-dark: #1a1208;
-  --text-dark-muted: rgba(26,18,8,0.60);
+  /* Text - High Visibility */
+  --text-light: #ffffff;
+  --text-muted: #f5f5f5;
+  --text-dim: #dddddd;
+  --text-dark: #000000;
+  --text-dark-muted: #111111;
 
   /* Typography */
-  --font-display: 'Cormorant Garamond', serif;
-  --font-script: 'Pinyon Script', cursive;
-  --font-body: 'Jost', sans-serif;
+  --font-display: 'Calibri', sans-serif;
+  --font-script: 'Calibri', sans-serif;
+  --font-body: 'Calibri', sans-serif;
 
   /* Spacing */
   --section-pad: 110px 0;
@@ -71,11 +71,14 @@
   --primary-20: rgba(245,239,230,0.20);
   --primary-10: rgba(245,239,230,0.10);
   --primary-05: rgba(245,239,230,0.05);
-  --text-light: #1a1208;
-  --text-muted: rgba(26,18,8,0.65);
-  --text-dim: rgba(26,18,8,0.35);
-  --shadow-soft: 0 8px 40px rgba(26,18,8,0.08);
-  --shadow-card: 0 4px 24px rgba(26,18,8,0.08);
+  --text-light: #000000;
+  --text-muted: #111111;
+  --text-dim: #444444;
+  --shadow-soft: 0 8px 40px rgba(0,0,0,0.12);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.08);
+  --secondary: #8c6e3b;
+  --secondary-50: rgba(140,110,59,0.50);
+  --secondary-15: rgba(140,110,59,0.15);
 }
 
 /* RTL */
@@ -96,6 +99,7 @@ body {
   color: var(--text-light);
   line-height: 1.7;
   overflow-x: hidden;
+  font-weight: 400;
   transition: background 0.5s ease, color 0.5s ease;
 }
 img { max-width: 100%; display: block; }
@@ -106,10 +110,10 @@ button { cursor: pointer; }
 /* ============================================================
    TYPOGRAPHY
    ============================================================ */
-h1,h2,h3,h4,h5,h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.15;
+  font-weight: 700;
+  line-height: 1.25;
   color: var(--text-light);
 }
 h1 { font-size: clamp(2.8rem, 6vw, 5rem); }
@@ -142,7 +146,10 @@ p { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.
   margin: 0 auto;
   padding: 0 32px;
 }
-@media (max-width: 767px) { .container { padding: 0 20px; } }
+@media (max-width: 1440px) { .container { max-width: 1280px; } }
+@media (max-width: 1024px) { .container { max-width: 960px; } }
+@media (max-width: 768px) { .container { max-width: 100%; padding: 0 24px; } }
+@media (max-width: 360px) { .container { padding: 0 16px; } }
 
 .section { padding: var(--section-pad); position: relative; overflow: hidden; }
 .section-alt { background: var(--secondary-08); }
@@ -174,28 +181,48 @@ p { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.
   justify-items: center;
 }
 
-/* ≥1024px: flexible */
-@media (min-width: 1024px) {
-  .card-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+/* ≥1440px */
+@media (min-width: 1440px) {
+  .card-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); justify-content: center; }
   .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
   .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
   .card-grid-4 { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* 768px: 2×2 STRICTLY */
+/* ≥1024px */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .card-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); justify-content: center; }
+  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* 768px */
 @media (min-width: 768px) and (max-width: 1023px) {
   .card-grid,
   .card-grid-2,
   .card-grid-3,
-  .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid-4 { 
+    grid-template-columns: repeat(2, 1fr); 
+    justify-content: center;
+  }
 }
 
-/* ≤767px: single column */
+/* ≤767px */
 @media (max-width: 767px) {
   .card-grid,
   .card-grid-2,
   .card-grid-3,
-  .card-grid-4 { grid-template-columns: 1fr; }
+  .card-grid-4 { 
+    grid-template-columns: 1fr; 
+    justify-content: center;
+  }
+  .card { max-width: 450px; margin: 0 auto; }
+}
+
+/* 360px */
+@media (max-width: 360px) {
+  .card { max-width: 100%; }
 }
 
 /* CARD BASE — All content perfectly centered */
@@ -388,9 +415,13 @@ p { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.
 .navbar-center {
   display: flex;
   align-items: center;
-  gap: 36px;
-  flex: 2;
+  gap: 24px;
+  flex: 3;
   justify-content: center;
+}
+@media (max-width: 1200px) {
+  .navbar-center { gap: 16px; }
+  .nav-link { font-size: 0.68rem; letter-spacing: 1.5px; }
 }
 .nav-link {
   font-family: var(--font-body);
@@ -473,11 +504,31 @@ p { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.
   flex-direction: column;
   background: var(--primary);
   border-bottom: 1px solid var(--secondary-15);
-  padding: 20px 32px;
-  gap: 20px;
+  padding: 24px 32px;
+  gap: 24px;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 .mobile-nav.open { display: flex; }
-.mobile-nav .nav-link { font-size: 0.88rem; }
+.mobile-nav .nav-link { font-size: 0.95rem; margin-bottom: 8px; }
+.mobile-nav-links { display: flex; flex-direction: column; gap: 12px; }
+.mobile-actions { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+  padding-top: 24px; 
+  border-top: 1px solid var(--secondary-15);
+  width: 100%;
+}
+.mobile-toggles { display: flex; gap: 16px; justify-content: center; }
+.desktop-actions { display: flex; align-items: center; gap: 12px; }
+
+@media (max-width: 768px) {
+  .desktop-actions { display: none; }
+}
+@media (min-width: 769px) {
+  .mobile-actions { display: none; }
+}
 
 @media (max-width: 1023px) {
   .navbar-center { display: none; }
@@ -492,27 +543,45 @@ p { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.
 /* ============================================================
    PAGE HERO (inner pages)
    ============================================================ */
-.page-hero {
-  min-height: 360px;
+.page-hero { 
+  min-height: 480px; 
   background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920&q=80');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: flex;
-  align-items: center;
+  background-size: cover; 
+  background-position: center; 
+  display: flex; 
+  align-items: center; 
   position: relative;
+  overflow: hidden;
+  color: #ffffff;
 }
-.page-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--primary-90) 0%, var(--primary-60) 60%, var(--accent-40) 100%);
+.page-hero::before { 
+  content: ''; 
+  position: absolute; inset: 0; 
+  background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%); 
+}
+/* Force Dark Mode variables for ALWAYS DARK heroes */
+.hero-section, .hero2-section, .page-hero {
+  --text-light: #ffffff;
+  --text-muted: #f5f5f5;
+  --text-dim: #dddddd;
+  --secondary: #c8a96e;
+  --secondary-50: rgba(200,169,110,0.5);
+  --secondary-15: rgba(200,169,110,0.15);
 }
 .page-hero .container { position: relative; z-index: 1; }
-.page-hero-content { max-width: 680px; }
+.page-hero-content { 
+  max-width: 850px; 
+  margin: 0 auto; 
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .page-hero-content .section-label { margin-bottom: 12px; }
 .page-hero-content h1 { margin-bottom: 16px; }
-.page-hero-content p { font-size: 1.08rem; }
+.page-hero-content p { font-size: 1.08rem; margin: 0 auto; max-width: 650px; }
+.page-hero-content .ornament { justify-content: center; width: 100%; }
 
 /* ============================================================
    DECORATIVE ELEMENTS — Bali style
@@ -830,6 +899,7 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 /* ============================================================
    TOAST
    ============================================================ */
+/* Modal / Toast / Progress / Utility follow... */
 .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 9998; display: flex; flex-direction: column; gap: 10px; }
 .toast {
   background: var(--primary);

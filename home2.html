@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Serenara Bali — Experiences & Excursions</title>
+  <title>Bali — Experiences & Excursions</title>
   <link rel="stylesheet" href="css/global.css"/>
   <style>
     /* ====== HOME 2: EXPERIENCES ====== */
@@ -30,13 +30,15 @@
     .hero2-content {
       position: relative;
       z-index: 1;
-      max-width: 100%;
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
     }
     .hero2-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      align-items: center;
     }
     @media (max-width: 1023px) { .hero2-grid { grid-template-columns: 1fr; } }
     .hero2-left { animation: fadeInUp 0.9s ease 0.2s both; }
@@ -45,6 +47,7 @@
     .exp-tag {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       font-size: 0.7rem;
       letter-spacing: 4px;
@@ -61,7 +64,7 @@
 
     .hero2-title {
       font-size: clamp(2.8rem, 6vw, 4.8rem);
-      font-weight: 300;
+      font-weight: 700;
       line-height: 1.08;
       margin-bottom: 24px;
     }
@@ -79,6 +82,7 @@
       backdrop-filter: blur(12px);
       transition: var(--transition);
       text-align: center;
+      min-width: 160px;
     }
     .hero2-minicard:hover {
       background: var(--secondary-15);
@@ -87,7 +91,7 @@
     .hero2-minicard .num {
       font-family: var(--font-display);
       font-size: 1.8rem;
-      font-weight: 300;
+      font-weight: 700;
       color: var(--secondary);
       line-height: 1;
     }
@@ -366,14 +370,14 @@
               <span>Living</span> Spirit<br/>
               of Bali
             </h1>
-            <p style="font-size:1.05rem;max-width:480px;margin-bottom:32px;">From sacred temple ceremonies at dawn to candlelit jungle dinners — every experience at Serenara is a portal into the real, undiluted magic of the island.</p>
-            <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <p style="font-size:1.05rem;max-width:550px;margin: 0 auto 32px auto;">From sacred temple ceremonies at dawn to candlelit jungle dinners — every experience at Bali is a portal into the real, undiluted magic of the island.</p>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
               <a href="dashboard.html" class="btn btn-primary">Book Experience</a>
               <a href="#experiences" class="btn btn-ghost">Explore All</a>
             </div>
           </div>
-          <div class="hero2-right">
-            <div class="hero2-cards">
+          <div class="hero2-right" style="width: 100%; max-width: 800px; margin: 0 auto;">
+            <div class="hero2-cards" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); justify-content: center;">
               <div class="hero2-minicard">
                 <div class="num" data-count="25" data-suffix="+">0</div>
                 <div class="lbl">Experiences</div>
@@ -571,7 +575,7 @@
           </div>
           <div class="package-header">
             <div class="package-name" style="color:var(--secondary);">✦ Most Loved</div>
-            <h3>Serenara Immersion</h3>
+            <h3>Bali Immersion</h3>
             <div class="pkg-price">$1,450 <small>/ couple</small></div>
           </div>
           <div class="package-features">
@@ -615,7 +619,7 @@
     <div class="container">
       <div class="section-header reveal">
         <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
-        <span class="section-label">Life at Serenara</span>
+        <span class="section-label">Life at Bali</span>
         <h2>A Glimpse of <span class="gradient-text">Paradise</span></h2>
       </div>
       <div class="gallery-grid reveal">
@@ -646,7 +650,7 @@
       <div class="cta2-inner">
         <div class="reveal">
           <span class="script-text" style="margin-bottom:12px;">Your Bali Story Begins</span>
-          <h2>Book Your <span class="gradient-text">Serenara</span> Experience</h2>
+          <h2>Book Your <span class="gradient-text">Bali</span> Experience</h2>
           <p style="margin-bottom:32px;">Every experience can be tailored to your preferences, dates, and group size. Our Guest Relations team is on hand 24 hours to craft your perfect itinerary.</p>
           <div style="display:flex;flex-direction:column;gap:14px;max-width:360px;">
             <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--secondary);font-size:1.1rem;">✦</span><span>Fully personalised to your interests</span></div>

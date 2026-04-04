@@ -7,19 +7,20 @@
   <header class="header" id="main-header">
     <nav class="navbar">
       <div class="navbar-left">
-        <a href="index.html" class="brand-logo-wrap" aria-label="Serenara home">
+        <a href="index.html" class="brand-logo-wrap" aria-label="Bali home">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
             <path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/>
             <path d="M6 12h12"/>
           </svg>
         </a>
-        <a href="index.html" class="brand-name">SERA<span>NARA</span></a>
+        <a href="index.html" class="brand-name">BA<span>LI</span></a>
       </div>
 
       <div class="navbar-center" id="nav-links">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="home2.html" class="nav-link">Experiences</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
         <a href="rooms.html" class="nav-link">Villas</a>
         <a href="spa.html" class="nav-link">Spa</a>
         <a href="about.html" class="nav-link">About</a>
@@ -27,9 +28,11 @@
       </div>
 
       <div class="navbar-right">
-        <button class="toggle-btn rtl-toggle" aria-label="Toggle RTL">RTL</button>
-        <button class="toggle-btn theme-toggle" aria-label="Toggle theme">☀️</button>
-        <a href="login.html" class="btn btn-outline" style="padding:10px 22px;font-size:0.68rem;">Guest Login</a>
+        <div class="desktop-actions">
+          <button class="toggle-btn rtl-toggle" aria-label="Toggle RTL">RTL</button>
+          <button class="toggle-btn theme-toggle" aria-label="Toggle theme">☀️</button>
+          <a href="login.html" class="btn btn-outline login-btn" style="padding:10px 22px;font-size:0.68rem;">Login</a>
+        </div>
         <button class="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -38,13 +41,22 @@
   </header>
 
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="home2.html" class="nav-link">Experiences</a>
-    <a href="rooms.html" class="nav-link">Villas</a>
-    <a href="spa.html" class="nav-link">Spa</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-    <a href="login.html" class="btn btn-outline" style="width:fit-content;margin-top:8px;">Guest Login</a>
+    <div class="mobile-nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="home2.html" class="nav-link">Home 2</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+      <a href="rooms.html" class="nav-link">Villas</a>
+      <a href="spa.html" class="nav-link">Spa</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="mobile-actions">
+      <div class="mobile-toggles">
+        <button class="toggle-btn rtl-toggle" aria-label="Toggle RTL">RTL</button>
+        <button class="toggle-btn theme-toggle" aria-label="Toggle theme">☀️</button>
+      </div>
+      <a href="login.html" class="btn btn-outline" style="width:100%; text-align:center; justify-content:center;">Login</a>
+    </div>
   </nav>
   `;
 
@@ -61,7 +73,7 @@
                 <path d="M6 12h12"/>
               </svg>
             </div>
-            <span class="brand-name">SERA<span>NARA</span></span>
+            <span class="brand-name">BA<span>LI</span></span>
           </div>
           <p style="max-width:280px;line-height:1.85;">Where ancient Balinese traditions meet modern luxury. Your sanctuary awaits amid tropical gardens and cascading rice terraces.</p>
           <div class="social-icons">
@@ -103,7 +115,7 @@
         </div>
 
         <div class="footer-col">
-          <h4>Serenara</h4>
+          <h4>Bali</h4>
           <div class="footer-links">
             <a href="about.html">Our Story</a>
             <a href="about.html">Sustainability</a>
@@ -120,7 +132,7 @@
     </div>
 
     <div class="footer-bottom container">
-      <p>© 2025 Serenara Bali. All rights reserved. Crafted with reverence for the island.</p>
+      <p>© 2026 Bali. All rights reserved. Crafted with reverence for the island.</p>
       <div class="social-icons" style="margin-top:0;">
         <a href="#" class="social-icon facebook" aria-label="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
         <a href="#" class="social-icon instagram" aria-label="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
