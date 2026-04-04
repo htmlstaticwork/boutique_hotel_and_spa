@@ -20,11 +20,13 @@
       <div class="navbar-center" id="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="home2.html" class="nav-link">Home 2</a>
-        <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="about.html" class="nav-link">About</a>
+
         <a href="rooms.html" class="nav-link">Villas</a>
         <a href="spa.html" class="nav-link">Spa</a>
-        <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+
       </div>
 
       <div class="navbar-right">
@@ -44,11 +46,13 @@
     <div class="mobile-nav-links">
       <a href="index.html" class="nav-link">Home</a>
       <a href="home2.html" class="nav-link">Home 2</a>
-      <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="about.html" class="nav-link">About</a>
+
       <a href="rooms.html" class="nav-link">Villas</a>
       <a href="spa.html" class="nav-link">Spa</a>
-      <a href="about.html" class="nav-link">About</a>
       <a href="contact.html" class="nav-link">Contact</a>
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+
     </div>
     <div class="mobile-actions">
       <div class="mobile-toggles">
