@@ -349,7 +349,7 @@
 
     /* SECTION 6: CTA */
     .cta-section {
-      background-image: url('https://images.unsplash.com/photo-1582610116397-edb72795cbb0?w=1920&q=80');
+      background-image: url('https://images.unsplash.com/photo-1582610116397-edb72795cbb0?w=1921&q=81');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -369,6 +369,15 @@
     .cta-inner h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); margin-bottom: 18px; }
     .cta-inner p { font-size: 1.05rem; margin-bottom: 40px; }
     .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-section {
+      --text-light: #ffffff !important;
+      --text-muted: #f1f1f1 !important;
+      --text-dim: #e5e5e5 !important;
+    }
+    .cta-section h2 { color: var(--text-light) !important; }
+    .cta-section p { color: var(--text-muted) !important; }
+    .cta-section .script-text { color: var(--secondary) !important; }
+    .cta-buttons + p { color: var(--text-dim) !important; }
   </style>
 </head>
 <body>
@@ -602,6 +611,10 @@
         <span class="section-label">Why Bali</span>
         <h2>An <span class="gradient-text">Unforgettable</span> Retreat</h2>
         <p>Every detail at Bali has been thoughtfully crafted to offer an experience that is wholly Balinese and utterly transformative.</p>
+        <div class="reveal reveal-delay-2" style="margin: 40px auto 32px; border: var(--border-gold); padding: 8px; background: var(--secondary-08);">
+          <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1200&q=80" alt="Resort Panorama" style="width:100%; height:450px; object-fit:cover; display:block;"/>
+        </div>
+        <p>Every detail at Bali has been thoughtfully crafted to offer an experience that is wholly Balinese and utterly transformative.</p>
       </div>
 
       <div class="feature-strip reveal">
@@ -666,6 +679,10 @@
         <div class="ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line r"></div></div>
         <span class="section-label">Guest Stories</span>
         <h2>Words from Our <span class="gradient-text">Beloved Guests</span></h2>
+        <p>Thousands of souls have found their sanctuary here. We humbly share a few of their stories.</p>
+        <div class="reveal reveal-delay-2" style="margin: 40px auto 32px; max-width: 800px; padding: 20px 0;">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1000&q=80" alt="Spa Ritual" style="width:100%; height:300px; object-fit:cover; border-radius: 2px; border: 1px solid var(--secondary-15);"/>
+        </div>
         <p>Thousands of souls have found their sanctuary here. We humbly share a few of their stories.</p>
       </div>
 
