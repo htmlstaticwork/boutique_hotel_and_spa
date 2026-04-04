@@ -76,6 +76,7 @@
             <span class="brand-name">BA<span>LI</span></span>
           </div>
           <p style="max-width:280px;line-height:1.85;">Where ancient Balinese traditions meet modern luxury. Your sanctuary awaits amid tropical gardens and cascading rice terraces.</p>
+          
           <div class="social-icons">
             <a href="#" class="social-icon facebook" aria-label="Facebook">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
@@ -123,22 +124,14 @@
             <a href="contact.html">Press & Media</a>
             <a href="#">Privacy Policy</a>
           </div>
-          <div style="margin-top:24px;">
-            <span class="section-label" style="font-size:0.65rem;">Bali, Indonesia</span>
-            <p style="font-size:0.82rem;margin-top:6px;line-height:1.6;">Jl. Raya Ubud No. 88<br/>Ubud, Gianyar 80571</p>
-          </div>
+          
         </div>
       </div>
     </div>
 
     <div class="footer-bottom container">
       <p>© 2026 Bali. All rights reserved. Crafted with reverence for the island.</p>
-      <div class="social-icons" style="margin-top:0;">
-        <a href="#" class="social-icon facebook" aria-label="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-        <a href="#" class="social-icon instagram" aria-label="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
-        <a href="#" class="social-icon twitter" aria-label="Twitter"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-      </div>
+      
     </div>
   </footer>
   `;

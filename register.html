@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" dir="ltr">
 <head>
+  <link rel='icon' type='image/svg+xml' href='favicon.svg'>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Bali — Create Guest Account</title>
@@ -8,111 +9,57 @@
   <style>
     body {
       min-height: 100vh;
-      background: #1a1208;
+      background: var(--primary);
       display: flex;
       align-items: stretch;
       overflow-x: hidden;
       padding: 0;
     }
+    .auth-toggles {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
 
-    /* SPLIT LAYOUT */
+    /* CENTERED LAYOUT */
     .register-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       min-height: 100vh;
       width: 100%;
-    }
-    @media (max-width: 900px) { .register-wrap { grid-template-columns: 1fr; } }
-
-    /* LEFT VISUAL PANEL */
-    .reg-visual {
-      background-image: url('https://images.unsplash.com/photo-1582610116397-edb72795cbb0?w=1200&q=80');
-      background-size: cover;
-      background-position: center;
+      padding: 40px 20px;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 48px 44px;
-      min-height: 300px;
-    }
-    .reg-visual::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(0deg, rgba(26,18,8,0.96) 0%, rgba(26,18,8,0.4) 55%, transparent 100%);
-    }
-    @media (max-width: 900px) { .reg-visual { display: none; } }
-
-    .reg-visual-content { position: relative; z-index: 1; }
-    .reg-visual-logo {
-      position: absolute; top: 36px; left: 44px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .reg-logo-circle {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(200,169,110,0.5);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      color: #c8a96e;
-    }
-    .reg-brand-name {
-      font-family: var(--font-display);
-      font-size: 1.25rem; font-weight: 700; letter-spacing: 3px; color: var(--text-light);
-    }
-    .reg-brand-name span { color: #c8a96e; }
-
-    .reg-visual h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 700; color: var(--text-light); margin-bottom: 16px; line-height: 1.2;
-    }
-    .reg-visual h2 em { font-style: italic; color: #c8a96e; }
-
-    .reg-perks { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
-    .reg-perk {
-      display: flex; align-items: center; gap: 12px;
-      font-family: 'Jost', sans-serif; font-size: 0.85rem;
-      color: rgba(245,239,230,0.7);
-    }
-    .reg-perk-dot {
-      width: 6px; height: 6px; background: #c8a96e;
-      border-radius: 50%; flex-shrink: 0;
-      box-shadow: 0 0 8px rgba(200,169,110,0.6);
     }
 
-    .reg-quote {
-      margin-top: 32px;
-      padding: 18px 20px;
-      background: rgba(26,18,8,0.7);
-      border-left: 2px solid rgba(200,169,110,0.4);
-      backdrop-filter: blur(8px);
-    }
-    .reg-quote p {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 1rem;
-      color: rgba(245,239,230,0.75); margin-bottom: 8px;
-    }
-    .reg-quote-author {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(200,169,110,0.6);
-    }
-
-    /* RIGHT FORM PANEL */
+    /* Form Panel Card styling */
     .reg-form-panel {
-      background: #1a1208;
-      display: flex; align-items: center; justify-content: center;
-      padding: 40px 48px;
-      overflow-y: auto;
+      background: var(--primary);
+      border: 1px solid var(--secondary-30);
+      padding: 64px 44px 52px;
+      width: 100%;
+      max-width: 500px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 24px 80px rgba(26,18,8,0.5), 0 0 40px rgba(200,169,110,0.05);
+      animation: fadeInUp 0.8s ease;
+      position: relative;
     }
-    @media (max-width: 640px) { .reg-form-panel { padding: 28px 20px; } }
+    @media (max-width: 640px) { .reg-form-panel { padding: 36px 24px; } }
 
-    .reg-form-inner { width: 100%; max-width: 420px; animation: fadeInUp 0.8s ease; }
+    .reg-form-inner { width: 100%; animation: fadeInUp 0.8s ease; }
 
-    .reg-mobile-brand {
-      display: none; text-align: center; margin-bottom: 28px;
+    .reg-brand-header {
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 12px;
+      margin-bottom: 32px;
+      width: 100%;
     }
-    @media (max-width: 900px) { .reg-mobile-brand { display: block; } }
-    .reg-mobile-brand .reg-brand-name { font-size: 1.6rem; letter-spacing: 4px; }
+    .reg-brand-header .brand-name { font-size: 1.5rem; letter-spacing: 3px; }
 
     .reg-form-inner h2 {
       font-family: var(--font-display);
@@ -120,7 +67,7 @@
     }
     .reg-form-inner > p {
       font-family: 'Jost', sans-serif;
-      font-size: 0.85rem; color: rgba(245,239,230,0.45); margin-bottom: 28px;
+      font-size: 0.85rem; color: var(--text-light-50); margin-bottom: 28px;
       letter-spacing: 0.3px;
     }
 
@@ -129,164 +76,172 @@
       display: flex; gap: 6px; margin-bottom: 28px;
     }
     .step-seg {
-      flex: 1; height: 3px; background: rgba(200,169,110,0.15);
+      flex: 1; height: 3px; background: var(--secondary-15);
       transition: background 0.5s ease;
     }
-    .step-seg.active { background: #c8a96e; }
+    .step-seg.active { background: var(--secondary); }
 
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
 
     /* Custom styled form controls */
     .reg-input {
-      background: rgba(200,169,110,0.05);
-      border: 1px solid rgba(200,169,110,0.18);
-      color: #f5efe6;
+      background: var(--secondary-08);
+      border: 1px solid var(--secondary-30);
+      color: var(--text-light);
       font-family: 'Jost', sans-serif;
       font-size: 0.92rem; font-weight: 300;
       padding: 12px 15px; outline: none; width: 100%;
       transition: all 0.3s ease;
     }
-    .reg-input::placeholder { color: rgba(245,239,230,0.2); }
+    .reg-input::placeholder { color: var(--text-light-30); opacity: 0.6; }
     .reg-input:focus {
-      border-color: rgba(200,169,110,0.6);
-      background: rgba(200,169,110,0.08);
-      box-shadow: 0 0 0 3px rgba(200,169,110,0.06);
+      border-color: var(--secondary);
+      background: var(--secondary-15);
+      box-shadow: 0 0 0 3px var(--secondary-15);
+    }
+    select.reg-input option {
+      background: var(--primary);
+      color: var(--text-light);
     }
     .reg-label {
       display: block;
       font-family: 'Jost', sans-serif;
       font-size: 0.62rem; letter-spacing: 2.5px; text-transform: uppercase;
-      color: #c8a96e; margin-bottom: 7px;
+      color: var(--secondary); margin-bottom: 7px;
     }
     .reg-group { margin-bottom: 18px; }
 
     /* Password strength */
     .pw-strength-row { display: flex; gap: 4px; margin-top: 7px; }
-    .pw-seg { flex: 1; height: 2px; background: rgba(200,169,110,0.12); transition: background 0.3s; }
-    .pw-lbl { font-family: 'Jost', sans-serif; font-size: 0.62rem; color: rgba(245,239,230,0.3); margin-top: 4px; }
+    .pw-seg { flex: 1; height: 2px; background: var(--secondary-15); transition: background 0.3s; }
+    .pw-lbl { font-family: 'Jost', sans-serif; font-size: 0.62rem; color: var(--text-light-50); margin-top: 4px; }
 
     .terms-row {
       display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px;
     }
-    .terms-row input { accent-color: #c8a96e; margin-top: 3px; flex-shrink: 0; }
+    .terms-row input { accent-color: var(--secondary); margin-top: 3px; flex-shrink: 0; }
     .terms-row span {
       font-family: 'Jost', sans-serif; font-size: 0.8rem;
-      color: rgba(245,239,230,0.4); line-height: 1.6;
+      color: var(--text-light-50); line-height: 1.6;
     }
-    .terms-row a { color: #c8a96e; }
+    .terms-row a { color: var(--secondary); text-decoration: underline; }
+    .terms-row a:hover { color: var(--text-light); }
 
     .reg-submit {
-      background: #c8a96e; color: #1a1208;
+      background: var(--secondary); color: var(--primary);
       width: 100%; padding: 14px; border: none; cursor: pointer;
       font-family: 'Jost', sans-serif;
       font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
       transition: all 0.3s ease; position: relative; overflow: hidden;
+      font-weight: 600;
     }
-    .reg-submit:hover { box-shadow: 0 0 28px rgba(200,169,110,0.45); transform: translateY(-2px); }
+    .reg-submit:hover { box-shadow: 0 0 28px var(--secondary-50); transform: translateY(-2px); }
 
     .reg-login-link {
       text-align: center; margin-top: 20px;
       font-family: 'Jost', sans-serif; font-size: 0.82rem;
-      color: rgba(245,239,230,0.3);
+      color: var(--text-light-50);
     }
-    .reg-login-link a { color: #c8a96e; }
+    .reg-login-link a { color: var(--secondary); text-decoration: none; transition: 0.3s; border-bottom: 1px solid transparent; }
+    .reg-login-link a:hover { color: var(--text-light); border-bottom-color: var(--secondary); }
 
     .reg-secure {
       display: flex; align-items: center; justify-content: center; gap: 6px;
       margin-top: 18px;
       font-family: 'Jost', sans-serif;
       font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(245,239,230,0.18);
+      color: var(--text-light-30);
     }
     .secure-dot { width: 5px; height: 5px; background: #5c7a5a; border-radius: 50%; box-shadow: 0 0 5px rgba(92,122,90,0.8); }
+    .login-divider {
+      display: flex; align-items: center; gap: 14px; margin: 20px 0;
+    }
+    .login-divider::before, .login-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--secondary-30));
+    }
+    .login-divider::after { background: linear-gradient(90deg, var(--secondary-30), transparent); }
+    .login-divider span {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--secondary-50);
+    }
+
+    .sso-btn {
+      width: 100%;
+      background: var(--secondary-08);
+      border: 1px solid var(--secondary-30);
+      color: var(--text-light);
+      padding: 12px 16px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      cursor: pointer; transition: all 0.3s ease; border-radius: 0;
+      margin-bottom: 10px;
+    }
+    .sso-btn:hover {
+      background: var(--secondary-15);
+      border-color: var(--secondary-50);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .sso-icon { font-size: 1.1rem; }
+
+    .pw-wrap { position: relative; }
+    .pw-wrap .form-control { padding-right: 44px; }
+    .pw-eye {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%); background: none; border: none;
+      color: var(--secondary); cursor: pointer; transition: color 0.3s;
+    }
+    .pw-eye:hover { color: var(--text-light); }
   </style>
 </head>
 <body>
-  <!-- NO HEADER / NO FOOTER -->
-
   <div class="register-wrap">
-
-    <!-- ======= LEFT VISUAL PANEL ======= -->
-    <div class="reg-visual">
-      <div class="reg-visual-logo">
-        <div class="reg-logo-circle">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:20px;height:20px;">
-            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
-            <path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/>
-            <path d="M6 12h12"/>
-          </svg>
-        </div>
-        <span class="reg-brand-name">BA<span>LI</span></span>
-      </div>
-
-      <div class="reg-visual-content">
-        <h2>
-          Begin Your<br/>
-          <em>Bali Journey</em>
-        </h2>
-        <p style="font-family:'Jost',sans-serif;font-size:0.9rem;color:rgba(245,239,230,0.55);margin-bottom:0;line-height:1.7;">
-          Join our guest community and unlock a world of curated experiences, priority booking, and exclusive benefits.
-        </p>
-
-        <div class="reg-perks">
-          <div class="reg-perk"><span class="reg-perk-dot"></span>Priority access to villa availability</div>
-          <div class="reg-perk"><span class="reg-perk-dot"></span>Early booking discounts up to 20%</div>
-          <div class="reg-perk"><span class="reg-perk-dot"></span>Personalized itinerary management</div>
-          <div class="reg-perk"><span class="reg-perk-dot"></span>Exclusive events & ceremonies</div>
-          <div class="reg-perk"><span class="reg-perk-dot"></span>24/7 dedicated concierge access</div>
-        </div>
-
-        <div class="reg-quote">
-          <p>"Bali is not a hotel. It is a feeling. And once you've felt it, you'll spend your life returning."</p>
-          <div class="reg-quote-author">— Condé Nast Traveller, 2024</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ======= RIGHT FORM PANEL ======= -->
     <div class="reg-form-panel">
+      <div class="auth-toggles">
+        <button class="toggle-btn rtl-toggle" aria-label="Toggle RTL">עב</button>
+        <button class="toggle-btn theme-toggle" aria-label="Toggle theme">☀️</button>
+      </div>
       <div class="reg-form-inner">
+        <!-- Brand Header -->
+        <a href="index.html" class="reg-brand-header" style="text-decoration:none;">
+          <div class="brand-logo-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:24px;height:24px;">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+              <path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/>
+              <path d="M6 12h12"/>
+            </svg>
+          </div>
+          <div class="brand-name">BA<span>LI</span></div>
+        </a>
 
-        <!-- Mobile brand -->
-        <div class="reg-mobile-brand">
-          <div class="reg-brand-name">BA<span style="color:#c8a96e;">LI</span></div>
-          <div style="font-family:'Jost',sans-serif;font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(200,169,110,0.5);margin-top:4px;">Bali · Guest Portal</div>
-        </div>
-
-        <h2>Create Your <span style="color:#c8a96e;">Account</span></h2>
-        <p>Become a Bali guest. No payment required today.</p>
-
-        <!-- Step bar -->
-        <div class="step-bar" id="stepBar">
-          <div class="step-seg active"></div>
-          <div class="step-seg"></div>
-          <div class="step-seg"></div>
-        </div>
+        <h2 style="text-align:center;font-size:1.4rem;font-family:var(--font-display);font-weight:600;margin-bottom:4px;">Create Your <span style="color:var(--secondary);">Account</span></h2>
+        <p style="text-align:center;">Become a Bali guest. No payment required today.</p>
 
         <form id="registerForm">
-          <div class="form-row">
-            <div class="reg-group">
-              <label class="reg-label">First Name</label>
-              <input type="text" class="reg-input" placeholder="Maria" required/>
+              <div class="reg-group">
+                <label class="reg-label">First Name</label>
+                <input type="text" class="reg-input" placeholder="" required/>
+              
             </div>
-            <div class="reg-group">
-              <label class="reg-label">Last Name</label>
-              <input type="text" class="reg-input" placeholder="Ferreira" required/>
-            </div>
-          </div>
-
+<div class="reg-group">
+                <label class="reg-label">Last Name</label>
+                <input type="text" class="reg-input" placeholder="" required/>
+              </div>
           <div class="reg-group">
             <label class="reg-label">Email Address</label>
-            <input type="email" class="reg-input" placeholder="you@email.com" required/>
+            <input type="email" class="reg-input" placeholder="" required/>
           </div>
 
           <div class="reg-group">
             <label class="reg-label">Phone Number</label>
-            <input type="tel" class="reg-input" placeholder="+1 555 000 0000"/>
+            <input type="tel" class="reg-input" placeholder=""/>
           </div>
 
-          <div class="form-row">
             <div class="reg-group">
               <label class="reg-label">Nationality</label>
               <select class="reg-input">
@@ -302,9 +257,12 @@
                 <option>Other</option>
               </select>
             </div>
-            <div class="reg-group">
+            
+          
+<div class="reg-group">
               <label class="reg-label">How did you hear of us?</label>
               <select class="reg-input">
+                <option value="">Select option</option>
                 <option>Instagram</option>
                 <option>Condé Nast</option>
                 <option>Travel + Leisure</option>
@@ -313,13 +271,11 @@
                 <option>Travel Agent</option>
               </select>
             </div>
-          </div>
-
           <div class="reg-group">
             <label class="reg-label">Password</label>
-            <div style="position:relative;">
-              <input type="password" class="reg-input" placeholder="Min. 10 characters" required id="regPw" style="padding-right:44px;"/>
-              <button type="button" id="regPwEye" style="position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(245,239,230,0.3);cursor:pointer;transition:color 0.3s;">
+            <div class="pw-wrap">
+              <input type="password" class="reg-input" placeholder="" required id="regPw" style="padding-right:44px;"/>
+              <button type="button" id="regPwEye" class="pw-eye">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
               </button>
             </div>
@@ -335,6 +291,7 @@
           <div class="reg-group">
             <label class="reg-label">Interests (optional)</label>
             <select class="reg-input">
+              <option value="">Select interest</option>
               <option>Spa & Wellness</option>
               <option>Cultural Experiences</option>
               <option>Yoga & Meditation</option>
@@ -347,30 +304,47 @@
           <div class="terms-row">
             <input type="checkbox" required/>
             <span>
-              I agree to Bali's <a href="#">Terms of Stay</a> and <a href="#">Privacy Policy</a>.
-              I consent to receiving curated travel inspiration and exclusive offers.
+              I agree to Bali's <a href="#">Terms conditions</a> and <a href="#">Privacy Policy</a>.
             </span>
           </div>
 
           <button type="submit" class="reg-submit">
-            Create My Sanctuary Account
+            Register
           </button>
         </form>
+
+        <div class="login-divider"><span>or sign in with</span></div>
+
+        <button class="sso-btn" style="background: #fff; color: #757575; border: 1px solid #ddd;">
+          <span class="sso-icon" style="display:flex;">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+          </span>
+          <span style="font-weight: 500; font-family: 'Roboto', sans-serif;">Continue with Google</span>
+        </button>
+
+        <button class="sso-btn" style="background: #0078d4; color: #fff; border: none;">
+          <span class="sso-icon" style="display:flex;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color:#fff;">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </span>
+          <span style="font-weight: 500;">Continue with Corporate SSO</span>
+        </button>
 
         <div class="reg-login-link">
           Already a guest? <a href="login.html">Sign in →</a>
         </div>
-
-        <div class="reg-secure">
-          <span class="secure-dot"></span>
-          End-to-End Encrypted · GDPR Compliant
-          <span class="secure-dot"></span>
-        </div>
       </div>
     </div>
-
   </div>
 
+  <script src="js/global.js"></script>
   <script>
     // Password eye toggle
     document.getElementById('regPwEye')?.addEventListener('click', () => {
@@ -394,23 +368,16 @@
       if (/[^A-Za-z0-9]/.test(v)) score++;
       const col = colors[score] || 'rgba(200,169,110,0.12)';
       segs.forEach((s, i) => { s.style.background = i < score ? col : 'rgba(200,169,110,0.12)'; });
-      if (pwLbl) { pwLbl.textContent = labels[score]; pwLbl.style.color = score > 0 ? col : 'rgba(245,239,230,0.3)'; }
+      if (pwLbl) { pwLbl.textContent = labels[score]; pwLbl.style.color = score > 0 ? col : 'var(--text-light-50)'; }
     });
 
-    // Animate step bar on submit
+    // Submit animation
     document.getElementById('registerForm')?.addEventListener('submit', e => {
       e.preventDefault();
-      const segs = document.querySelectorAll('#stepBar .step-seg');
-      let i = 0;
-      segs.forEach(s => s.classList.remove('active'));
-      segs[0].classList.add('active');
       const btn = e.target.querySelector('[type=submit]');
       btn.textContent = 'Creating account…';
       btn.disabled = true;
-      const iv = setInterval(() => {
-        if (i < segs.length) { segs[i].classList.add('active'); i++; }
-        else { clearInterval(iv); setTimeout(() => { window.location.href = 'dashboard.html'; }, 400); }
-      }, 450);
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 1500);
     });
   </script>
 </body>
