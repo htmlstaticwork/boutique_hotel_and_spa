@@ -134,7 +134,7 @@
     </div>
 
     <div class="footer-bottom container">
-      <p>© 2026 Bali. All rights reserved. Crafted with reverence for the island.</p>
+      <p>© 2026 Bali. All rights reserved.</p>
       
     </div>
   </footer>
