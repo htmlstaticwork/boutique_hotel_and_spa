@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Documentation | Boutique Hotel & Spa</title>
+    
+    <!-- ================= GLOBAL STYLES ================= -->
+    <style>
+        :root {
+            /* TODO: Replace brand colors if modifying theme basics */
+            --bg-body: #0d1117;
+            --bg-sidebar: #161b22;
+            --bg-card: #21262d;
+            --bg-card-hover: #30363d;
+            
+            --text-main: #e6edf3;
+            --text-muted: #8b949e;
+            --text-heading: #ffffff;
+            
+            --accent-color: #cda87a;
+            --accent-hover: #e0bb8b;
+            --accent-bg: rgba(205, 168, 122, 0.1);
+            
+            --border-color: #30363d;
+            
+            --sidebar-width: 280px;
+            --header-height: 70px;
+            
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        /* ================= RESET & BASE ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* ================= COMPONENTS: PROGRESS BAR ================= */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* ================= LAYOUT: HEADER ================= */
+        .doc-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--bg-sidebar);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 100;
+        }
+
+        .doc-header h1 {
+            font-size: 1.25rem;
+            color: var(--text-heading);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-download {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-download:hover {
+            background-color: var(--accent-hover);
+            text-decoration: none;
+        }
+
+        /* ================= LAYOUT: WRAPPER ================= */
+        .doc-wrapper {
+            display: flex;
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* ================= COMPONENTS: SIDEBAR ================= */
+        .doc-sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+            padding: 30px 0;
+        }
+
+        .doc-sidebar nav ul {
+            list-style: none;
+        }
+
+        .doc-sidebar nav li {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px 30px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color);
+            background-color: var(--accent-bg);
+            border-left-color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* ================= LAYOUT: MAIN CONTENT ================= */
+        .doc-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 50px 60px;
+            max-width: 1000px;
+        }
+
+        /* ================= COMPONENTS: SECTIONS & CARDS ================= */
+        .section {
+            margin-bottom: 80px;
+            scroll-margin-top: calc(var(--header-height) + 40px);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--text-heading);
+            margin-bottom: 12px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .card h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            margin-left: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        /* ================= COMPONENTS: CODE BLOCK & BADGE ================= */
+        .code-block {
+            background-color: #000000;
+            padding: 15px 20px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #79c0ff;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+            white-space: pre-wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-bg);
+            color: var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1024px) {
+            .doc-content { padding: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .doc-sidebar {
+                transform: translateX(-100%);
+                z-index: 99;
+            }
+            .doc-content {
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+            .doc-header {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .doc-header h1 { font-size: 1rem; }
+            .section-title { font-size: 1.8rem; }
+            .card { padding: 20px; }
+            .btn-download { padding: 8px 12px; font-size: 0.8rem; }
+        }
+
+        /* ================= PRINT / PDF STYLES ================= */
+        @media print {
+            body { 
+                background-color: #ffffff; 
+                color: #000000; 
+            }
+            .doc-sidebar, .doc-header, .progress-container { 
+                display: none; 
+            }
+            .doc-content { 
+                margin: 0; 
+                padding: 0; 
+                max-width: 100%; 
+            }
+            .section { 
+                margin-bottom: 40px; 
+                page-break-inside: avoid; 
+            }
+            .section-title { 
+                color: #000000; 
+                border-bottom: 2px solid #000000; 
+            }
+            .card { 
+                background-color: #ffffff; 
+                border: 1px solid #cccccc; 
+                color: #333333; 
+                box-shadow: none; 
+            }
+            .card h3 { 
+                color: #000000; 
+            }
+            .code-block { 
+                background: #f4f4f4; 
+                color: #333333; 
+                border: 1px solid #cccccc; 
+            }
+            .badge {
+                border: 1px solid #000;
+                color: #000;
+                background: transparent;
+            }
+            :root { 
+                --text-main: #333333; 
+                --text-muted: #555555; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PROGRESS BAR ================= -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- ================= HEADER ================= -->
+    <header class="doc-header">
+        <h1>Boutique Hotel & Spa Docs</h1>
+        <button class="btn-download" onclick="window.print()">Download as PDF</button>
+    </header>
+
+    <div class="doc-wrapper">
+        <!-- ================= SIDEBAR NAVIGATION ================= -->
+        <aside class="doc-sidebar">
+            <nav id="doc-nav">
+                <ul>
+                    <li><a href="#installation" class="nav-link">Installation Guide</a></li>
+                    <li><a href="#customization" class="nav-link">Customization Guide</a></li>
+                    <li><a href="#structure" class="nav-link">Page Structure</a></li>
+                    <li><a href="#credits" class="nav-link">Credits & Resources</a></li>
+                    <li><a href="#changelog" class="nav-link">Changelog</a></li>
+                    <li><a href="#support" class="nav-link">Support & Help</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="doc-content">
+
+            <!-- ================= SECTION: INSTALLATION ================= -->
+            <section id="installation" class="section">
+                <h2 class="section-title">Installation Guide</h2>
+                <p class="section-desc">Follow these step-by-step instructions to set up the Boutique Hotel & Spa theme on your local machine or hosting provider.</p>
+
+                <div class="card">
+                    <h3>1. Local Setup</h3>
+                    <p>To run the website locally on your machine for development or testing:</p>
+                    <ul>
+                        <li>Extract the downloaded zip file into your preferred workspace.</li>
+                        <li>Open the extracted folder in a code editor like VS Code.</li>
+                        <li>Run a local development server. If using VS Code, install the "Live Server" extension and click "Go Live".</li>
+                        <li>Alternatively, use Python's built-in HTTP server:</li>
+                    </ul>
+                    <div class="code-block">> python -m http.server 8000</div>
+                    <p>Navigate to <code>http://localhost:8000</code> in your web browser.</p>
+                </div>
+
+                <div class="card">
+                    <h3>2. Hosting Deployment</h3>
+                    <p>Deploying to a live server is straightforward for this static HTML/CSS/JS template.</p>
+                    <ul>
+                        <li><strong>FTP/cPanel:</strong> Connect to your web hosting via FTP and upload the entire contents of the folder directly into the <code>public_html</code> or <code>www</code> directory.</li>
+                        <li><strong>Netlify/Vercel/GitHub Pages:</strong> Simply drag and drop the project folder into your Netlify/Vercel dashboard, or connect your GitHub repository for automated deployments.</li>
+                        <li>Ensure the <code>index.html</code> file remains in the root directory.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>3. Folder Structure</h3>
+                    <p>Understanding the directory layout is essential for modifying the template.</p>
+                    <div class="code-block">
+/boutique-hotel-spa
+├── css/             // Core Stylesheets (global.css, index.css)
+├── js/              // Core Javascript files (global.js, components.js)
+├── images/          // Web-optimized image assets
+├── fonts/           // Local font files (if any)
+├── index.html       // Landing Page (Home 1)
+├── about.html       // About Us Page
+├── services.html    // Spa & Hotel Services Catalog
+└── ...              // Other HTML templates
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SECTION: CUSTOMIZATION ================= -->
+            <section id="customization" class="section">
+                <h2 class="section-title">Customization Guide</h2>
+                <p class="section-desc">Learn how to easily modify colors, typography, layout, and content to match your brand identity.</p>
+
+                <div class="card">
+                    <h3>Colors (CSS Variables)</h3>
+                    <p>All core colors are centrally managed using CSS variables in the <code>css/global.css</code> file. Modify these directly to change the theme across all pages.</p>
+                    <!-- TODO: Note for client to review contrast ratios after changing colors -->
+                    <div class="code-block">
+/* In css/global.css root scope */
+:root {
+    --primary-color: #000000;   /* Update for main background */
+    --accent-color: #cda87a;    /* Update for gold buttons/links */
+    --text-color: #ffffff;      /* Update for primary text */
+}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Fonts Selection</h3>
+                    <p>The template utilizes Google Fonts for premium typography.</p>
+                    <ul>
+                        <li>Open the <code>&lt;head&gt;</code> tags in any HTML file to locate the Google Fonts stylesheet link.</li>
+                        <li>To change the font family entirely, navigate to <code>css/global.css</code> and update the <code>font-family</code> properties inside the <code>body</code> and heading tags.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Content Replacement</h3>
+                    <p>Content areas are logically divided and heavily commented in the HTML documents. This allows you to easily identify sections.</p>
+                    <!-- TODO: Replace client content dynamically if using a CMS later -->
+                    <div class="code-block">
+&lt;!-- ================= HERO SECTION ================= --&gt;
+&lt;section class="hero"&gt;
+    &lt;h1&gt;Welcome to Paradise&lt;/h1&gt;
+    &lt;p&gt;Experience tranquility...&lt;/p&gt;
+&lt;/section&gt;
+                    </div>
+                    <p><em>Note: Replace images in the <code>/images</code> folder, ensuring new files have similar aspect ratios to maintain layout structural integrity.</em></p>
+                </div>
+            </section>
+
+            <!-- ================= SECTION: PAGE STRUCTURE ================= -->
+            <section id="structure" class="section">
+                <h2 class="section-title">Page Structure</h2>
+                <p class="section-desc">Breakdown of the included page templates to assist in navigation and modifications.</p>
+
+                <div class="card">
+                    <h3>Public Facing Pages</h3>
+                    <ul>
+                        <li><strong>Home (index.html):</strong> The main entry point featuring the Hero slider, introductory snippets, featured rooms, and a spa summary.</li>
+                        <li><strong>About Us (about.html):</strong> Covers hotel history, core philosophy, team details, and timeline.</li>
+                        <li><strong>Services (services.html):</strong> A grid-based layout detailing Spa treatments, Dining, and Hotel amenities.</li>
+                        <li><strong>Contact (contact.html):</strong> Features an interactive map integration snippet and a functional-ready inquiry form.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Authentication & Dashboards</h3>
+                    <ul>
+                        <li><strong>Login/Register (login.html, register.html):</strong> Optimized forms with fluid responsiveness and theme adaptability.</li>
+                        <li><strong>Dashboard (dashboard-profile.html):</strong> Profile management, loyalty points viewer.</li>
+                        <li><strong>Past Stays (dash-past-stays.html):</strong> Component for reviewing booking history and invoices.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ================= SECTION: CREDITS ================= -->
+            <section id="credits" class="section">
+                <h2 class="section-title">Credits & Resources</h2>
+                <p class="section-desc">This premium theme is made possible by the following outstanding third-party resources and libraries.</p>
+
+                <div class="card">
+                    <h3>Design & Media Assets</h3>
+                    <ul>
+                        <li><strong>Typography:</strong> Google Fonts (Playfair Display, Inter/Jost)</li>
+                        <li><strong>Icons:</strong> Phosphor Icons / FontAwesome</li>
+                        <li><strong>Imagery:</strong> Unsplash, Pexels (Placeholder images used strictly for demonstration purposes)</li>
+                        <li><strong>Javascript:</strong> Lightweight Vanilla JS; no jQuery dependency to ensure maximum performance.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ================= SECTION: CHANGELOG ================= -->
+            <section id="changelog" class="section">
+                <h2 class="section-title">Changelog</h2>
+                <p class="section-desc">Track updates, visual improvements, and core structural iterations across release versions.</p>
+
+                <div class="card">
+                    <span class="badge">v1.0.0 - Stable Release</span>
+                    <h3>Initial Project Launch</h3>
+                    <ul>
+                        <li>Completed entire frontend layout for Home, About, Services, and Contact.</li>
+                        <li>Finalized User Dashboard interfaces (Profile, Rewards, Past Stays).</li>
+                        <li>Implemented complete responsive design parameters (360px up to 1440px+).</li>
+                        <li>Integrated Dark Mode and Light Mode branding parity.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ================= SECTION: SUPPORT ================= -->
+            <section id="support" class="section">
+                <h2 class="section-title">Support & Help</h2>
+                <p class="section-desc">Need assistance configuring your new template? Our team is dedicated to your success.</p>
+
+                <div class="card">
+                    <h3>Getting Assistance</h3>
+                    <p>If you encounter layout bugs, need customization guidance, or possess feedback for future updates, please contact our support desk.</p>
+                    <ul>
+                        <li><strong>Email:</strong> support@wedinv-dev.com</li>
+                        <li><strong>Standard Response Time:</strong> Within 24-48 Business Hours</li>
+                    </ul>
+                    <p><em>Tip: When raising a support ticket, please attach screenshots and mention your browser versions to expedite the resolution.</em></p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // //////////////////////////////////////////////////
+        // PROGRESS BAR SCROLL TRACKER
+        // Updates the top progress bar width based on scroll percentage
+        // //////////////////////////////////////////////////
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // //////////////////////////////////////////////////
+        // SIDEBAR ACTIVE STATE MANAGER
+        // Highlights the current section link in the sidebar while scrolling
+        // //////////////////////////////////////////////////
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // Add offset to trigger highlight slightly before section hits top
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // //////////////////////////////////////////////////
+        // SMOOTH SCROLL NAVIGATION
+        // Enables smooth scrolling for anchor links in the sidebar
+        // //////////////////////////////////////////////////
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
