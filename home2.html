@@ -43,16 +43,8 @@
     }
     @media (max-width: 1023px) { .hero2-grid { grid-template-columns: 1fr; } }
     
-    /* Grid centering for 3rd item at 768px */
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .card-grid-3 .package-card:last-child,
-      .card-grid-3 .exp-card:last-child {
-        grid-column: span 2;
-        max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
+    /* Grid centering for 3rd item at 768px is now handled globally in global.css */
+    
     .hero2-left { animation: fadeInUp 0.9s ease 0.2s both; }
     .hero2-right { animation: fadeInUp 0.9s ease 0.5s both; }
 
@@ -152,7 +144,7 @@
       position: absolute;
       top: 16px; right: 16px;
       background: var(--secondary);
-      color: var(--text-dark);
+      color: var(--btn-primary-text);
       font-size: 0.62rem;
       letter-spacing: 2px;
       text-transform: uppercase;

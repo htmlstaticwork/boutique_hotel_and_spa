@@ -113,15 +113,37 @@
 
     /* TREATMENT SELECTOR */
     .treatment-option {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 14px; border: 1px solid var(--secondary-15); margin-bottom: 8px;
-      cursor: pointer; transition: var(--transition);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 20px;
+      border: 1px solid var(--secondary-15);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: var(--transition);
     }
-    .treatment-option:hover, .treatment-option.selected { border-color: var(--secondary); background: var(--secondary-08); }
-    .treatment-option input[type=checkbox] { accent-color: var(--secondary); }
-    .treatment-option-info h4 { font-size: 0.9rem; }
-    .treatment-option-info p { font-size: 0.75rem; color: var(--text-dim); }
-    .treatment-price { font-family: var(--font-display); font-size: 1.1rem; color: var(--secondary); }
+    .treatment-option:hover, .treatment-option.selected { 
+      border-color: var(--secondary); 
+      background: var(--secondary-08); 
+    }
+    .treatment-option input[type=checkbox] { 
+      accent-color: var(--secondary); 
+      width: 18px; 
+      height: 18px; 
+      flex-shrink: 0;
+    }
+    .treatment-option-info { 
+      flex: 1; 
+      text-align: left;
+    }
+    .treatment-option-info h4 { font-size: 0.95rem; margin-bottom: 2px; }
+    .treatment-option-info p { font-size: 0.78rem; color: var(--text-dim); }
+    .treatment-price { 
+      font-family: var(--font-display); 
+      font-size: 1.15rem; 
+      color: var(--secondary); 
+      margin-left: auto;
+    }
   </style>
 </head>
 <body>
@@ -186,7 +208,7 @@
               <div class="form-group"><label>Preferred Time</label><select class="form-control"><option>9:00 AM</option><option>11:00 AM</option><option>2:00 PM</option><option>4:00 PM</option></select></div>
               <div class="form-group"><label>Therapist</label><select class="form-control"><option>No Preference</option><option>Ni Made (Female)</option><option>Ketut (Male)</option></select></div>
             </div>
-            <label style="font-family:var(--font-body);font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--secondary);display:block;margin-bottom:10px;">Select Treatment(s)</label>
+            <label style="font-family:var(--font-body);font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--secondary);display:block;margin-bottom:10px;padding-left:20px;">Select Treatment(s)</label>
             <div class="treatment-option selected"><input type="checkbox" checked/><div class="treatment-option-info"><h4>The Boreh Ritual</h4><p>120 min · Full body spice wrap & massage</p></div><div class="treatment-price">$145</div></div>
             <div class="treatment-option"><input type="checkbox"/><div class="treatment-option-info"><h4>The Royal Lulur</h4><p>90 min · Turmeric scrub & flower bath</p></div><div class="treatment-price">$120</div></div>
             <div class="treatment-option"><input type="checkbox"/><div class="treatment-option-info"><h4>Volcanic Stone Healing</h4><p>90 min · Chakra stones & coconut oil</p></div><div class="treatment-price">$110</div></div>

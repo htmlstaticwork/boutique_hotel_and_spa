@@ -58,6 +58,9 @@
   --border-gold: 1px solid rgba(200,169,110,0.25);
   --transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
   --transition-slow: all 0.7s cubic-bezier(0.4,0,0.2,1);
+
+  /* Button text contrast */
+  --btn-primary-text: #000000; /* Dark text on light gold button in dark mode */
 }
 
 /* Light mode (Tropical Day) */
@@ -79,6 +82,7 @@
   --secondary: #8c6e3b;
   --secondary-50: rgba(140,110,59,0.50);
   --secondary-15: rgba(140,110,59,0.15);
+  --btn-primary-text: #ffffff; /* White text on dark brown button in light mode */
 }
 
 /* RTL */
@@ -206,6 +210,13 @@ p { font-size: 1.05rem; color: var(--text-muted); font-weight: 300; line-height:
     grid-template-columns: repeat(2, 1fr); 
     justify-content: center;
   }
+  .card-grid-3 .package-card:nth-child(odd):last-child,
+  .card-grid-3 .exp-card:nth-child(odd):last-child {
+    grid-column: span 2;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ≤767px */
@@ -311,12 +322,12 @@ p { font-size: 1.05rem; color: var(--text-muted); font-weight: 300; line-height:
 
 .btn-primary {
   background: var(--secondary);
-  color: var(--text-dark);
+  color: var(--btn-primary-text);
 }
 .btn-primary:hover {
   box-shadow: var(--glow-gold);
   transform: translateY(-2px);
-  color: var(--text-dark);
+  color: var(--btn-primary-text);
 }
 
 .btn-outline {
@@ -875,6 +886,18 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 /* ============================================================
    BADGE / TAG
    ============================================================ */
+.exp-img-tag {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--secondary);
+  color: var(--btn-primary-text);
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  font-family: var(--font-body);
+  z-index: 2;
+}
 .badge {
   display: inline-block;
   padding: 4px 12px;
