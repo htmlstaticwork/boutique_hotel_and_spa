@@ -33,7 +33,7 @@
         <div class="desktop-actions">
           <button class="toggle-btn rtl-toggle" aria-label="Toggle RTL">RTL</button>
           <button class="toggle-btn theme-toggle" aria-label="Toggle theme">☀️</button>
-          <a href="login.html" class="btn btn-outline login-btn" style="padding:10px 22px;font-size:0.68rem;">Login</a>
+          <a href="login.html" class="btn btn-outline login-btn">Login</a>
         </div>
         <button class="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>

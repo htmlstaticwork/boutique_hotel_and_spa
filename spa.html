@@ -33,10 +33,28 @@
     .treatment-price { font-family: var(--font-display); font-size: 1.4rem; color: var(--secondary); font-weight: 700; }
 
     .spa-philosophy {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 80px; 
+      align-items: center;
     }
-    @media (max-width: 1023px) { .spa-philosophy { grid-template-columns: 1fr; } }
-    .spa-img-stack { position: relative; height: 480px; }
+    .spa-philosophy-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    @media (max-width: 1023px) { 
+      .spa-philosophy { grid-template-columns: 1fr; gap: 48px; }
+      .spa-philosophy-content { order: 2; }
+    }
+    .spa-img-stack { 
+      position: relative; 
+      height: 480px; 
+      width: 100%; 
+      max-width: 500px; 
+      margin: 0 auto;
+    }
     .spa-img-main {
       position: absolute; top: 0; right: 0; width: 80%; height: 85%;
       object-fit: cover; border: var(--border-gold);
@@ -48,16 +66,22 @@
     @media (max-width: 767px) { .spa-img-stack { height: 320px; } }
 
     .wellness-steps {
-      display: flex; flex-direction: column; gap: 0;
+      display: flex; flex-direction: column; gap: 0; width: 100%;
     }
     .wellness-step {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 20px 0; border-bottom: 1px solid var(--secondary-08);
+      display: flex; 
+      flex-direction: column;
+      gap: 12px; 
+      align-items: center;
+      text-align: center;
+      padding: 24px 0; 
+      border-bottom: 1px solid var(--secondary-08);
+      width: 100%;
     }
     .wellness-step:last-child { border-bottom: none; }
     .step-num {
       font-family: var(--font-display); font-size: 2rem; font-weight: 700;
-      color: var(--secondary-30); line-height: 1; width: 48px; flex-shrink: 0;
+      color: var(--secondary-30); line-height: 1; width: auto;
     }
   </style>
 </head>
@@ -65,7 +89,7 @@
   <div id="header-inject"></div>
 
   <!-- HERO -->
-  <section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&q=80');">
+  <section class="page-hero" style="background-image:url('https://image.kkday.com/v2/image/get/c_fit%2Cq_55%2Ct_webp%2Cw_960/s1.kkday.com/product_scm_463/20250808034742_PaGkh/jpg');">
     <div class="container">
       <div class="page-hero-content" style="animation:fadeInUp 0.8s ease;">
         <h1>Ancient <span class="gradient-text">Healing Arts</span></h1>
@@ -80,29 +104,25 @@
     <div class="container">
       <div class="spa-philosophy">
         <div class="spa-img-stack reveal">
-          <img class="spa-img-main" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=700&q=80" alt="Spa treatment" loading="lazy"/>
-          <img class="spa-img-accent" src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=400&q=80" alt="Flowers" loading="lazy"/>
+          <img class="spa-img-main" src="https://www.eliteworldhotels.com.tr/Upload/images/bali-masaji-ve-faydalari.jpg" alt="Spa treatment" loading="lazy"/>
+          <img class="spa-img-accent" src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0f/4d/32/e1.jpg" alt="Flowers" loading="lazy"/>
         </div>
-        <div class="reveal reveal-delay-2">
+        <div class="spa-philosophy-content reveal reveal-delay-2">
           <span class="section-label">Our Approach</span>
           <h2>Healing as a <span class="gradient-text">Sacred Art</span></h2>
           <p style="margin-bottom:24px;">Our therapists are trained by master healers from the Balinese village of Sebatu, where healing traditions have been passed down through families for over 600 years.</p>
           <p style="margin-bottom:32px;">Every treatment begins with a <em>chakra reading</em> and is individually tailored to your body's needs. We use only organic plant-based oils, herbs grown in our garden, and volcanic mineral salts.</p>
           <div class="wellness-steps">
             <div class="wellness-step">
-              <div class="step-num">01</div>
               <div><h4 style="margin-bottom:4px;">Consultation</h4><p style="font-size:0.88rem;">A private Jamu health consultation to understand your body's current needs.</p></div>
             </div>
             <div class="wellness-step">
-              <div class="step-num">02</div>
               <div><h4 style="margin-bottom:4px;">Purification</h4><p style="font-size:0.88rem;">Ritual foot washing and floral steam to prepare the body and mind.</p></div>
             </div>
             <div class="wellness-step">
-              <div class="step-num">03</div>
               <div><h4 style="margin-bottom:4px;">Treatment</h4><p style="font-size:0.88rem;">Your tailored treatment delivered with presence and intention.</p></div>
             </div>
             <div class="wellness-step">
-              <div class="step-num">04</div>
               <div><h4 style="margin-bottom:4px;">Integration</h4><p style="font-size:0.88rem;">Resting tea ceremony in our garden pavilion. Fresh fruit. Stillness.</p></div>
             </div>
           </div>
@@ -124,7 +144,7 @@
       <div class="card-grid card-grid-3">
         <div class="treatment-card reveal reveal-delay-1">
           <div class="treatment-img-wrap">
-            <img class="treatment-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Boreh Ritual" loading="lazy"/>
+            <img class="treatment-img" src="https://thaicospa.ro/wp-content/uploads/2023/09/THAIcoSPA_demo_aprilie_078.png" alt="Boreh Ritual" loading="lazy"/>
           </div>
           <div class="treatment-body">
             <div class="treatment-duration">120 Minutes</div>
@@ -139,7 +159,7 @@
 
         <div class="treatment-card reveal reveal-delay-2">
           <div class="treatment-img-wrap">
-            <img class="treatment-img" src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" alt="Lulur Ceremony" loading="lazy"/>
+            <img class="treatment-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJx4ufwqUF6jZkRoCmhX2XJsTTpCae0-ifxw&s" alt="Lulur Ceremony" loading="lazy"/>
           </div>
           <div class="treatment-body">
             <div class="treatment-duration">90 Minutes</div>
@@ -154,12 +174,12 @@
 
         <div class="treatment-card reveal reveal-delay-3">
           <div class="treatment-img-wrap">
-            <img class="treatment-img" src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=600&q=80" alt="Couples Retreat" loading="lazy"/>
+            <img class="treatment-img" src="https://www.hollywoodreporter.com/wp-content/uploads/2025/01/08-Sacred-River-Spa-Restu-Bumi-3.jpg?w=3000" alt="Couples Retreat" loading="lazy"/>
           </div>
           <div class="treatment-body">
             <div class="treatment-duration">180 Minutes · Couples</div>
             <h3>The Sacred Union</h3>
-            <p>A couples' journey beginning with synchronized massages, moving into a shared flower bath, and concluding with a candlelit Jamu ceremony for two in.</p>
+            <p>A couples' journey beginning with synchronized massages, moving into a shared flower bath, and concluding with a candlelit Jamu ceremony for two in bali resort.</p>
             <div class="treatment-footer">
               <div class="treatment-price">$280 <small style="font-size:0.7rem;">/couple</small></div>
               <a href="dashboard.html" class="btn btn-outline" style="font-size:0.68rem;padding:8px 18px;">Book →</a>
@@ -169,12 +189,12 @@
 
         <div class="treatment-card reveal reveal-delay-1">
           <div class="treatment-img-wrap">
-            <img class="treatment-img" src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Hot Stone" loading="lazy"/>
+            <img class="treatment-img" src="https://www.hhmassagetherapy.ca/wp-content/uploads/2014/06/stone-massage.jpg" alt="Hot Stone" loading="lazy"/>
           </div>
           <div class="treatment-body">
             <div class="treatment-duration">90 Minutes</div>
             <h3>Volcanic Stone Healing</h3>
-            <p>Warmed volcanic stones from Mount Agung placed along the chakra points, melting tension and restoring energy flow. Combined with warm coconut oil massage.</p>
+            <p>Warmed volcanic stones from Mount Agung placed along the chakra points, melting tension and restoring energy flow. Combined with warm oil massage.</p>
             <div class="treatment-footer">
               <div class="treatment-price">$110</div>
               <a href="dashboard.html" class="btn btn-outline" style="font-size:0.68rem;padding:8px 18px;">Book →</a>
@@ -199,12 +219,12 @@
 
         <div class="treatment-card reveal reveal-delay-3">
           <div class="treatment-img-wrap">
-            <img class="treatment-img" src="https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=80" alt="Full Day Retreat" loading="lazy"/>
+            <img class="treatment-img" src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/22k/22069/p_1125431/1000_1690543799.jpg" alt="Full Day Retreat" loading="lazy"/>
           </div>
           <div class="treatment-body">
             <div class="treatment-duration">Full Day · 8 Hours</div>
             <h3>The Bali Retreat Day</h3>
-            <p>A complete immersion: sunrise yoga, Boreh wrap, Lulur scrub, flower bath, Jamu lunch, afternoon massage, sunset meditation. The ultimate transformation in one.</p>
+            <p>A complete immersion: sunrise yoga, Boreh wrap, Lulur scrub, flower bath, Jamu lunch, afternoon massage, sunset meditation. The ultimate  in one.</p>
             <div class="treatment-footer">
               <div class="treatment-price">$380</div>
               <a href="dashboard.html" class="btn btn-primary" style="font-size:0.68rem;padding:8px 18px;">Book →</a>
@@ -225,30 +245,30 @@
       <div class="card-grid card-grid-4">
         <div class="card reveal reveal-delay-1">
           <div class="card-body">
-            <div class="service-icon" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 12s3-5 10-5 10 5 10 5-3 5-10 5-10-5-10-5z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <img src="https://image.kkday.com/v2/image/get/c_fit%2Cq_55%2Ct_webp%2Cw_960/s1.kkday.com/product_132943/20220904084300_IajMB/jpg" alt="Hydrotherapy" style="width:100%; height:160px; object-fit:cover; margin-bottom:20px; border-radius:4px;" loading="lazy"/>
             <h3>Hydrotherapy</h3>
             <p>Mineral-rich volcanic pool with underwater jets and a floating meditation platform.</p>
           </div>
         </div>
         <div class="card reveal reveal-delay-2">
           <div class="card-body">
-            <div class="service-icon" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg></div>
-            <h3>Yoga Pavilion</h3>
+            <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/10/59/6c/cb.jpg" alt="Yoga Pavilion" style="width:100%; height:160px; object-fit:cover; margin-bottom:20px; border-radius:4px;" loading="lazy"/>
+            <h3>Gee Pavilion</h3>
             <p>Open-air bamboo pavilion floating above the jungle canopy. Daily sunrise and moon classes.</p>
           </div>
         </div>
         <div class="card reveal reveal-delay-3">
           <div class="card-body">
-            <div class="service-icon" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/f4/38/d6/couple-treatment-room.jpg?w=900&h=-1&s=1" alt="Treatment Suites" style="width:100%; height:160px; object-fit:cover; margin-bottom:20px; border-radius:4px;" loading="lazy"/>
             <h3>Treatment Suites</h3>
             <p>Six private suites, each themed after a Balinese healing tradition. Open-air options available.</p>
           </div>
         </div>
         <div class="card reveal reveal-delay-4">
           <div class="card-body">
-            <div class="service-icon" style="margin-bottom:14px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="10"/><path d="M12 6c0 0-4 3-4 6s4 6 4 6 4-3 4-6-4-6-4-6z"/></svg></div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwQS2rNP6v0GY3XKWrCT8QiXGc_vvOVRbK4w&s" alt="Herb Garden" style="width:100%; height:160px; object-fit:cover; margin-bottom:20px; border-radius:4px;" loading="lazy"/>
             <h3>Herb Garden</h3>
-            <p>A 200 sqm living garden of Jamu herbs and healing plants. The source of every treatment ingredient.</p>
+            <p>Where we cultivate the organic ingredients used in our scrubs, wraps, and daily Jamu tonics.</p>
           </div>
         </div>
       </div>

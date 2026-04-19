@@ -12,7 +12,7 @@
     /* SECTION 1: HERO */
     .hero2-section {
       min-height: 100vh;
-      background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80');
+      background-image: url('https://boutiquehotels.org/wp-content/uploads/67a338e08e13a70c5ffa4196_63878b330f3ba7ea2f6c34ef_luxury-hotel-bali-capella-ubud-aerial-pool-e1763310450791.webp');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -127,6 +127,7 @@
       background: var(--primary);
       border: var(--border-gold);
       transition: var(--transition);
+      width: 100%;
     }
     .exp-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-soft); }
     .exp-img-wrap {
@@ -189,34 +190,47 @@
       letter-spacing: 1px;
     }
 
-    /* SECTION 3: BALI SEASONS */
     .seasons-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
       align-items: center;
     }
-    @media (max-width: 1023px) { .seasons-layout { grid-template-columns: 1fr; } }
+    .seasons-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    @media (max-width: 1023px) { 
+      .seasons-layout { grid-template-columns: 1fr; gap: 48px; }
+      .seasons-content { order: 2; }
+    }
     .season-item {
       display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 16px 0;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+      padding: 24px 0;
       border-bottom: 1px solid var(--secondary-15);
+      width: 100%;
     }
     .season-item:last-child { border-bottom: none; }
     .season-month {
       font-family: var(--font-display);
       font-size: 1rem;
       color: var(--secondary);
-      width: 80px;
+      width: auto;
       flex-shrink: 0;
     }
     .seasons-img {
       width: 100%;
+      max-width: 600px;
       height: 440px;
       object-fit: cover;
       border: var(--border-gold);
+      margin: 0 auto;
     }
 
     /* SECTION 4: PACKAGES with image cards */
@@ -231,6 +245,7 @@
       background: var(--primary-95);
       backdrop-filter: blur(10px);
       position: relative;
+      width: 100%;
     }
     .package-card.featured {
       border-color: var(--secondary);
@@ -458,11 +473,7 @@
       <div class="hero2-content">
         <div class="hero2-grid">
           <div class="hero2-left">
-            <div class="exp-tag">
-              <span class="exp-tag-dot"></span>
-              Signature Experiences
-              <span class="exp-tag-dot"></span>
-            </div>
+            
             <h1 class="hero2-title">
               Immerse in the<br/>
               <span>Living</span> Spirit<br/>
@@ -514,8 +525,7 @@
       <div class="card-grid card-grid-3">
         <div class="exp-card reveal reveal-delay-1">
           <div class="exp-img-wrap">
-            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Temple Sunrise" loading="lazy"/>
-            <span class="exp-img-tag">Most Popular</span>
+            <img src="https://balipalms.com/wp-content/uploads/2025/09/healing-in-bali.jpg" alt="Temple Sunrise" loading="lazy"/>
           </div>
           <div class="exp-body">
             <div class="exp-duration">4 Hours · Sunrise · Small Group</div>
@@ -528,12 +538,11 @@
 
         <div class="exp-card reveal reveal-delay-2">
           <div class="exp-img-wrap">
-            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Cooking Class" loading="lazy"/>
-            <span class="exp-img-tag">Chef's Choice</span>
+            <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/06/ed/90/1d.jpg" alt="Cooking Class" loading="lazy"/>
           </div>
           <div class="exp-body">
-            <div class="exp-duration">3 Hours · Morning · Max 8 Guests</div>
-            <h3>Balinese Cooking Ceremony</h3>
+            <div class="exp-duration">3 Hours · Morning </div>
+            <h3>Balinese Cooking</h3>
             <p>Visit the morning market with our chef, then return to craft traditional dishes in our open-air kitchen. Take home a handwritten recipe book of Bali's most sacred flavours.</p>
             <div class="exp-price">$85 <span>/ person</span></div>
             <a href="dashboard.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Experience</a>
@@ -542,11 +551,11 @@
 
         <div class="exp-card reveal reveal-delay-3">
           <div class="exp-img-wrap">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Rice Terrace Trek" loading="lazy"/>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0SEUeFSr_BO6nDsyWExHTOBGgsJhoSKoJ-A&s" alt="Rice Terrace Trek" loading="lazy"/>
           </div>
           <div class="exp-body">
             <div class="exp-duration">2.5 Hours · Dawn · All Levels</div>
-            <h3>Tegalalang Rice Terrace Walk</h3>
+            <h3>Tegalalang Rice Terrace</h3>
             <p>A guided meander through UNESCO-listed rice terraces as morning mist lifts. Learn about the ancient <em>Subak</em> irrigation system from our resident farmer guide.</p>
             <div class="exp-price">$45 <span>/ person</span></div>
             <a href="dashboard.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Experience</a>
@@ -555,7 +564,7 @@
 
         <div class="exp-card reveal reveal-delay-1">
           <div class="exp-img-wrap">
-            <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&q=80" alt="Jungle Yoga" loading="lazy"/>
+            <img src="https://hanginggardensofbali.com/images/experience/wellness11_cr.jpg" alt="Jungle Yoga" loading="lazy"/>
           </div>
           <div class="exp-body">
             <div class="exp-duration">90 Min · Daily · All Levels</div>
@@ -568,7 +577,7 @@
 
         <div class="exp-card reveal reveal-delay-2">
           <div class="exp-img-wrap">
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Cave Dining" loading="lazy"/>
+            <img src="https://www.nowbali.co.id/wp-content/uploads/2019/02/Romantic-Dining-in-Bali-Raffles-Bali-The-Secret-Cave.jpg" alt="Cave Dining" loading="lazy"/>
             <span class="exp-img-tag">Exclusive</span>
           </div>
           <div class="exp-body">
@@ -582,7 +591,7 @@
 
         <div class="exp-card reveal reveal-delay-3">
           <div class="exp-img-wrap">
-            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" alt="Jamu Workshop" loading="lazy"/>
+            <img src="https://jamutraditions.com/wp-content/uploads/2023/06/jamu-spa-school-home-tumb.jpg" alt="Jamu Workshop" loading="lazy"/>
           </div>
           <div class="exp-body">
             <div class="exp-duration">2 Hours · Morning · Max 6</div>
@@ -602,7 +611,7 @@
   <section class="section section-alt">
     <div class="container">
       <div class="seasons-layout">
-        <div class="reveal">
+        <div class="seasons-content reveal">
           <span class="section-label">When to Visit</span>
           <h2>The <span class="gradient-text">Rhythms</span> of Bali</h2>
           <p style="margin-bottom:32px;">Each season in Bali has its own magic. Our experiences are thoughtfully adapted to the island's natural rhythms throughout the year.</p>
@@ -628,7 +637,7 @@
             </div>
           </div>
         </div>
-        <div class="reveal reveal-delay-2">
+        <div class="reveal reveal-delay-2" style="display:flex; justify-content:center;">
           <img class="seasons-img" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700&q=80" alt="Bali rice terraces" loading="lazy"/>
         </div>
       </div>
@@ -749,12 +758,7 @@
           <span class="script-text" style="margin-bottom:12px;">Your Bali Story Begins</span>
           <h2>Book Your <span class="gradient-text">Bali</span> Experience</h2>
           <p style="margin-bottom:32px;">Every experience can be tailored to your preferences, dates, and group size. Our Guest Relations team is on hand 24 hours to craft your perfect itinerary.</p>
-          <div style="display:flex;flex-direction:column;gap:14px;max-width:360px;margin: 0 auto;">
-            <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><span style="color:var(--secondary);font-size:1.1rem;">✦</span><span>Fully personalised to your interests</span></div>
-            <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><span style="color:var(--secondary);font-size:1.1rem;">✦</span><span>Led by local Balinese guides</span></div>
-            <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><span style="color:var(--secondary);font-size:1.1rem;">✦</span><span>Free cancellation up to 48 hours</span></div>
-            <div style="display:flex;align-items:center;gap:12px;justify-content:center;"><span style="color:var(--secondary);font-size:1.1rem;">✦</span><span>24/7 guest concierge support</span></div>
-          </div>
+          
         </div>
 
         <div class="quick-book-form reveal reveal-delay-2">

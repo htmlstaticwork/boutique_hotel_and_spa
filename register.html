@@ -17,11 +17,25 @@
     }
     .auth-toggles {
       position: absolute;
-      top: 18px;
-      right: 18px;
+      top: 24px;
+      right: 24px;
       display: flex;
       gap: 12px;
-      z-index: 10;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 360px) {
+      .auth-toggles {
+        top: 5px;
+        right: 12px;
+      }
+      .toggle-btn {
+        transform: scale(0.8);
+        transform-origin: top right;
+      }
+      .register-wrap {
+        padding-top: 70px;
+      }
     }
 
     /* CENTERED LAYOUT */
@@ -107,8 +121,9 @@
     .reg-label {
       display: block;
       font-family: 'Jost', sans-serif;
-      font-size: 0.62rem; letter-spacing: 2.5px; text-transform: uppercase;
-      color: var(--secondary); margin-bottom: 7px;
+      font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-light); margin-bottom: 7px;
+      font-weight: 500;
     }
     .reg-group { margin-bottom: 18px; }
 
@@ -200,12 +215,12 @@
   </style>
 </head>
 <body>
+  <div class="auth-toggles">
+    <button class="toggle-btn rtl-toggle" aria-label="Toggle RTL">עב</button>
+    <button class="toggle-btn theme-toggle" aria-label="Toggle theme">☀️</button>
+  </div>
   <div class="register-wrap">
     <div class="reg-form-panel">
-      <div class="auth-toggles">
-        <button class="toggle-btn rtl-toggle" aria-label="Toggle RTL">עב</button>
-        <button class="toggle-btn theme-toggle" aria-label="Toggle theme">☀️</button>
-      </div>
       <div class="reg-form-inner">
         <!-- Brand Header -->
         <a href="index.html" class="reg-brand-header" style="text-decoration:none;">
@@ -259,18 +274,7 @@
             </div>
             
           
-<div class="reg-group">
-              <label class="reg-label">How did you hear of us?</label>
-              <select class="reg-input">
-                <option value="">Select option</option>
-                <option>Instagram</option>
-                <option>Condé Nast</option>
-                <option>Travel + Leisure</option>
-                <option>Word of mouth</option>
-                <option>Google Search</option>
-                <option>Travel Agent</option>
-              </select>
-            </div>
+
           <div class="reg-group">
             <label class="reg-label">Password</label>
             <div class="pw-wrap">
@@ -279,12 +283,7 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
               </button>
             </div>
-            <div class="pw-strength-row" id="pwSegs">
-              <div class="pw-seg"></div>
-              <div class="pw-seg"></div>
-              <div class="pw-seg"></div>
-              <div class="pw-seg"></div>
-            </div>
+            
             <div class="pw-lbl" id="pwLbl">Enter a password</div>
           </div>
 
@@ -315,7 +314,7 @@
 
         <div class="login-divider"><span>or sign in with</span></div>
 
-        <button class="sso-btn" style="background: #fff; color: #757575; border: 1px solid #ddd;">
+        <button class="sso-btn" style="background: #fff; color: #333; border: 1px solid #ddd; padding: 10px 12px;">
           <span class="sso-icon" style="display:flex;">
             <svg width="18" height="18" viewBox="0 0 24 24">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -324,17 +323,16 @@
               <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
             </svg>
           </span>
-          <span style="font-weight: 500; font-family: 'Roboto', sans-serif;">Continue with Google</span>
+          <span style="font-weight: 500; font-family: 'Roboto', sans-serif; font-size: 0.75rem;">Continue with Google</span>
         </button>
 
-        <button class="sso-btn" style="background: #0078d4; color: #fff; border: none;">
+        <button class="sso-btn" style="background: #000; color: #fff; border: none; padding: 10px 12px;">
           <span class="sso-icon" style="display:flex;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color:#fff;">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.05 16.05c-.17.43-.37.89-.59 1.35-.61 1.25-1.28 2.5-2.65 2.54-1.34.04-1.78-.77-3.3-.77-1.53 0-2.02.73-3.26.81-1.31.08-2.08-1.31-2.71-2.58-1.29-2.61-2.28-5.83-2.11-8.2.1-1.34.61-2.57 1.48-3.4 1.1-1.07 2.53-1.63 3.96-1.6 1.14.02 2.37.58 3.09.91.56.26 1.49.83 2.15.83.65 0 1.57-.59 2.14-.85.83-.37 2.16-1.01 3.51-.95 1.7.07 3.03.85 3.86 2.05-3.08 1.83-2.53 5.48.51 6.64-.61 1.49-1.39 2.87-2.08 4.21zM11.96 4.79C11.96 2.11 14.15 0 16.8 0c.26 2.83-1.99 5-4.84 5-.01-.07-.01-.14-.01-.21z"/>
             </svg>
           </span>
-          <span style="font-weight: 500;">Continue with Corporate SSO</span>
+          <span style="font-weight: 500; font-size: 0.75rem;">Continue with Apple</span>
         </button>
 
         <div class="reg-login-link">

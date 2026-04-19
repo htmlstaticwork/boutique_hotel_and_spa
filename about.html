@@ -13,7 +13,7 @@
       background: var(--primary); transition: var(--transition);
     }
     .team-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
-    .team-img { width: 100%; height: 240px; object-fit: cover; object-position: top; transition: transform 0.6s; }
+    .team-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; transition: transform 0.6s; }
     .team-card:hover .team-img { transform: scale(1.04); }
     .team-img-wrap { width: 100%; overflow: hidden; }
     .team-body { padding: 24px 20px 28px; display: flex; flex-direction: column; align-items: center; }
@@ -52,31 +52,29 @@
   <div id="header-inject"></div>
 
   <!-- HERO -->
-  <section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920&q=80');">
+  <section class="page-hero" style="background-image:url('https://addieabroad.b-cdn.net/wp-content/uploads/2019/08/ern-gan-bUvmhwQ-gsw-unsplash-1024x576.jpg');">
     <div class="container">
       <div class="page-hero-content" style="animation:fadeInUp 0.8s ease;">
-        <div class="ornament"><div class="ornament-line" style="width:32px;"></div><div class="ornament-diamond"></div></div>
-        <span class="section-label">Our Story</span>
+
         <h1>Born from <span class="gradient-text">Love</span> for Bali</h1>
         <p>A story of two people who came to Bali for a holiday and never went home. Bali is their love letter to the island.</p>
       </div>
     </div>
   </section>
 
-  <!-- FOUNDING STORY -->
   <section class="section">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" class="reveal">
-        <div>
+      <div style="display:grid;grid-template-columns:1fr;gap:48px;align-items:center;text-align:center;max-width:800px;margin:0 auto;" class="reveal">
+        <div style="display:flex;flex-direction:column;align-items:center;">
           <span class="section-label">The Beginning</span>
           <h2 style="margin-bottom:20px;">A <span class="gradient-text">Holiday</span> That Became Home</h2>
           <p style="margin-bottom:20px;">In 2014, Maria and Wayan met on the Tegalalang rice terraces — she, an architect from Porto, wandering alone; he, a Balinese healer who had left his village to guide visitors through the sacred landscape of his ancestors.</p>
           <p style="margin-bottom:20px;">Two years later, they began building Bali on land that had belonged to Wayan's family for four generations. Every stone was laid with intention. Every space designed to honour the spirit of place the Balinese call <em>taksu</em>.</p>
-          <p>In 2016, with seven villas and a small spa, Bali opened its doors. Today, with fifteen villas, three dining spaces, and a full wellness centre, the original spirit remains unchanged: this is not a hotel. It is a home. And you are family.</p>
+          <p style="margin-bottom:32px;">In 2016, with seven villas and a small spa, Bali opened its doors. Today, with fifteen villas, three dining spaces, and a full wellness centre, the original spirit remains unchanged: this is not a hotel. It is a home. And you are family.</p>
         </div>
-        <div style="position:relative;">
+        <div style="position:relative; max-width:700px; margin:0 auto; width:100%;">
           <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=700&q=80" alt="Bali founders" style="width:100%;border:var(--border-gold);" loading="lazy"/>
-          <div style="position:absolute;bottom:24px;left:24px;background:var(--primary-90);border:var(--border-gold);padding:16px 20px;backdrop-filter:blur(10px);">
+          <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:var(--primary-90);border:var(--border-gold);padding:16px 20px;backdrop-filter:blur(10px);white-space:nowrap;width:fit-content;">
             <div style="font-family:var(--font-script);font-size:1.4rem;color:var(--secondary);">Bali</div>
             <div style="font-family:var(--font-body);font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-top:2px;">Founded 2016 · Ubud, Bali</div>
           </div>
@@ -95,23 +93,23 @@
       </div>
       <div class="card-grid card-grid-4">
         <div class="value-card reveal reveal-delay-1">
-          <div class="value-num">01</div>
-          <h3>Tri Hita Karana</h3>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs2pd31T19y8LAhhAU-gWRxnnUicf_krWxzA&s" alt="Tri Hita Karana" style="width:100%; height:160px; object-fit:cover; margin-bottom:16px; border-radius:4px;" loading="lazy"/>
+          <h3> Hita Karana</h3>
           <p>The Balinese concept of threefold harmony: harmony with God, with fellow humans, and with nature. The foundation of everything we do.</p>
         </div>
         <div class="value-card reveal reveal-delay-2">
-          <div class="value-num">02</div>
-          <h3>Community First</h3>
+          <img src="https://ouryearinbali.com/wp-content/uploads/2025/05/IMG_5260.jpg" alt="Community First" style="width:100%; height:160px; object-fit:cover; margin-bottom:16px; border-radius:4px;" loading="lazy"/>
+          <h3>Community</h3>
           <p>85% of our team are from surrounding Ubud villages. Every artisan, every farmer, every healer is local. Our success is theirs.</p>
         </div>
         <div class="value-card reveal reveal-delay-3">
-          <div class="value-num">03</div>
-          <h3>Radical Sustainability</h3>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKJgGDM006zukPJtGfgQwgpdh8B_qzpM5e7Q&s" alt="Radical Sustainability" style="width:100%; height:160px; object-fit:cover; margin-bottom:16px; border-radius:4px;" loading="lazy"/>
+          <h3> Sustainability</h3>
           <p>Rainwater harvesting, solar power, organic gardens. We aim to return more to the earth than we take. Carbon neutral by 2026.</p>
         </div>
         <div class="value-card reveal reveal-delay-4">
-          <div class="value-num">04</div>
-          <h3>Genuine Luxury</h3>
+          <img src="https://i.ytimg.com/vi/IItfwMd1YOU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC1ur4LBS_n_8Co7jdclV-V7mtZOA" alt="Genuine Luxury" style="width:100%; height:160px; object-fit:cover; margin-bottom:16px; border-radius:4px;" loading="lazy"/>
+          <h3> Luxury</h3>
           <p>Not the luxury of excess, but of presence. The luxury of silence, of extraordinary care, of being truly, deeply seen.</p>
         </div>
       </div>
@@ -150,7 +148,7 @@
             <img class="team-img" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Maria" loading="lazy"/>
           </div>
           <div class="team-body">
-            <div class="team-role">Co-Founder & Creative Director</div>
+            <div class="team-role">Creative Director</div>
             <h3>Maria Ferreira</h3>
             <p>Architect turned hotelier. Designed every inch of Bali with a belief that space can heal.</p>
           </div>
@@ -160,7 +158,7 @@
             <img class="team-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Wayan" loading="lazy"/>
           </div>
           <div class="team-body">
-            <div class="team-role">Co-Founder & Head Healer</div>
+            <div class="team-role">Head Healer</div>
             <h3>Wayan Sudana</h3>
             <p>8th-generation Balinese healer. The spiritual heart of Bali. Leads all ceremonies and spa philosophy.</p>
           </div>
@@ -181,7 +179,7 @@
           </div>
           <div class="team-body">
             <div class="team-role">Head of Experiences</div>
-            <h3>I Ketut Sujana</h3>
+            <h3>Ketut Sujana</h3>
             <p>Born in Ubud. Expert in Balinese culture, ceremony, and crafts. Every excursion reflects his lifetime of knowledge.</p>
           </div>
         </div>
@@ -197,10 +195,34 @@
         <h2>Humbled by <span class="gradient-text">Recognition</span></h2>
       </div>
       <div class="card-grid card-grid-4">
-        <div class="card reveal reveal-delay-1"><div class="card-body"><div style="font-size:2.5rem;margin-bottom:12px;">🏆</div><h3>Condé Nast</h3><p>Hot List 2023 & 2024 — Top New Hotels in Asia Pacific</p></div></div>
-        <div class="card reveal reveal-delay-2"><div class="card-body"><div style="font-size:2.5rem;margin-bottom:12px;">⭐</div><h3>Travel + Leisure</h3><p>World's Top 100 Hotels — 2022, 2023, 2024</p></div></div>
-        <div class="card reveal reveal-delay-3"><div class="card-body"><div style="font-size:2.5rem;margin-bottom:12px;">🌿</div><h3>Green Globe</h3><p>Certified Sustainable Tourism — Platinum Level</p></div></div>
-        <div class="card reveal reveal-delay-4"><div class="card-body"><div style="font-size:2.5rem;margin-bottom:12px;">💆</div><h3>World Spa Awards</h3><p>Finalist — Best Spa in Asia 2023 & 2024</p></div></div>
+        <div class="card reveal reveal-delay-1">
+          <div class="card-body">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyw3tU98zVvlbnVVUSn0UvV9Qdhjfe02fd4g&s" alt="Condé Nast" style="width:100%; height:160px; object-fit:cover; margin-bottom:20px; border-radius:4px;" loading="lazy"/>
+            <h3>Conde Nast</h3>
+            <p>Hot List 2023 & 2024 — Top New Hotels in Asia Pacific</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <div class="card-body">
+            <img src="https://images.travelandleisureasia.com/wp-content/uploads/sites/7/2026/02/11184608/ulun-danu-beratan-temple-in-bali-indonesia-1600x900.jpeg" alt="Travel + Leisure" style="width:100%; height:160px; object-fit:cover; margin-bottom:20px; border-radius:4px;" loading="lazy"/>
+            <h3>Travel + Leisure</h3>
+            <p>World's Top 100 Hotels — 2022, 2023, 2024</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-3">
+          <div class="card-body">
+            <img src="https://media.istockphoto.com/id/515275003/photo/rice-fields-on-terraced-in-vietnam.jpg?s=612x612&w=0&k=20&c=DplXPVMUVNOx12fGD6U4iPqf3ea4Ac2Gq2iuusSxouU=" alt="Green Globe" style="width:100%; height:160px; object-fit:cover; margin-bottom:20px; border-radius:4px;" loading="lazy"/>
+            <h3>Green Globe</h3>
+            <p>Certified Sustainable Tourism — Platinum Level</p>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-4">
+          <div class="card-body">
+            <img src="https://www.baliinternationalgolf.com/wp-content/uploads/2025/02/DSC03390-Enhanced-NR_edit_11zon_11zon.webp" alt="World Spa Awards" style="width:100%; height:160px; object-fit:cover; margin-bottom:20px; border-radius:4px;" loading="lazy"/>
+            <h3> Spa Awards</h3>
+            <p>Finalist — Best Spa in Asia 2023 & 2024</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>

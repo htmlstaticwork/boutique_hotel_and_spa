@@ -140,11 +140,8 @@
       <a class="sidebar-link" href="dash-past-stays.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg> Past Stays</a>
       
       <!-- TOGGLES -->
-      <div style="margin-top:auto; padding: 24px 20px; border-top: 1px solid var(--secondary-10); display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; gap: 10px; align-items: center;">
-          <button class="toggle-btn rtl-toggle" aria-label="Toggle RTL" style="flex:1; background: var(--secondary-08); border: 1px solid var(--secondary-15); color: var(--secondary); height: 38px; border-radius: 2px; font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 1px;">RTL</button>
-          <button class="toggle-btn theme-toggle" aria-label="Toggle theme" style="width:38px; height:38px; background: var(--secondary-08); border: 1px solid var(--secondary-15); color: var(--secondary); display: flex; align-items: center; justify-content: center; border-radius: 50%;">☀️</button>
-        </div>
+      <div class="sidebar-toggles" style="margin-top:auto; padding: 24px 20px; border-top: 1px solid var(--secondary-10); display: flex; flex-direction: column; gap: 12px;">
+        
         <a href="index.html" class="sidebar-link logout-btn" style="color: #ff6b6b; padding: 10px 0; border-top: 1px solid var(--secondary-10); justify-content: flex-start; gap: 10px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px; height:16px;"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Logout
         </a>
@@ -159,7 +156,13 @@
         </button>
         <div class="dash-welcome">
           <h1>Explore <span class="gradient-text">Excursions</span></h1>
-          <p>// JOURNEYS INTO THE HEART OF BALI</p>
+        </div>
+        <div class="dash-topbar-right">
+          <div class="dash-header-toggles">
+            <button class="toggle-btn rtl-toggle" aria-label="Toggle RTL" style="background: var(--secondary-08); border: 1px solid var(--secondary-15); color: var(--secondary); height: 38px; padding: 0 12px; border-radius: 2px; font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 1px;">RTL</button>
+            <button class="toggle-btn theme-toggle" aria-label="Toggle theme" style="width:38px; height:38px; background: var(--secondary-08); border: 1px solid var(--secondary-15); color: var(--secondary); display: flex; align-items: center; justify-content: center; border-radius: 50%;">☀️</button>
+          </div>
+          
         </div>
       </div>
 
